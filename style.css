@@ -1,0 +1,86 @@
+body {
+    background-image: url('fire.jpg');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+form h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: rgb(0, 0, 0);
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 500px;
+}
+
+label[for="username"],
+label[for="password"] {
+    font-size: 13px;
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"]{
+    width: 80%;
+    height: 5%;
+    padding: 10px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    display: block;
+}
+input[type="password"] {
+    width: 80%;
+    height: 5%;
+    padding: 10px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    display: block;
+    margin-bottom: 20%;
+}
+
+input[type="submit"], 
+input[type="button"] {
+    background-color: #d7cbdf;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    width:70%;
+    display: block;
+    margin: 10px auto;
+}
+
+input[type="submit"]:hover {
+    background-color: #d7cbdf;
+}
+/* 
+.links{
+    text-align: center;
+    margin-top: 1000px;
+}
+
+.links a {
+    display: block; 
+    color: #007bff; 
+    text-decoration: none; 
+    margin: 5px 0;
+}
+
+.links a:hover {
+    text-decoration: underline; 
+} */
