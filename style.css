@@ -1,86 +1,111 @@
 body {
-    background-image: url('fire.jpg');
+    background-image: url('fire.jpg'); /* Optional: Background for the entire body */
     background-size: cover;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    display: flex;
+    flex-direction: column; /* Stack containers vertically */
+    align-items: center; /* Center containers horizontally */
 }
 
-form h3 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: rgb(0, 0, 0);
-}
-
-form {
-    background-color: white;
+.login-container {
+    background-color: #D9D9D9; /* Background for the login container */
     padding: 20px;
-    border-radius: 30px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 400px;
-    height: 500px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-label[for="username"],
-label[for="password"] {
-    font-size: 13px;
-    display: block;
-    font-weight: bold;
+.logo-container {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center items horizontally */
 }
 
-input[type="text"]{
-    width: 80%;
-    height: 5%;
-    padding: 10px;
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    display: block;
+.Logo {
+    width: 70px; /* Set the desired width */
+    height: 70px; /* Set the height to the same value as width */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    margin-bottom: 5px; /* Space between logo and text */
 }
+label{
+    font-size: 2em;
+}
+
+.HopeBridge {
+    font-size: 2.5em;
+    color: #472A5A;
+    user-select: none;
+    font-weight: 900;
+    text-decoration: none;
+    text-align: center; /* Center the text */
+}
+
+input[type="text"],
 input[type="password"] {
     width: 80%;
-    height: 5%;
-    padding: 10px;
+    padding: 12px;
     margin: 20px auto;
-    border: 1px solid #ccc;
-    border-radius: 20px;
+    background-color: #C3C3C3;
+    border: none;
+    border-radius: 10px;
     display: block;
-    margin-bottom: 20%;
 }
 
-input[type="submit"], 
-input[type="button"] {
-    background-color: #d7cbdf;
-    color: rgb(0, 0, 0);
-    border: none;
+input[type="submit"] {
+    background-color: #80479e;
+    color: #d7cbdf;
+    border: #ffff;
     padding: 15px;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
-    width:70%;
+    width: 85%;
     display: block;
     margin: 10px auto;
+    font-size: 15px;
+    font-weight: 700;
 }
 
 input[type="submit"]:hover {
-    background-color: #d7cbdf;
-}
-/* 
-.links{
-    text-align: center;
-    margin-top: 1000px;
+    background-color: #5b0098;
 }
 
-.links a {
-    display: block; 
-    color: #007bff; 
-    text-decoration: none; 
-    margin: 5px 0;
+.forgot-password {
+    margin-top: 10px; /* Space above the link */
+    color: #000000; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: 500;
+    margin-bottom: 100px;
+    margin-left: 30px;
 }
 
-.links a:hover {
-    text-decoration: underline; 
-} */
+.forgot-password:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.signup-container {
+    background-color: #D9D9D9; /* Background for the signup container */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center; /* Center the text */
+    margin-top: 50px; /* Space above and below the container */
+}
+
+.signup-container p {
+    margin: 10px 0;
+}
+
+.signup-container a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.signup-container a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
