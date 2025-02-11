@@ -47,6 +47,24 @@ header {
     color: #472A5A;
     user-select: none;
     font-weight: 900;
+    text-decoration: none;
+}
+.HopeBridge::after{
+    content: '';
+    position:absolute;
+    left:60px;
+    bottom:10px;
+    width:170px;
+    height:3px;
+    background:#472A5A;
+    border-radius:5px;
+    transform:scaleX(0);
+    transition:transform 1s;
+}
+
+.HopeBridge:hover::after{
+    transform:scaleX(1);
+    transform-origin:left;
 }
 .nav-menu {
     display: flex;
@@ -65,7 +83,7 @@ header {
 .nav-menu a::after{
     content: '';
     position:absolute;
-    left:-3px;
+    left:-2px;
     right:15px;
     bottom:-6px;
     width:50px;
