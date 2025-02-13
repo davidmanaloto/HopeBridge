@@ -44,6 +44,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $check_stmt->close();
 
+    $verification_code = sendVerificationEmail($email);
+    if ($verification_code !== false) {
+    // Store $verification_code in database
+    } else {
+        echo "Failed to send verification email.";
+    }
+
     // Insert
     $sql = "INSERT INTO user_table (username, email, password) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
