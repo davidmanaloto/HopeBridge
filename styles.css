@@ -9,11 +9,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 110vh;
-    background-color: #D7CBDF;
+    min-height: 100vh;
+    background-color: #f6effa;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    flex-direction: column;
+    padding-top:70px;
+    overflow:hidden;
 }
 
 header {
@@ -28,47 +31,26 @@ header {
     z-index: 99;
     background-color: #7E6792;
 }
-
 .logo-container {
     display: flex;
-    align-items: center; /* Aligns logo and text vertically */
+    align-items: center;
 }
-
 .Logo {
-    width: 50px; /* Set the desired width */
-    height: 50px; /* Set the height to the same value as width */
-    border-radius: 50%; /* Makes the image circular */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    margin-right: 10px; /* Space between logo and text */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
 }
-
 .HopeBridge {
     font-size: 1.5em;
     color: #472A5A;
     user-select: none;
     font-weight: 900;
-    text-decoration: none;
-}
-.HopeBridge::after{
-    content: '';
-    position:absolute;
-    left:60px;
-    bottom:10px;
-    width:170px;
-    height:3px;
-    background:#472A5A;
-    border-radius:5px;
-    transform:scaleX(0);
-    transition:transform 1s;
-}
-
-.HopeBridge:hover::after{
-    transform:scaleX(1);
-    transform-origin:left;
 }
 .nav-menu {
     display: flex;
-    align-items: center; /* Aligns items vertically in the center */
+    align-items: center;
 }
 
 .nav-menu a {
@@ -76,51 +58,28 @@ header {
     font-size: 1em;
     color: #472A5A;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 700;
     margin-left: 50px;
-    font-weight: 700;
 }
-.nav-menu a::after{
+.nav-menu a::after {
     content: '';
-    position:absolute;
-    left:-2px;
-    right:15px;
-    bottom:-6px;
-    width:50px;
-    height:3px;
-    background:#472A5A;
-    border-radius:5px;
-    transform:scaleX(0);
-    transition:transform 1s;
-    
-}
-
-.nav-menu a:hover::after{
-    transform:scaleX(1);
-    transform-origin:left;
-}
-
-.btnLogin {
-    width: 90px;
-    height: 35px;
-    background-color: #D7CBDF;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1em;
-    color: #472A5A;
-    font-weight: 700;
-    margin-left: 20px; /* Space between links and buttons */
-    transition: .4s;
-    border: #fff;
-}
-
-.btnLogin:hover {
+    position: absolute;
+    left: -3px;
+    right: 15px;
+    bottom: -6px;
+    width: 50px;
+    height: 3px;
     background: #472A5A;
-    color: black;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: transform 1s;
 }
 
-.btnSignUp {
+.nav-menu a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+.btnLogin, .btnSignUp {
     width: 90px;
     height: 35px;
     background-color: #D7CBDF;
@@ -129,20 +88,103 @@ header {
     font-size: 1em;
     color: #472A5A;
     font-weight: 700;
-    margin-left: 10px; /* Space between buttons */
+    margin-left: 10px;
     transition: .4s;
-    border: #fff;
+    border: none;
 }
-
-.btnSignUp:hover {
+.btnLogin:hover, .btnSignUp:hover {
     background: #472A5A;
-    color: black;
+    color: rgb(231, 211, 240);
 }
-
 .separator {
-    display: inline-block; /* Allows it to sit inline with other elements */
-    width: 3px; /* Width of the line */
-    height: 40px; /* Height of the line */
-    background-color: #472A5A; /* Color of the line */
-    margin: 0 15px; /* Space around the line (left and right) */
+    display: inline-block;
+    width: 3px;
+    height: 40px;
+    background-color: #472A5A;
+    margin: 0 15px;
+    }
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1200px;
+    padding: 50px 0; 
+    overflow:hidden; 
+    margin:0 auto;
+}
+
+.description-container {
+    flex: 1.2; 
+    padding: 20px;
+    text-align: left;
+}
+
+.description-container h1 {
+    font-size: 42px; 
+    font-weight: bold;
+    color: #472A5A;
+    line-height: 1.2;
+    margin-bottom:30px;
+}
+
+.description-container p {
+    font-size: 18px; 
+    color: #5a3e68;
+    max-width: 500px;
+}
+
+.btnLearnMore {
+    margin-top: 20px;
+    padding: 10px 18px;
+    font-size: 16px;
+    background-color: #D7CBDF;
+    color: #472A5A;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btnLearnMore:hover {
+    background: #5a3e68;
+    color: rgb(231, 211, 240);
+
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevents any unexpected overflow */
+    position: relative; /* Keeps it inside the flex container */
+}
+
+.image-container img {
+    width: 450px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
+}
+
+.image-container img:hover {
+    transform: scale(1.1); /* Slightly less than 1.15 to prevent breaking layout */
+    opacity: 0.9;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes imageBounce {
+    0% { transform: scale(0.85); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.image-container img {
+    animation: imageBounce 0.8s ease-out;
+}
+
+@media (max-width: 768px) {
+    .image-container img {
+        width: 350px;
+    }
 }
