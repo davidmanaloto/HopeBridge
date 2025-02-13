@@ -1,35 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hope Bridge</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <header>
-            <div class="logo-container">
-                <a href="home.html"><img src="bird.jpeg" alt="Company Logo" class="Logo"></a>
-                <a href="home.html" class="HopeBridge">HopeBridge</a>
-            </div>
-            <nav class="nav-menu">
-                <a href="#">About</a>
-                <span class="separator"></span>
-                <button class="btnLogin" onclick="window.location.href='login.html'">Login</button>
-                <button class="btnSignUp" onclick="window.location.href='signup.html'">Sign Up</button>
-            </nav>
-        </header>
-        <section class="hero">
-            <div class="description-container">
-                <h1>Use us as a bridge<br>to help people in<br>times of need.</h1>
-                <p>Join us in making a difference by volunteering, donating, or supporting those in need. Together, we can create hope for a better future.</p>
-                <button class="btnLearnMore">Learn More</button>
-            </div>
-            <div class="image-container">
-                <img src="volunteer.jpeg" alt="Volunteers helping people">
-            </div>
-        </section>
-        <script src="main.js"></script>
-        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope Bridge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="home.html"><img src="bird.jpeg" alt="Company Logo" class="Logo"></a>
+            <a href="home.html" class="HopeBridge">HopeBridge</a>
+        </div>
+        <nav class="nav-menu">
+            <a href="#">About</a>
+            <span class="separator"></span>
+            <button class="btnLogin" onclick="openModal('loginModal')">Login</button>
+            <button class="btnSignUp" onclick="openModal('signupModal')">Sign Up</button>
+        </nav>
+    </header>
+
+    <!-- Move Modals Below Header -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Sign In</h2>
+            <form>
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="description-container">
+            <h1>Use us as a bridge<br>to help people in<br>times of need.</h1>
+            <p>Join us in making a difference by volunteering, donating, or supporting those in need. Together, we can create hope for a better future.</p>
+            <button class="btnLearnMore">Learn More</button>
+        </div>
+        <div class="image-container">
+            <img src="volunteer.jpeg" alt="Volunteers helping people">
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
 </html>
