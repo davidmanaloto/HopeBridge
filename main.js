@@ -15,3 +15,9 @@ window.onclick = function(event) {
         event.target.style.display = "none";
     }
 };
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("signup") === "success") {
+        openModal('loginModal');
+    }
+});

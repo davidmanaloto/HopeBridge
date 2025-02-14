@@ -10,17 +10,32 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = $_POST["username"];
-    $pass = $_POST["password"];
+    $user1 = isset($_POST["username1"]) ? trim($_POST["username1"]) : "";
+    $user2 = isset($_POST["username2"]) ? trim($_POST["username2"]) : "";
+    $pass = isset($_POST["password1"]) ? trim($_POST["password1"]) : "";
+    $confirm_pass = isset($_POST["password2"]) ? trim($_POST["password2"]) : "";
+
+    if (empty($user1)||empty($user2)||empty($pass)||empty($confirm_pass)) {
+        die("Error: All fields are required.");
+    }
+
+    if ($user1 !== $user2) {
+        die("Error: Usernames do not match.");
+    }
+
+    if ($pass !== $confirm_pass) {  
+        die("Passwords do not match.");
+        var_dump($pass, $confirm_pass);
+        exit();
+    }
 
     $sql = "SELECT password FROM user_table WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $user);
+    $stmt->bind_param("s", $user1);
     $stmt->execute();
     $stmt->bind_result($hashed_password);
     $stmt->fetch();
 
-    $pass = trim($_POST["password"]); // Remove spaces from input
     $hashed_password = trim($hashed_password); // Remove spaces from stored hash (just in case)
 
     // DB CONNECTION DEBUG
@@ -32,17 +47,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //echo "Entered Password: " . $pass . "<br>";
     //echo "Stored Hash: " . $hashed_password . "<br>";
 
-    if (password_verify($pass, $hashed_password)) {
-        echo "Password matches!";
-    } else {
-        echo "Wrong password!<br>";
-    }
-
     // NEW LOGIC
     if (password_verify($pass, $hashed_password)) { // FIX THIS 11/02/2025 //FIXED IN: 5hours 11/02/2025
-        echo "Login successful!";
+        die("Login successful!");
     } else {
-        echo "Invalid username or password.";
+        die("Invalid username or password.");
     }
 
     //OLD LOGIC

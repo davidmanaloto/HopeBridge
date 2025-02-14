@@ -10,13 +10,23 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = trim($_POST["username"]);
-    $email = trim($_POST["email"]);
+    $user1 = isset($_POST["username1"]) ? trim($_POST["username1"]) : "";
+    $user2 = isset($_POST["username2"]) ? trim($_POST["username2"]) : "";
+    $email1 = isset($_POST["email1"]) ? trim($_POST["email1"]) : "";
+    $email2 = isset($_POST["email2"]) ? trim($_POST["email2"]) : "";
     $pass = isset($_POST["password1"]) ? trim($_POST["password1"]) : "";
     $confirm_pass = isset($_POST["password2"]) ? trim($_POST["password2"]) : "";
 
-    if (empty($user) || empty($email) || empty($pass) || empty($confirm_pass)) {
+    if (empty($user1)||empty($user2)||empty($email1)||empty($email2)||empty($pass)||empty($confirm_pass)) {
         die("Error: All fields are required.");
+    }
+
+    if ($user1 !== $user2) {
+        die("Error: Usernames do not match.");
+    }
+
+    if ($email1 !== $email2) {
+        die("Error: Emails do not match.");
     }
 
     if (strlen($pass) < 8) {
@@ -34,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if email already exists
     $check_sql = "SELECT email FROM user_table WHERE email = ?";
     $check_stmt = $conn->prepare($check_sql);
-    $check_stmt->bind_param("s", $email);
+    $check_stmt->bind_param("s", $email1);
     $check_stmt->execute();
     $check_stmt->store_result();
 
@@ -44,12 +54,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $check_stmt->close();
 
-    $verification_code = sendVerificationEmail($email);
-    if ($verification_code !== false) {
+    //$verification_code = sendVerificationEmail($email);
+    //if ($verification_code !== false) {
     // Store $verification_code in database
-    } else {
-        echo "Failed to send verification email.";
-    }
+    //} else {
+    //    echo "Failed to send verification email.";
+    //}
 
     // Insert
     $sql = "INSERT INTO user_table (username, email, password) VALUES (?, ?, ?)";
@@ -57,7 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $user, $email, $pass);
 
     if ($stmt->execute()) {
-        echo "Sign-up successful! <a href='login.html'>Login here</a>";
+        header("Location: home.html?signup=success");
+        exit();
     } else {
         echo "Error: " . $stmt->error;
     }
