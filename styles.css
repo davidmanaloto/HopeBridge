@@ -47,6 +47,25 @@ header {
     color: #472A5A;
     user-select: none;
     font-weight: 900;
+    text-decoration: none;
+}
+
+.HopeBridge::after {
+    content: '';
+    position: absolute;
+    left: 65px;
+    bottom: 14px;
+    width: 165px;
+    height: 3px;
+    background: #472A5A;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: transform 1s;
+}
+
+.HopeBridge:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 .nav-menu {
     display: flex;
@@ -185,7 +204,9 @@ header {
     .image-container img {
         width: 350px;
     }
+    
 }
+
 .modal {
     display: none;
     position: fixed;
@@ -201,7 +222,7 @@ header {
 }
 
 .modal-content {
-    background: #fff;
+    background: #e6e6e6; /* Background for the modal */
     padding: 20px;
     width: 350px;
     border-radius: 10px;
@@ -209,6 +230,13 @@ header {
     text-align: center;
     position: relative;
     animation: fadeIn 0.3s ease-in-out;
+    margin-bottom: 20px; /* Space between modal and gosignup */
+}
+
+.modal {
+    display: none;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
 }
 
 @keyframes fadeIn {
@@ -226,21 +254,27 @@ header {
 }
 
 .modal-content input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 80%;
+    padding: 12px;
+    margin: 20px auto;
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+    display: block;
 }
 
 .modal-content button {
-    width: 100%;
-    padding: 10px;
-    background: #7E6792;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    background-color: #80479e;
+    color: #d7cbdf;
+    border: #ffff;
+    padding: 15px;
+    border-radius: 10px;
     cursor: pointer;
+    width: 85%;
+    display: block;
+    margin: 10px auto;
+    font-size: 15px;
+    font-weight: 700;
     transition: 0.3s;
 }
 .modal-content p{
@@ -290,15 +324,18 @@ header {
     background: #0056b3;
 }
 
-.forgot-password {
+.change-window {
     display: block;
-    margin-top: 20px;
     font-size: 14px;
     color: #007BFF;
     text-decoration: none;
 }
 
-.forgot-password:hover {
+.change-window a{
+    align-items: normal;
+}
+
+.change-window:hover {
     text-decoration: underline;
 }
 
@@ -312,5 +349,26 @@ header {
     text-decoration: underline;
 }
 
+.gosignup-container {
+    background-color: #D9D9D9; /* Background for the signup container */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 355px;
+    text-align: center; /* Center the text */
+    margin-top: 10px; /* Space above and below the container */
+}
+
+.gosignup p {
+    margin: 10px 0;
+}
 
 
+.gosignup a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.gosignup a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
