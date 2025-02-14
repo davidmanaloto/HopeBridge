@@ -25,26 +25,46 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('loginModal')">&times;</span>
             <h2>Sign In</h2>
+<<<<<<< HEAD
             <form action="login.php" method="post">
                 <input type="text" placeholder="Username" required>
                 <input type="password" placeholder="Password" required>
                 <button type="submit">Login</button>
+=======
+            <form>
+                <input type="text" name="Signin-Username" placeholder="Username" required>
+                <input type="password" name="Signin-Password" placeholder="Password" required>
+                <button type="submit" name="modal-btn">Login</button>
+>>>>>>> 8590cdeddadd908c09f60e7cf85585570f764f81
             </form>
+            <a href="#" class="forgot-password">Forgot Password?</a>
+            <p>Don't have an account? <a href="#" onclick="switchModal('loginModal', 'signupModal')">Sign up</a></p>
         </div>
     </div>
+    
 
     <div id="signupModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('signupModal')">&times;</span>
             <h2>Sign Up</h2>
+<<<<<<< HEAD
             <form action="signup.php" method="post">
                 <input type="text" placeholder="Full Name" required>
                 <input type="email" placeholder="Email" required>
                 <input type="password" placeholder="Password" required>
                 <button type="submit">Sign Up</button>
+=======
+            <form>
+                <input type="text" name="Full name" placeholder="Full Name" required>
+                <input type="email" name="Email" placeholder="Email" required>
+                <input type="password" name="Password" placeholder="Password" required>
+                <button type="submit" class="modal-btn">Sign Up</button>
+>>>>>>> 8590cdeddadd908c09f60e7cf85585570f764f81
             </form>
+            <p>Already have an account? <a href="#" onclick="switchModal('signupModal', 'loginModal')">Sign in</a></p>
         </div>
     </div>
+    
 
     <section class="hero">
         <div class="description-container">
