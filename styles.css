@@ -15,8 +15,8 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     flex-direction: column;
-    padding-top:70px;
-    overflow:hidden;
+    padding-top: 70px;
+    overflow: hidden;
 }
 
 header {
@@ -31,10 +31,12 @@ header {
     z-index: 99;
     background-color: #7E6792;
 }
+
 .logo-container {
     display: flex;
     align-items: center;
 }
+
 .Logo {
     width: 50px;
     height: 50px;
@@ -42,6 +44,7 @@ header {
     object-fit: cover;
     margin-right: 10px;
 }
+
 .HopeBridge {
     font-size: 1.5em;
     color: #472A5A;
@@ -67,6 +70,7 @@ header {
     transform: scaleX(1);
     transform-origin: left;
 }
+
 .nav-menu {
     display: flex;
     align-items: center;
@@ -80,6 +84,7 @@ header {
     font-weight: 700;
     margin-left: 50px;
 }
+
 .nav-menu a::after {
     content: '';
     position: absolute;
@@ -98,6 +103,7 @@ header {
     transform: scaleX(1);
     transform-origin: left;
 }
+
 .btnLogin, .btnSignUp {
     width: 90px;
     height: 35px;
@@ -111,17 +117,20 @@ header {
     transition: .4s;
     border: none;
 }
+
 .btnLogin:hover, .btnSignUp:hover {
     background: #472A5A;
     color: rgb(231, 211, 240);
 }
+
 .separator {
     display: inline-block;
     width: 3px;
     height: 40px;
     background-color: #472A5A;
     margin: 0 15px;
-    }
+}
+
 .hero {
     display: flex;
     align-items: center;
@@ -129,8 +138,8 @@ header {
     width: 90%;
     max-width: 1200px;
     padding: 50px 0; 
-    overflow:hidden; 
-    margin:0 auto;
+    overflow: hidden; 
+    margin: 0 auto;
 }
 
 .description-container {
@@ -144,18 +153,20 @@ header {
     font-weight: bold;
     color: #472A5A;
     line-height: 1.2;
-    margin-bottom:30px;
+    margin-bottom: 30px;
 }
 
 .description-container p {
     font-size: 18px; 
     color: #5a3e68;
     max-width: 500px;
-    margin-bottom:30px;
+    margin-bottom: 30px;
 }
-.description-container a{
-    text-decoration:none;
+
+.description-container a {
+    text-decoration: none;
 }
+
 .btnLearnMore {
     margin-top: 40px;
     padding: 10px 18px;
@@ -167,10 +178,10 @@ header {
     cursor: pointer;
     transition: 0.3s;
 }
+
 .btnLearnMore:hover {
     background: #5a3e68;
     color: rgb(231, 211, 240);
-
 }
 
 .image-container {
@@ -189,6 +200,7 @@ header {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
 }
+
 .image-container img {
     animation: imageBounce 0.8s ease-out;
 }
@@ -203,11 +215,11 @@ header {
     0% { transform: scale(0.85); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
+
 @media (max-width: 768px) {
     .image-container img {
         width: 350px;
     }
-    
 }
 
 .modal {
@@ -247,7 +259,6 @@ header {
     to { transform: translateY(0); opacity: 1; }
 }
 
-
 .close {
     position: absolute;
     top: 10px;
@@ -280,19 +291,13 @@ header {
     font-weight: 700;
     transition: 0.3s;
 }
-.modal-content p{
-    margin-top:20px;
-}
-.modal-content button:hover {
-    background: #5a3e68;
+
+.modal-content p {
+    margin-top: 20px;
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
+.modal-content button:hover {
+    background: #5a3e68;
 }
 
 .modal h2 {
@@ -326,6 +331,35 @@ header {
 .modal-btn:hover {
     background: #0056b3;
 }
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 10px auto;
+}
+
+.password-container input {
+    width: 100%;
+    padding: 12px;
+    padding-right: 40px; /* Space for the icon */
+    border: 1px solid #ccc;
+    /* border-radius: 10px; */
+}
+
+.password-container img {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.password-container img:hover {
+    opacity: 1;
+}
 
 .change-window {
     display: block;
@@ -334,7 +368,7 @@ header {
     text-decoration: none;
 }
 
-.change-window a{
+.change-window a {
     align-items: normal;
 }
 
@@ -366,7 +400,6 @@ header {
     margin: 10px 0;
 }
 
-
 .gosignup a {
     color: #007bff; /* Link color */
     text-decoration: none; /* Remove underline */
@@ -374,4 +407,12 @@ header {
 
 .gosignup a:hover {
     text-decoration: underline; /* Underline on hover */
+}
+
+/* Style for the See Password checkbox */
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #472A5A;
 }

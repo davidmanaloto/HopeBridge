@@ -27,15 +27,20 @@
     
             <form action="login.php" method="post">
                 <input type="text" name="username1" placeholder="Username (8 to 16 characters)" required>
-                <input type="password" name="password1" placeholder="Password" required>
+                <div class="password-container">
+                    <input type="password" name="password1" id="password1" placeholder="Password" required>
+                    <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
+                </div>
                 <p>Confirm credentials</p>
                 <input type="text" name="username2" placeholder="Username" required>
-                <input type="password" name="password2" placeholder="Password" required>
+                <div class="password-container">
+                    <input type="password" name="password2" id="password2" placeholder="Password" required>
+                    <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
+                </div>
                 <button type="submit" name="modal-btn">Login</button>
                 <a href="forgotpass.html" class="change-window">Forgot Password?</a>
             </form>
         </div>
-    
         <div class="gosignup-container">
             <p>Don't have an account? <br> <a href="#" onclick="switchModal('loginModal', 'signupModal')" class="change-window">Sign up</a></p>
         </div>
@@ -50,11 +55,17 @@
         <form action="signup.php" method="post">
             <input type="text" name="username1" placeholder="Full Name" required>
             <input type="email" name="email1" placeholder="Email" required>
-            <input type="password" name="password1" placeholder="Password" required>
+            <div class="password-container">
+                <input type="password" name="password1" id="password1" placeholder="Password" required>
+                <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
+            </div>
             <p>Confirm credentials</p>
             <input type="text" name="username2" placeholder="Full Name" required>
             <input type="email" name="email2" placeholder="Email" required>
-            <input type="password" name="password2" placeholder="Password" required>
+            <div class="password-container">
+                <input type="password" name="password2" id="password2" placeholder="Password" required>
+                <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
+            </div>
             <button type="submit" class="modal-btn">Sign Up</button>
         </form>
     </div>
@@ -69,7 +80,7 @@
         <div class="description-container">
             <h1>Use us as a bridge<br>to help people in<br>times of need.</h1>
             <p>Join us in making a difference by volunteering, donating, or supporting those in need. Together, we can create hope for a better future.</p>
-            <a href="homepage.html" class="btnLearnMore">Learn More</a>
+            <button class="btnLearnMore" onclick="'homepage.html'">Learn More</button>
         </div>
         <div class="image-container">
             <img src="volunteer.jpeg" alt="Volunteers helping people">
