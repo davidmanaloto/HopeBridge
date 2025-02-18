@@ -4,31 +4,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hope Bridge</title>
-    <link rel="stylesheet" href="styleshomepage.css"> <!-- Your separate CSS file -->
+    <link rel="stylesheet" href="styleshomepage.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <div class="name-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h2 class="HopeBridge">HopeBridge</h2>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="#" onclick="toggleSearch()">
-                            <ion-icon name="search-outline"></ion-icon> Search
-                        </a>
-                    </li>
-                    <li><a href="homepage.html"><ion-icon name="home-outline"></ion-icon> Home</a></li>
-                    <li><a href="notifications.html"><ion-icon name="notifications-outline"></ion-icon> Notifications</a></li>
-                    <li><a href="news.html"><ion-icon name="newspaper-outline"></ion-icon> News</a></li>
-                    <li><a href="account.html"><ion-icon name="person-outline"></ion-icon> Account</a></li>
-                    <li><a href="about.html"><ion-icon name="information-circle-outline"></ion-icon> About</a></li>
-                    <li><a href="home.html" id="logoutBtn"><ion-icon name="log-out-outline"></ion-icon> Log Out</a></li>
-                </ul>                
-            </nav>
-        </aside>
+    <header>
+        <div class="logo-container">
+            <a href="home.html"><img src="bird.jpeg" alt="Company Logo" class="Logo"></a>
+            <a href="home.html" class="HopeBridge">HopeBridge</a>
+        </div>
+        <nav class="nav-menu">
+            <a href="#">Home</a>
+            <a href="#">Search</a>
+            <a href="#">Notification</a>
+            <a href="#">News</a>
+            <a href="#">About</a>
+            <a href="#">Account</a>
+            <a href="#">Log Out</a>
+        </nav>
+
+    </header>
 
         <!-- Main Content -->
         <main class="content">
@@ -43,7 +39,7 @@
                 <div class="news-info">
                     <h3>📍 Lucao, Dagupan City</h3>
                     <p>A tornado caused widespread damage, leaving thousands of families without access to safe water and sanitation facilities...</p>
-                    <button type="button" onclick="window.location.href='More.html'">More Details</button>
+                    <a href="moredetails.html" class="more-details-btn">More Details</a>
                 </div>
             </div>
 
@@ -53,7 +49,7 @@
                 <div class="news-info">
                     <h3>📍 Mangin, Dagupan City</h3>
                     <p>Another fire at a vacant home in Barangay Mangin has led to a demolition order. PANDA Volunteer Fire...</p>
-                    <button type="button" onclick="window.location.href='More.html'">More Details</button>
+                    <a href="moredetails.html" class="more-details-btn">More Details</a>
                 </div>
             </div>
         </main>

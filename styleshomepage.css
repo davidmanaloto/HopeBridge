@@ -10,101 +10,99 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #2E2B2B;
-}
-
-.name-container {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-}
-
-/* Sidebar */
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    background: #D7CBDF;
-    color: #472A5A;
-    padding: 20px;
-    display: flex;
+    background-color: #f6effa;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     flex-direction: column;
+    padding-top: 70px;
+    overflow: hidden;
 }
 
-.sidebar h2 {
-    margin-bottom: 20px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
-    font-size: 1.1em; /* Increase font size */
-    font-weight: 500; /* Medium-bold for readability */
-}
-
-.sidebar ul li a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #3b2253; /* Default icon color */
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background 0.3s, color 0.3s;
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    background-color: #000000;
 }
 
-/* Ensuring proper spacing between icon and text */
-.sidebar ul li a ion-icon {
-    font-size: 1.3em;
-    margin-right: 10px; /* Adds space between icon and text */
+.logo-container {
+    display: flex;
+    align-items: center;
 }
 
-.sidebar ul li:hover {
-    background: #6b4f8a; /* Darker purple */
-    color: #ffffff; /* White text */
-    font-weight: bold;
+.Logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
 }
 
-.sidebar ul li a.active {
-    background: #cdb3e6; /* Light purple background for active state */
-    color: black; /* Change text color for active state */
+.HopeBridge {
+    font-size: 1.5em;
+    color: #ffffff;
+    user-select: none;
+    font-weight: 900;
+    text-decoration: none;
 }
 
-.sidebar ul li a.active ion-icon {
-    color: black; /* Change icon color to black when active */
-}
-
-/* Search Box Styles */
-.search-box {
-    width: 90%; /* Adjust width as needed */
-    padding: 8px;
+.HopeBridge::after {
+    content: '';
+    position: absolute;
+    left: 65px;
+    bottom: 14px;
+    width: 165px;
+    height: 3px;
+    background: #ffffff;
     border-radius: 5px;
-    border: 1px solid #472A5A;
-    outline: none;
+    transform: scaleX(0);
+    transition: transform 1s;
+}
+
+.HopeBridge:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    margin-right:20px;
+}
+
+.nav-menu a {
+    position: relative;
     font-size: 1em;
-    transition: all 0.3s ease;
-    margin: 0 auto; /* Center the search box */
-    display: block; /* Make it a block element */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 50px;
 }
 
-/* Hide Search Box Initially */
-.hidden {
-    display: none; /* Hide the search bar */
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    left: -3px;
+    right: 15px;
+    bottom: -6px;
+    width: 50px;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: transform 1s;
 }
 
-/* Positioning the search container */
-#search-container {
-    position: absolute; /* Position it absolutely */
-    top: 20px; /* Adjust as needed */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Centering adjustment */
-    z-index: 10; /* Ensure it appears above other content */
+.nav-menu a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 /* Main Content */
@@ -147,16 +145,23 @@ body {
     color: #6b4f8a;
 }
 
-button {
-    padding: 8px 12px;
-    background: #8a6bb8;
+.more-details {
+    display: inline-block; /* Change to block or flex if needed */
+    padding: 12px 24px;
+    background-color: #9370DB;
     color: white;
-    border: none;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight:normal;
     border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    text-decoration:none;
+    margin-top:20px;
 }
 
-button:hover {
-    background: #71529f;
+.more-details:hover {
+    background-color: #7a5bbb;
+    transform: scale(1.05);
 }
