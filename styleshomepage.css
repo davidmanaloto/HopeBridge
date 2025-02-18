@@ -80,25 +80,33 @@ body {
     color: black; /* Change icon color to black when active */
 }
 
+/* Search Box Styles */
 .search-box {
-    width: 90%;
+    width: 90%; /* Adjust width as needed */
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #472A5A;
     outline: none;
     font-size: 1em;
     transition: all 0.3s ease;
+    margin: 0 auto; /* Center the search box */
+    display: block; /* Make it a block element */
 }
 
 /* Hide Search Box Initially */
 .hidden {
-    display: none;
+    display: none; /* Hide the search bar */
 }
 
-/* Show Search Box */
-.show {
-    display: block;
+/* Positioning the search container */
+#search-container {
+    position: absolute; /* Position it absolutely */
+    top: 20px; /* Adjust as needed */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Centering adjustment */
+    z-index: 10; /* Ensure it appears above other content */
 }
+
 /* Main Content */
 .content {
     flex-grow: 1;
@@ -129,12 +137,14 @@ body {
     padding: 20px;
     flex: 1;
 }
-.news-info h3{
+
+.news-info h3 {
     margin-bottom: 10px;
     color: #3b2253;
 }
-.news-info p{
-    color:#6b4f8a;
+
+.news-info p {
+    color: #6b4f8a;
 }
 
 button {
