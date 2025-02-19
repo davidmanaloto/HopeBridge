@@ -22,7 +22,11 @@ window.onclick = function(event) {
 };
 
 function togglePassword(inputId, icon) {
-    let passwordField = document.getElementById(inputId);
+    // Find the closest modal that contains the clicked icon
+    let modal = icon.closest(".modal");
+
+    // Find the password field inside this modal
+    let passwordField = modal.querySelector(`#${inputId}`);
 
     if (passwordField.type === "password") {
         passwordField.type = "text";
@@ -34,6 +38,8 @@ function togglePassword(inputId, icon) {
         icon.alt = "hide";
     }
 }
+
+
 
 // Ensure the script runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function () {

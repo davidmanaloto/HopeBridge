@@ -6,7 +6,7 @@ $dbname = "hopebridge_database"; // Change to your database name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    exit("Connection failed: " . $conn->connect_error);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,62 +15,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = isset($_POST["password1"]) ? trim($_POST["password1"]) : "";
     $confirm_pass = isset($_POST["password2"]) ? trim($_POST["password2"]) : "";
 
-    if (empty($user1)||empty($user2)||empty($pass)||empty($confirm_pass)) {
-        die("Error: All fields are required.");
+
+    if (empty($user1) || empty($pass) || empty($user2) || empty($confirm_pass)) {
+        exit("Error: Username and password are required.");
     }
 
     if ($user1 !== $user2) {
-        die("Error: Usernames do not match.");
+        exit("Error: Usernames do not match.");
     }
 
-    if ($pass !== $confirm_pass) {  
-        die("Passwords do not match.");
-        var_dump($pass, $confirm_pass);
-        exit();
+    if ($pass !== $confirm_pass) {
+        exit("Error: Passwords do not match.");
     }
 
     $sql = "SELECT password FROM user_table WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $user1);
     $stmt->execute();
+    $stmt->store_result();
+
+    // Check if user exists
+    if ($stmt->num_rows === 0) {
+        $stmt->close();
+        exit("Error: Invalid username or password.");
+    }
+
+    // Fetch hashed password
     $stmt->bind_result($hashed_password);
     $stmt->fetch();
-
-    $hashed_password = trim($hashed_password); // Remove spaces from stored hash (just in case)
-
-    // DB CONNECTION DEBUG
-    if ($conn->connect_error) {
-        die("Database connection failed: " . $conn->connect_error);
-    }
-
-    // PASSWORD HASH DEBUG
-    //echo "Entered Password: " . $pass . "<br>";
-    //echo "Stored Hash: " . $hashed_password . "<br>";
-
-    // NEW LOGIC
-    if (password_verify($pass, $hashed_password)) { // FIX THIS 11/02/2025 //FIXED IN: 5hours 11/02/2025
-        die("Login successful!");
-    } else {
-        die("Invalid username or password.");
-    }
-
-    //OLD LOGIC
-    //if ($hashed_password && password_verify($_POST["password"], $hashed_password))
-    
-    //echo password_hash("your_actual_password", PASSWORD_BCRYPT);
-
-    // DEBUG FOR QUERY RUNS CORRECTLY
-    //    if ($stmt->execute()) {
-    //        if ($stmt->fetch()) {
-    //           echo "User found!";
-    //        } else {
-    //            echo "User not found!";
-    //        }
-    //    } else {
-    //        echo "Query failed: " . $stmt->error;
-    //    }
-
     $stmt->close();
+
+    // Verify password
+    if (password_verify($pass, $hashed_password)) {
+        session_start();
+        $_SESSION["username"] = $user1;
+        header("Location: homepage.html?login=success"); // Redirect after login
+        exit();
+    } else {
+        exit("Error: Invalid username or password.");
+    }
 }
+
 $conn->close();
 ?>
