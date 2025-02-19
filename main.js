@@ -21,6 +21,20 @@ window.onclick = function(event) {
     }
 };
 
+function togglePassword(inputId, icon) {
+    let passwordField = document.getElementById(inputId);
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.src = "show.png"; // Change to show icon
+        icon.alt = "show";
+    } else {
+        passwordField.type = "password";
+        icon.src = "hide.png"; // Change back to hide icon
+        icon.alt = "hide";
+    }
+}
+
 // Ensure the script runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
     // Open login modal if signup is successful
