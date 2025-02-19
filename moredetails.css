@@ -149,7 +149,7 @@ header {
 
 /* Search Button */
 .search-btn {
-    display: flex;
+    display:block !important;
     justify-content: center;
     align-items: center;
     background: none;
@@ -164,6 +164,7 @@ header {
 /* Ensure Search Icon is Always Visible */
 .search-btn ion-icon {
     font-size: 24px;
+    position:center;
 }
 
 /* Button Hover Effect */

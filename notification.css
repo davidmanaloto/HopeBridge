@@ -108,11 +108,12 @@ header {
     transform-origin: center;
 }
 /* Search Bar Container */
+/* Search Bar Container */
 .search-form {
     display: flex;
     align-items: center;
     position: relative;
-    width: 45px; /* Small width initially */
+    width: 150px; /* Wider default width */
     height: 40px;
     background: white;
     border-radius: 25px;
@@ -120,6 +121,7 @@ header {
     transition: width 0.4s ease-in-out, box-shadow 0.3s;
     border: 2px solid #333;
     padding: 5px;
+    margin-right:20px;
 }
 
 /* Expand when input is focused */
@@ -135,20 +137,19 @@ header {
     outline: none;
     padding: 10px;
     font-size: 16px;
-    width: 0;
-    opacity: 0;
-    transition: width 0.4s ease-in-out, opacity 0.3s ease-in-out;
+    width: 100px; /* Slightly visible input field */
+    opacity: 1; /* Always visible */
+    transition: width 0.4s ease-in-out;
 }
 
-/* Show input when focused */
+/* Expand input when focused */
 .search-form:focus-within .search-input {
-    opacity: 1;
     width: 100%;
 }
 
 /* Search Button */
 .search-btn {
-    display: flex;
+    display:block !important;
     justify-content: center;
     align-items: center;
     background: none;
@@ -157,17 +158,20 @@ header {
     font-size: 20px;
     color: black;
     transition: color 0.3s;
+    margin-left: 5px; /* Add spacing */
 }
 
 /* Ensure Search Icon is Always Visible */
 .search-btn ion-icon {
     font-size: 24px;
+    position:center;
 }
 
 /* Button Hover Effect */
 .search-btn:hover {
     color: #555;
 }
+
 @keyframes fadeIn {
     from {
         opacity: 0;
