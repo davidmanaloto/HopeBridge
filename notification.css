@@ -17,6 +17,7 @@ body {
     flex-direction: column;
     padding-top: 70px;
     overflow-y: auto;
+    animation: fadeIn 0.5s ease-in forwards;
 }
 
 header {
@@ -106,3 +107,11 @@ header {
     transform-origin: center;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

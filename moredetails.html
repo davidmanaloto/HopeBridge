@@ -4,35 +4,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hope Bridge</title>
-    <link rel="stylesheet" href="moredetails.css"> <!-- Ensure the CSS file is correctly linked -->
+    <link rel="stylesheet" href="moredetails.css"> 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hope Bridge</title>
-        <link rel="stylesheet" href="styleshomepage.css">
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    </head>
-    <body>
-        <header>
-            <div class="logo-container">
-                <a href="home.html"><img src="bird.jpeg" alt="Company Logo" class="Logo"></a>
-                <a href="home.html" class="HopeBridge">HopeBridge</a>
+    <header>
+        <div class="logo-container">
+            <a href="home.html"><img src="bird.jpeg" alt="Company Logo" class="Logo"></a>
+            <a href="home.html" class="HopeBridge">HopeBridge</a>
+        </div>
+        <nav class="nav-menu">
+            <a href="homepage.html">Home</a>
+            <a href="notification.html">Notification</a>
+            <a href="news.html">News</a>
+            <a href="about.html">About</a>
+            <a href="#">Account</a>
+            <a href="#">Log Out</a>
+        </nav>
+    </header>
+    <main>
+        <section class="disaster-relief">
+            <img src="poverty.jpeg" alt="Disaster scene">
+            <div class="content">
+                <p>A Tornado caused widespread damage in Lucao, Dagupan City, leaving thousands of families and children without access to safe water and sanitation facilities.</p>
+                <p class="quote">You really think I needed all the guards at the hexgates? I'm sorry to say, you've grown a bit predictable.</p>
             </div>
-            <nav class="nav-menu">
-                <a href="homepage.html">Home</a>
-                <a href="notification.html">Notification</a>
-                <a href="#">News</a>
-                <a href="#">About</a>
-                <a href="#">Account</a>
-                <a href="#">Log Out</a>
-            </nav>
-        </header>
-    </body>
+            <div class="donation-box">
+                <p>Let’s help the families in Lucao to start a new life. Any type of donation will do.</p>
+                <button class="donate">Donate</button>
+                <button class="report">Report</button>
+            </div>
+        </section>
+    </main>
+</body>
 </html>
