@@ -23,21 +23,21 @@
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Login In</h2>
+            <h2>Login</h2>
     
             <form action="login.php" method="post">
                 <input type="text" name="username1" placeholder="Username" minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$"  required title="Up to (8 to 16 characters). NO special characters">
                 <div class="password-container">
                     <input type="password" name="password1" id="password1" placeholder="Password" minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
                     <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
-                    <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)">
+                    <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)" style="display: none;">
                 </div>
                 <p>Confirm credentials</p>
                 <input type="text" name="username2" placeholder="Username" minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
                 <div class="password-container">
                     <input type="password" name="password2" id="password2" placeholder="Password" minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
                     <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password2', this)">
-                    <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)">
+                    <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password2', this)" style="display: none;">
                 </div>
                 <button type="submit" name="modal-btn">Login</button>
                 <a href="forgotpass.html" class="change-window">Forgot Password?</a>
@@ -60,7 +60,7 @@
             <div class="password-container">
                 <input type="password" name="password1" id="password1" placeholder="Password"  minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
                 <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
-                <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)">
+                <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)" style="display: none;">
             </div>
             <p>Confirm credentials</p>
             <input type="text" name="username2" placeholder="Full Name"  minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
@@ -68,7 +68,7 @@
             <div class="password-container">
                 <input type="password" name="password2" id="password2" placeholder="Password"  minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
                 <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password2', this)">
-                <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)">
+                <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password2', this)" style="display: none;">
             </div>
             <button type="submit" class="modal-btn">Sign Up</button>
         </form>
