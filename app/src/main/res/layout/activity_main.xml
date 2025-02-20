@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6B587B"
+    android:background="@drawable/gradient_bg"
     tools:context=".MainActivity">
 
 
@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:src="@drawable/bridge"
+        android:src="@drawable/startlogo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,9 +38,9 @@
         android:id="@+id/signinbutton"
         android:layout_width="320dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="200dp"
+        android:backgroundTint="#D7CBDF"
         android:layout_marginLeft="55dp"
-        android:backgroundTint="#9D86B9"
+        android:layout_marginBottom="200dp"
         android:text="Sign in"
         android:textColor="@color/black"
         android:textSize="22sp"
@@ -49,14 +49,13 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
-
     <Button
         android:id="@+id/signupbuttongreen"
         android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_marginBottom="130dp"
         android:layout_marginLeft="55dp"
-        android:backgroundTint="#9D86B9"
+        android:backgroundTint="#D7CBDF"
         android:text="Create an Account"
         android:textColor="@color/black"
         android:textSize="22sp"

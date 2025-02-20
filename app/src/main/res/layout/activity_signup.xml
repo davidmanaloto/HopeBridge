@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D7CBDF"
+    android:background="#7E6792"
     tools:context=".Signup">
 
     <ImageView
@@ -144,7 +144,7 @@
         android:text="Sign In"
         android:textSize="20sp"
         android:fontFamily="@font/helvetica_bold"
-        android:textColor="#C3C3C3"
+        android:textColor="#D7CBDF"
         app:layout_constraintTop_toBottomOf="@+id/noacc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

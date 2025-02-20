@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6B587B"
+    android:background="@drawable/gradient_bg"
     tools:context=".Signin">
 
     <ImageView
@@ -98,7 +98,7 @@
         android:textSize="20sp"
         android:text="Forgot Password?"
         android:fontFamily="@font/helvetica_bold"
-        android:textColor="#C3C3C3"
+        android:textColor="#D7CBDF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
@@ -138,7 +138,7 @@
         android:text="Sign Up"
         android:textSize="20sp"
         android:fontFamily="@font/helvetica_bold"
-        android:textColor="#C3C3C3"
+        android:textColor="#D7CBDF"
         app:layout_constraintTop_toBottomOf="@+id/noacc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
