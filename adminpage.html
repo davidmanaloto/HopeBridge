@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="adminpage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile">
+                <img src="user-profile.jpg" alt="User  Profile" class="profile-pic"> <!-- Replace with your image path -->
+                <p class="profile-name">John Doe</p>
+            </div>
+            <ul>
+                <li><a href="home.html" class="home"><i class="fas fa-home"></i> Home</a></li>
+                <li>
+                    <a href="#" class="search" onclick="toggleSearch()"><i class="fas fa-search"></i> Search</a>
+                    <input type="text" placeholder="Search..." class="search-box" id="searchBox" style="display: none;">
+                </li>
+                <li><a href="pending.html" class="pending"><i class="fas fa-clock"></i> Pending</a></li>
+                <li><a href="statistics.html" class="statistics"><i class="fas fa-chart-bar"></i> Statistics</a></li>
+                <li><a href="logout.html" class="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="heading-container"> <!-- New container for the heading -->
+                <h2>Admin Dashboard</h2>
+            </div>
+            <p>Welcome to the admin dashboard. Here you can manage your application.</p>
+        </div>
+
+    <script>
+        function toggleSearch() {
+            const searchBox = document.getElementById('searchBox');
+            if (searchBox.style.display === 'none' || searchBox.style.display === '') {
+                searchBox.style.display = 'block';
+                searchBox.focus(); // Focus on the search box when it appears
+            } else {
+                searchBox.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
