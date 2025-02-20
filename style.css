@@ -97,7 +97,7 @@ input[type="submit"]:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 400px;
     text-align: center; /* Center the text */
-    margin-top: 50px; /* Space above and below the container */
+    margin-top: 20px; /* Space above and below the container */
 }
 
 .ar{

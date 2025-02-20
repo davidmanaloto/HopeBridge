@@ -1,0 +1,34 @@
+body {
+    background-color: #f3ebeb;
+    margin: 0;
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100vh; /* Full height of the viewport */
+}
+
+h1 {
+    margin-bottom: 20px; /* Space between the heading and the buttons */
+    font-size: 2em; /* Adjust font size as needed */
+}
+
+.links {
+    display: flex; /* Use flexbox for the links container */
+    gap: 20px; /* Space between buttons */
+}
+
+.links a {
+    display: inline-block; /* Make the link behave like a button */
+    padding: 10px 20px; /* Add padding for button appearance */
+    background-color: #484848; /* Button background color */
+    color: #f3ebeb; /* Text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.links a:hover {
+    background-color: #f3ebeb; /* Change background color on hover */
+    color: #484848; /* Change text color on hover */
+}
