@@ -194,7 +194,8 @@ header {
     max-width: 830px; /* Allow it to be bigger */
     height: 320px; /* Increase height for a chubbier look */
     gap: 20px; /* Add spacing inside the card */
-    margin-bottom: 25px; /* Add vertical spacing */
+    margin-bottom: 10px; /* Add vertical spacing */
+    margin-top: 30px;
     align-items: center;
 }
 
@@ -203,8 +204,16 @@ header {
     height: 100%; /* Fill the height of the card */
     object-fit: cover;
     border-radius: 10px;
+    /* padding: 10px; */
+    animation: imageBounce 0.3s ease-out;
 }
 
+
+/* .news-card img:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.3);
+} */
 .news-info {
     padding: 20px;
     flex: 1;
