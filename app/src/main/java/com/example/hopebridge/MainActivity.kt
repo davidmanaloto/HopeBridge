@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val popup = listOf<View>(
+            findViewById(R.id.message),
             findViewById(R.id.signinbutton),
             findViewById(R.id.signupbuttongreen)
         )

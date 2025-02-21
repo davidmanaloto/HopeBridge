@@ -9,6 +9,7 @@
     tools:context=".Homepage">
 
     <TextView
+        android:id="@+id/bg"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@drawable/round"
@@ -16,12 +17,36 @@
         />
 
     <ImageView
+        android:id="@+id/home"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/home"
+        app:layout_constraintBottom_toBottomOf="@id/bg"
+        tools:layout_editor_absoluteX="43dp" />
+
+    <ImageView
+        android:id="@+id/notif"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="90dp"
+        android:background="@drawable/notif"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/home"
         />
+
+    <ImageView
+        android:id="@+id/acc"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="90dp"
+        android:background="@drawable/example"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/notif"
+        />
+
 
 
 
