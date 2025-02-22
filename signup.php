@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost";
 $username = "root"; // Change if needed
 $password = ""; // Change if needed
@@ -6,7 +7,8 @@ $dbname = "hopebridge_database"; // Change to your database name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-    exit("Connection failed: " . $conn->connect_error);
+    header("Location: home.php?signup=error=connection=database");
+    exit("Error". $conn->connect_error);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,25 +21,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check for empty fields
     if (empty($user1) || empty($user2) || empty($email1) || empty($email2) || empty($pass) || empty($confirm_pass)) {
-        exit("Error: All fields are required.");
+        $_SESSION["toast"] = ["type" => "error", "message" => "All fields required"];
+        exit();
     }
 
     // Validate username, email, and password matching
     if ($user1 !== $user2) {
-        exit("Error: Usernames do not match.");
+        $_SESSION["toast"] = ["type" => "error", "message" => "User does not match"];
+        header("Location: home.php?signup=error=username=match");
+        exit();
     }
     if ($email1 !== $email2) {
-        exit("Error: Emails do not match.");
+        $_SESSION["toast"] = ["type" => "error", "message" => "Email does not match"];
+        header("Location: home.php?signup=error=email=match");
+        exit();
     }
     if (strlen($pass) < 8) {
-        exit("Error: Password must be at least 8 characters long.");
+        $_SESSION["toast"] = ["type" => "error", "message" => "Password must be 8 characters long"];
+        header("Location: home.php?signup=password=lenght");
+        exit();
     }
     if ($pass !== $confirm_pass) {
-        exit("Error: Passwords do not match.");
+        $_SESSION["toast"] = ["type" => "error", "message" => "Password does not match"];
+        header("Location: home.php?signup=error=password=match");
+        exit();
     }
 
     // Hash password
     $hashed_pass = password_hash($pass, PASSWORD_BCRYPT);
+
+    // Check if username already exists
+    $check_sql = "SELECT username FROM user_table WHERE username = ?";
+    $check_stmt = $conn->prepare($check_sql);
+    $check_stmt->bind_param("s", $user1);
+    $check_stmt->execute();
+    $check_stmt->store_result();
+
+    if ($check_stmt->num_rows > 0) {
+        $check_stmt->close();
+        $_SESSION["toast"] = ["type" => "error", "message" => "Username already exist"];
+        header("Location: home.html?signup=error=username=database");
+        exit();
+    }
 
     // Check if email already exists
     $check_sql = "SELECT email FROM user_table WHERE email = ?";
@@ -48,7 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($check_stmt->num_rows > 0) {
         $check_stmt->close();
-        exit("Error: Email already exists.");
+        $_SESSION["toast"] = ["type" => "error", "message" => "Email already exist"];
+        header("Location: home.html?signup=error=email=database");
+        exit();
     }
     $check_stmt->close();
 
@@ -58,10 +85,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $user1, $email1, $hashed_pass);
 
     if ($stmt->execute()) {
+        $_SESSION["toast"] = ["type" => "success", "message" => "Sign up successful"];
         header("Location: home.html?signup=success");
         exit();
     } else {
-        exit("Error: " . $stmt->error);
+        $_SESSION["toast"] = ["type" => "error", "message" => "Inserting User to Database Error"] .$stmt->error;
+        header("Location: home.html?signup=error=database=error");
+        exit();
     }
 
     $stmt->close();

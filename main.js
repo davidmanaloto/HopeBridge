@@ -21,6 +21,7 @@ window.onclick = function(event) {
     }
 };
 
+// Password hide / show
 function togglePassword(inputId, icon) {
     // Find the closest modal that contains the clicked icon
     let modal = icon.closest(".modal");
@@ -39,6 +40,22 @@ function togglePassword(inputId, icon) {
     }
 }
 
+// Flash message
+document.addEventListener("DOMContentLoaded", function () {
+    let toast = document.getElementById("toast");
+    let toastMessage = toast.getAttribute("data-message");
+    let toastType = toast.getAttribute("data-type");
+
+    if (toastMessage) {
+        toast.classList.add(toastType); // Apply success/error styling
+        toast.innerText = toastMessage;
+        toast.style.display = "block";
+
+        setTimeout(() => {
+            toast.style.display = "none";
+        }, 3000);
+    }
+});
 
 
 // Ensure the script runs after the DOM is fully loaded

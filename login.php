@@ -1,8 +1,8 @@
 <?php
 session_start();
-echo "<pre>";
-print_r($_SESSION); // Displays all session variables
-echo "</pre>";
+//echo "<pre>";
+//print_r($_SESSION); // Displays all session variables
+//echo "</pre>";
 $servername = "localhost";
 $username = "root"; // Change if needed
 $password = ""; // Change if needed
@@ -21,15 +21,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if (empty($user1) || empty($pass) || empty($user2) || empty($confirm_pass)) {
-        exit("Error: Username and password are required.");
+        $_SESSION["toast"] = ["type" => "error", "message" => "All fields required"];
+        header("Location: home.php");
+        exit();
     }
 
     if ($user1 !== $user2) {
-        exit("Error: Usernames do not match.");
+        $_SESSION["toast"] = ["type" => "error", "message" => "Username does not match"];
+        header("Location: home.php");
+        exit();
     }
 
     if ($pass !== $confirm_pass) {
-        exit("Error: Passwords do not match.");
+        $_SESSION["toast"] = ["type" => "error", "message" => "Password does not match"];
+        exit();
     }
 
     $sql = "SELECT id, password FROM user_table WHERE username = ?";
@@ -39,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->store_result();
 
     if ($stmt->num_rows === 0) {
-        header("Location: login.html?error=InvalidCredentials");
+        $_SESSION["toast"] = ["type" => "error", "message" => "Username does not exist"];
+        header("Location: home.php?error=InvalidCredentials");
         exit();
     }
 
@@ -63,10 +69,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "samesite" => "Strict"
         ]);
 
+        $_SESSION["toast"] = ["type" => "success", "message" => "Log in successful"];
         header("Location: homepage.html?login=success"); // Redirect after login
         exit();
     } else {
-        header("Location: home.html?error=InvalidCredentials");
+        $_SESSION["toast"] = ["type" => "error", "message" => "Invalid Credentials"];
+        header("Location: home.php?error=InvalidCredentials");
         exit();
     }
 }
