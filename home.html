@@ -5,92 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hope Bridge</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <a href="home.html"><img src="bird.jpeg" alt="Company Logo" class="Logo"></a>
-            <a href="home.html" class="HopeBridge">HopeBridge</a>
+        <header>
+            <div class="logo-container">
+                <a href="home.html"><img src="hopebridge.jpg"Company Logo" class="Logo"></a>
+                <a href="home.html" class="HopeBridge">HopeBridge</a>
+            </div>
+           
+            <nav class="nav-menu">
+                <a href="about.html">About</a>
+                <span class="separator"></span>
+                <button class="btnLogin" onclick="openModal('loginModal')">Sign In</button>
+                <button class="btnSignUp" onclick="openModal('signupModal')">Sign Up</button>
+                <a href="donate.html" class="btnDonate">Donate</a>
+            </nav>
+        </header>
+        <div class="cover-logo">
+            <img src="volunteer.png" alt="volunteer" class="volunteer">
         </div>
-        <nav class="nav-menu">
-            <a href="about.html">About</a>
-            <span class="separator"></span>
-            <button class="btnLogin" onclick="openModal('loginModal')">Login</button>
-            <button class="btnSignUp" onclick="openModal('signupModal')">Sign Up</button>
-        </nav>
-    </header>
-
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Login</h2>
-    
-            <form action="login.php" method="post">
-                <input type="text" name="username1" placeholder="Username" minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$"  required title="Up to (8 to 16 characters). NO special characters">
-                <div class="password-container">
-                    <input type="password" name="password1" id="password1" placeholder="Password" minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
-                    <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
-                    <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)" style="display: none;">
-                </div>
-                <p>Confirm credentials</p>
-                <input type="text" name="username2" placeholder="Username" minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
-                <div class="password-container">
-                    <input type="password" name="password2" id="password2" placeholder="Password" minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
-                    <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password2', this)">
-                    <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password2', this)" style="display: none;">
-                </div>
-                <button type="submit" name="modal-btn">Login</button>
-                <a href="forgotpass.html" class="change-window">Forgot Password?</a>
+        <main>
+            <h1>Make a Donation</h1>
+            <form action="donate.php" method="post">
+                <input type="text" name="donorName" placeholder="Your Name" required>
+                <input type="email" name="donorEmail" placeholder="Your Email" required>
+                <input type="number" name="donationAmount" placeholder="Donation Amount" required>
+                <textarea name="message" placeholder="Message (optional)"></textarea>
+                <button type="submit">Donate</button>
             </form>
-        </div>
-        <div class="gosignup-container">
-            <p>Don't have an account? <br> <a href="#" onclick="switchModal('loginModal', 'signupModal')" class="change-window">Sign up</a></p>
-        </div>
-    </div>
+        </main>
     
-
-<div id="signupModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('signupModal')">&times;</span>
-        <h2>Sign Up</h2>
-
-        <form action="signup.php" method="post">
-            <input type="text" name="username1" placeholder="Full Name"  minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
-            <input type="email" name="email1" placeholder="Email" required>
-            <div class="password-container">
-                <input type="password" name="password1" id="password1" placeholder="Password"  minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
-                <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
-                <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)" style="display: none;">
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('loginModal')">&times;</span>
+                <h2>Login</h2>
+                <form action="login.php" method="post">
+                    <input type="text" name="username1" placeholder="Username" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
+                    <div class="password-container">
+                        <input type="password" name="password1" id="password1" placeholder="Password" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
+                        <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
+                        <img src="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)" style="display: none;">
+                    </div>
+                    <button type="submit" name="modal-btn">Login</button>
+                    <a href="forgotpass.html" class="change-window">Forgot Password?</a>
+                </form>
             </div>
-            <p>Confirm credentials</p>
-            <input type="text" name="username2" placeholder="Full Name"  minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
-            <input type="email" name="email2" placeholder="Email" required>
-            <div class="password-container">
-                <input type="password" name="password2" id="password2" placeholder="Password"  minlength="8" maxlength="16"  pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
-                <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password2', this)">
-                <img src-="show.png" alt="show" id="show-icon" onclick="togglePassword('password2', this)" style="display: none;">
+            <div class="gosignup-container">
+                <p>Don't have an account? <br> <a href="#" onclick="switchModal('loginModal', 'signupModal')" class="change-window">Sign up</a></p>
             </div>
-            <button type="submit" class="modal-btn">Sign Up</button>
-        </form>
-    </div>
-
-    <div class="gosignup-container">
-        <p>Already have an account? <br> <a href="#" onclick="switchModal('signupModal', 'loginModal')" class="change-window">Login</a></p>
-    </div>
-</div>
+        </div>
     
-
-    <section class="hero">
-        <div class="description-container">
-            <h1>Use us as a bridge<br>to help people in<br>times of need.</h1>
-            <p>Join us in making a difference by volunteering, donating, or supporting those in need. Together, we can create hope for a better future.</p>
-            <a href="homepage.html" class="btnLearnMore">Learn More</a>
+        <!-- Sign Up Modal -->
+        <div id="signupModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('signupModal')">&times;</span>
+                <h2>Sign Up</h2>
+                <form action="signup.php" method="post">
+                    <input type="text" name="username1" placeholder="Full Name" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
+                    <input type="email" name="email1" placeholder="Email" required>
+                    <div class="password-container">
+                        <input type="password" name="password1" id="password1" placeholder="Password" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
+                        <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
+                        <img src="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)" style="display: none;">
+                    </div>
+                    <button type="submit" class="modal-btn">Sign Up</button>
+                </form>
+            </div>
+            <div class="gosignup-container">
+                <p>Already have an account? <br> <a href="#" onclick="switchModal('signupModal', 'loginModal')" class="change-window">Login</a></p>
+            </div>
         </div>
-        <div class="image-container">
-            <img src="volunteer.jpeg" alt="Volunteers helping people">
-        </div>
-    </section>
-
+    
+        <footer class="footer">
+            <p>&copy; 2025 Your Company. All rights reserved.</p>
+        </footer>
     <script src="main.js"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>

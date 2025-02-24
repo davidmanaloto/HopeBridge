@@ -1,37 +1,21 @@
-* {
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif, Arial;
+    background-color: #f4f4f4;
 }
 
-body {
-    height: auto;
-    overflow-y: auto; /* Ensure vertical scrolling */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color:rgb(196, 194, 197);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    flex-direction: column;
-    padding-top: 70px;
-    animation: fadeIn 0.5s ease-in forwards;
-}
-
+/* Header */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
+    background: #35424a;
+    color: #ffffff;
+    padding: 8px 0; /* Reduced padding to make the header smaller */
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    z-index: 99;
-    background-color: #e7e4e4;
+    justify-content: space-between; /* Space between logo/title and nav menu */
+    height:60px;
+    width:100%;
 }
 
 .logo-container {
@@ -49,63 +33,109 @@ header {
 
 .HopeBridge {
     font-size: 1.5em;
-    color:rgb(0, 0, 0);
+    color: #ffffff;
     user-select: none;
     font-weight: 900;
     text-decoration: none;
     letter-spacing: 2px;
 }
 
-.HopeBridge::after {
-    content: '';
-    position: absolute;
-    left: 65px;
-    bottom: 14px;
-    width: 165px;
-    height: 3px;
-    background:rgb(10, 10, 10);
-    border-radius: 5px;
-    transform: scaleX(0);
-    transition: transform 1s;
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
 }
 
-.HopeBridge:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+.logo-container .hope-bridge {
+    font-size: 1.4em; /* Increased font size */
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
 }
 
+/* Navigation Menu */
 .nav-menu {
     display: flex;
     align-items: center;
-    margin-right:40px;
+    justify-content: center;
+    flex-grow: 1;
+    margin-right:50px;
 }
 
-.nav-menu a {
-    position: relative;
-    font-size: 1em;
-    color:black;
+.nav-menu a,
+.nav-menu button {
+    color: #ffffff;
     text-decoration: none;
-    font-weight: 700;
-    margin-left: 50px;
+    padding: 8px 14px; /* Slightly larger padding */
+    margin: 0 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1em; /* Increased font size */
+    font-weight: 500;
+    position: relative;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.nav-menu a::after {
-    content: '';
+/* Hover Animation */
+.nav-menu a::before,
+.nav-menu button::before {
+    content: "";
     position: absolute;
-    left: -5px;
-    right: 15px;
-    bottom: -6px;
-    width: 70px;
+    width: 0;
     height: 3px;
-    background: #000000;
-    border-radius: 5px;
-    transform: scaleX(0);
-    transition: transform .5s;
+    background: #e8491d;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
 }
 
-.nav-menu a:hover::after {
-    transform: scaleX(1);
-    transform-origin: center;
+.nav-menu a:hover,
+.nav-menu button:hover {
+    color: #e8491d;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.nav-menu a:hover::before,
+.nav-menu button:hover::before {
+    width: 100%; /* Expand underline animation */
+}
+
+/* Separator */
+.separator {
+    width: 2px;
+    height: 15px;
+    background: #ffffff;
+    margin: 0 8px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .logo-container {
+        justify-content: center;
+        padding: 8px 0;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        margin-top: 5px;
+    }
+
+    .nav-menu a,
+    .nav-menu button {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
 }
 /* Search Bar Container */
 /* Search Bar Container */
