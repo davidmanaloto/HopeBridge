@@ -1,108 +1,296 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
 body {
-    background-color: #cccaca; /* Light gray background */
-    margin: 0; /* Remove default margin */
-    font-family: Arial, sans-serif; /* Set a default font */
+    background-color: #0088ff88;
+    transition: opacity 0.5s ease; /* Transition for fade effect */
 }
 
-.container {
-    display: flex; /* Use flexbox for layout */
-    height: 100vh; /* Full height of the viewport */
-}
-
-.sidebar {
-    background-color: #484848; /* Dark background for sidebar */
-    color: white; /* Text color */
-    width: 200px; /* Fixed width for sidebar */
-    padding: 20px; /* Padding inside sidebar */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px; /* Reduced padding for a more compact look */
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center items horizontally */
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    background-color: #264152; /* Use RGBA for transparency */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
 }
 
-.profile {
-    text-align: center; /* Center text */
-    margin-bottom: 20px; /* Space below profile */
+.logo-container {
+    display: flex;
+    align-items: center;
 }
 
-.profile-pic {
-    width: 80px; /* Width for profile picture */
-    height: 80px; /* Height for profile picture */
-    border-radius: 50%; /* Circular profile picture */
-    margin-bottom: 10px; /* Space below picture */
+.Logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
 }
 
-.profile-name {
-    margin: 0; /* Remove default margin */
-    font-weight: bold; /* Bold name */
+.HopeBridge {
+    font-size: 1.8em; /* Slightly larger font size */
+    color: #ffffff; /* Changed text color to white */
+    user-select: none;
+    font-weight: 900;
+    text-decoration: none;
+    letter-spacing: 2px;
 }
 
-.sidebar ul {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
-    width: 100%; /* Full width */
+/* .HopeBridge::after {
+    content: '';
+    position: absolute;
+    left: 65px;
+    bottom: 14px;
+    width: 200px;
+    height: 3px;
+    background: #ffcc00;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: transform .5s;
 }
 
-.sidebar ul li {
-    margin: 15px 0; /* Space between list items */
-}
+.HopeBridge:hover::after {
+    transform: scaleX(1);
+    transform-origin: center;
+} */
 
-.sidebar ul li a {
-    color: white; /* Link color */
-    text-decoration: none; /* Remove underline */
-    transition: background-color 0.3s, color 0.3s; /* Smooth color transition */
-    display: flex; /* Use flexbox for icon and text */
+.nav-menu {
+    display: flex; /* Use flexbox for layout */
     align-items: center; /* Center items vertically */
-    padding: 10px; /* Padding for larger clickable area */
-    border-radius: 5px; /* Rounded corners */
+    margin-right: 40px; /* Space on the right */
 }
 
-.sidebar ul li a:hover {
-    background-color: #fefeff; /* Change background color on hover */
-    color: #484848; /* Change text color on hover */
+.nav-menu a {
+    color: #fffbfb; /* Link color */
+    text-decoration: none; /* Remove underline */
+    margin-left: 20px; /* Space on the left */
+    margin-right: 30px; /* Space on the right */
+    transition: color 0.3s; /* Smooth color transition */
+    padding: 10px 15px; /* Increased padding for a larger clickable area */
+    position: relative; /* Required for positioning the ::after element */
+    display: inline-block; /* Ensures the padding takes effect */
 }
 
-.sidebar ul li .search-box {
-    width: calc(100% - 40px); /* Full width minus button width */
-    padding: 5px; /* Padding for input */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    margin: 10px 10px; /* Space above and below search box */
+.nav-menu a:hover {
+    color: #ffcc00; /* Change color on hover */
 }
 
-.sidebar ul li .search-button {
-    background-color: #484848; /* Button background color */
-    color: white; /* Text color */
-    border: none; /* Remove border */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; /* Aligns the line to the left of the link */
+    bottom: -5px; /* Adjust this value to position the line below the text */
+    width: 100%; /* Full width of the link */
+    height: 3px; /* Height of the underline */
+    background: #ffcc00; /* Color of the underline */
     border-radius: 5px; /* Rounded corners */
-    padding: 10px 10px; /* Padding for button */
-    cursor: pointer; /* Change cursor to pointer */
+    transform: scaleX(0); /* Initially hidden */
+    transition: transform .5s; /* Smooth transition */
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1); /* Show the underline on hover */
+    transform-origin: center; /* Center the scaling effect */
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 150px; /* Wider default width */
+    height: 40px;
+    background: #ffffff; /* Keep the search bar white */
+    border-radius: 25px;
+    overflow: hidden;
+    transition: width 0.4s ease-in-out, box-shadow 0.3s;
+    border: 2px solid #333;
+    margin-left: 20px;
+}
+
+/* Expand when input is focused */
+.search-form:focus-within {
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Search Input */
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Search Button */
+.search-btn {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the icon */
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: black;
+    transition: color 0.3s;
+    margin-left: auto; /* Push the button to the right */
+    padding: 0 10px; /* Optional: Add some horizontal padding */
+}
+
+main {
+    padding: 80px 20px 20px; /* Add padding to avoid overlap with header */
+    opacity: 1; /* Initial opacity for fade effect */
+    transition: opacity 0.5s ease; /* Transition for fade effect */
+}
+
+h2 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin: 20px 0 10px; /* Space above and below section titles */
+}
+
+hr {
+    border: 1px solid #ccc; /* Light gray line */
+    margin: 10px 0; /* Space above and below the line */
+}
+
+.user-management table {
+    width: 80%; /* Adjust width as needed */
+    margin: 20px auto; /* Center the table */
+    border-collapse: collapse; /* Keep this to avoid double borders */
+}
+
+.user-management th, .user-management td {
+    padding: 10px; /* Padding inside cells */
+    text-align: center; /* Center align text */
+}
+
+.user-management th {
+    background-color: #f2f2f2; /* Light gray background for header */
+    font-weight: bold; /* Make header text bold */
+}
+
+.user-management tr {
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.user-management tr:hover {
+    background-color: #e0e0e0; /* Light gray background on hover */
+}
+
+/* Remove borders */
+.user-management th, .user-management td {
+    border: none; /* Remove borders */
+}
+
+/* Optional: Style for the user images */
+.user-image {
+    width: 50px; /* Set the width of the image */
+    height: 50px; /* Set the height of the image */
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure the image covers the area */
+}
+
+.user-management td button {
+    margin: 10px; /* Add margin around the buttons */
+    padding: 10px;
+    border-radius: 20px;
+    width: 100px;
+}
+
+.user-management td button:hover {
+    background-color: #52aaf6;
+}
+
+.add-user {
+    display: block; /* Make the button a block element */
+    margin: 20px auto; /* Center the button and add vertical spacing */
+    background-color: #4a4a4a; /* Dark background for button */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding for button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
     transition: background-color 0.3s; /* Smooth background color transition */
 }
 
-.sidebar ul li .search-button:hover {
-    background-color: #fefeff; /* Change background color on hover */
-    color: #484848; /* Change text color on hover */
+.add-user:hover {
+    background-color: #ffcc00; /* Change background color on hover */
 }
 
-.sidebar ul li a i {
-    margin-right: 10px; /* Space between icon and text */
+.settings, .reports {
+    margin: 20px 0; /* Space between sections */
 }
 
-.main-content {
-    flex: 1; /* Take up remaining space */
-    padding: 20px; /* Padding inside main content */
+.settings ul, .reports ul {
+    list-style-type: none; /* Remove bullet points */
+    padding-left: 0; /* Remove padding */
 }
 
-.heading-container {
-    background-color: #ffffff; /* Background color for the container */
-    padding: 40px; /* Increased padding for the container */
-    margin: 10px 0; /* Margin above and below the container */
-    border-radius: 5px; /* Optional: Add rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+.settings li, .reports li {
+    margin: 5px 0; /* Space between list items */
 }
 
-.main-content h2 { /* Ensure this matches your heading element */
-    font-size: 1.5em; /* Adjust font size as needed */
-    margin: 0; /* Remove margin from the heading to avoid extra space */
-    padding: 0; /* Ensure no extra padding */
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        padding: 10px; /* Adjust padding */
+    }
+
+    .nav-menu {
+        margin-right: 0; /* Remove right margin */
+        margin-top: 10px; /* Add space above the nav menu */
+    }
+
+    .nav-menu a {
+        margin: 5px 0; /* Stack links vertically */
+        padding: 8px 10px; /* Adjust padding */
+    }
+
+    .search-form {
+        width: 100%; /* Full width on smaller screens */
+        margin-left: 0; /* Remove left margin */
+        margin-top: 10px; /* Add space above the search form */
+    }
+
+    main {
+        padding: 60px 10px 20px; /* Adjust padding for smaller screens */
+    }
+
+    .user-management table {
+        width: 100%; /* Full width for tables on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .HopeBridge {
+        font-size: 1.5em; /* Adjust font size for smaller screens */
+    }
+
+    .nav-menu a {
+        font-size: 14px; /* Smaller font size for links */
+    }
+
+    .search-input {
+        font-size: 14px; /* Adjust input font size */
+    }
+
+    .search-btn {
+        font-size: 18px; /* Adjust button font size */
+    }
 }
