@@ -1,21 +1,28 @@
+*{
+    font-size:15px;
+}
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    box-sizing: border-box;
 }
 
 /* Header */
 header {
-    background: #35424a;
-    color: #ffffff;
-    padding: 8px 0; /* Reduced padding to make the header smaller */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px; /* Reduced padding for a more compact look */
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-between; /* Space between logo/title and nav menu */
-    height:60px;
-    width:100%;
+    z-index: 99;
+    background-color: #264152; /* Use RGBA for transparency */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
 }
 
 .logo-container {
@@ -32,13 +39,14 @@ header {
 }
 
 .HopeBridge {
-    font-size: 1.5em;
-    color: #ffffff;
+    font-size: 1.8em; /* Slightly larger font size */
+    color: #ffffff; /* Changed text color to white */
     user-select: none;
     font-weight: 900;
     text-decoration: none;
     letter-spacing: 2px;
 }
+
 
 /* Logo Container */
 .logo-container {
@@ -58,27 +66,28 @@ header {
 .nav-menu {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-grow: 1;
-    margin-right:50px;
+    margin-left:500px;
+    gap:20px;
+    font-size:15px;
 }
 
 .nav-menu a,
 .nav-menu button {
     color: #ffffff;
     text-decoration: none;
-    padding: 8px 14px; /* Slightly larger padding */
+    padding: 8px 5px; 
     margin: 0 5px;
     border: none;
     background: transparent;
     cursor: pointer;
-    font-size: 1em; /* Increased font size */
+    font-size: 15px; 
     font-weight: 500;
     position: relative;
     transition: transform 0.3s ease, color 0.3s ease;
+    
 }
 
-/* Hover Animation */
 .nav-menu a::before,
 .nav-menu button::before {
     content: "";
@@ -95,23 +104,14 @@ header {
 .nav-menu a:hover,
 .nav-menu button:hover {
     color: #e8491d;
-    transform: scale(1.1); /* Slightly enlarge on hover */
+    transform: scale(1.1); 
 }
 
 .nav-menu a:hover::before,
 .nav-menu button:hover::before {
-    width: 100%; /* Expand underline animation */
+    width: 100%;
 }
 
-/* Separator */
-.separator {
-    width: 2px;
-    height: 15px;
-    background: #ffffff;
-    margin: 0 8px;
-}
-
-/* Responsive Styles */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -137,7 +137,7 @@ header {
         padding: 10px;
     }
 }
-/* Search Bar Container */
+
 /* Search Bar Container */
 .search-form {
     display: flex;
