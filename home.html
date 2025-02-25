@@ -26,7 +26,9 @@
         <div class="cover-logo">
             <img src="volunteer.png" alt="volunteer" class="volunteer">
             <div class="tagline">
-                <h1>Use as a bridge to help people in needs.</h1>
+                <h1>Use as a Bridge To Help People in Needs.</h1>
+                <button type="button" class="donatebtn">Donate Now</button>
+                <p>Help us provide hope, support, and a better future for those in need.</p>
             </div>
         </div>
         <main>
@@ -34,12 +36,37 @@
             <form action="donate.php" method="post">
                 <input type="text" name="donorName" placeholder="Your Name" required>
                 <input type="email" name="donorEmail" placeholder="Your Email" required>
-                <input type="number" name="donationAmount" placeholder="Donation Amount" required>
+        
+                <!-- Donation Type Selection -->
+                <p>Select Donation Type:</p>
+                <label>
+                    <input type="radio" name="donationType" value="money" required>
+                    Money
+                </label>
+                <label>
+                    <input type="radio" name="donationType" value="items" required>
+                    Items (Clothes & Food)
+                </label>
+        
+                <!-- Money Donation Field -->
+                <div class="moneyField">
+                    <input type="number" name="donationAmount" placeholder="Enter Amount" min="1">
+                </div>
+        
+                <!-- Item Donation Field -->
+                <div class="itemField">
+                    <label for="itemCategory">Choose Item Category:</label>
+                    <select id="itemCategory" name="itemCategory">
+                        <option value="" disabled selected>Select an item category</option>
+                        <option value="clothes">Clothes</option>
+                        <option value="food">Food</option>
+                    </select>
+                </div>
+        
                 <textarea name="message" placeholder="Message (optional)"></textarea>
                 <button type="submit">Donate</button>
             </form>
         </main>
-    
         <!-- Login Modal -->
         <div id="loginModal" class="modal">
             <div class="modal-content">

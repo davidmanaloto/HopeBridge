@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap');
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
@@ -5,6 +6,8 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     box-sizing: border-box;
+    overflow-x: hidden;
+
 }
 
 /* Header */
@@ -17,7 +20,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 99;
+    z-index:1000;
     background-color: #264152; /* Use RGBA for transparency */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
 }
@@ -62,10 +65,11 @@ header {
 .nav-menu {
     display: flex;
     align-items: center;
+    justify-content:right;
     flex-grow: 1;
-    margin-left:500px;
     gap:20px;
     font-size:15px;
+    margin-right:50px;
 }
 
 .nav-menu a,
@@ -135,9 +139,9 @@ header {
 }
 
 .cover-logo {
-    position: relative; /* Allows absolute positioning inside */
+    position: relative;
     width: 100%;
-    height: 100vh; /* Full screen height */
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -147,26 +151,89 @@ header {
     object-fit: cover;
 }
 
+.cover-logo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(76, 68, 68, 0.5); /* Darker overlay */
+    z-index: 5;
+}
+
 .tagline {
+    font-family: 'Poppins', sans-serif;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    font-size: 2em;
-    font-weight: bold;
-    z-index: 10; /* Ensures it's above the image */
+    z-index: 100;
     padding: 20px;
-    border-radius: 10px;
-    width: 80%; /* Adjust width for better text fit */
+    width: 80%;
     max-width: 600px;
+    letter-spacing: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
-
 .tagline h1 {
     margin: 0;
-    font-size: 2em;
+    font-size: 3.2em;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom:40px;
 }
+
+.tagline p {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-top:30px;
+}
+
+.donatebtn {
+    display: inline-block;
+    color: white !important;
+    font-size: 1.3em; /* Slightly bigger text */
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 16px 36px; /* Increased padding for bigger and wider button */
+    border: none;
+    cursor: pointer;
+    background: #264152; /* Matching header color */
+    border-radius: 50px;
+    transition: background 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 101;
+}
+
+.donatebtn:hover {
+    background: #345c72; /* Slightly lighter shade for hover */
+}
+
+.donatebtn::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-30deg);
+    transition: left 0.5s ease-in-out;
+}
+
+.donatebtn:hover::before {
+    left: 100%;
+}
+
 
 /* Main Content */
 main {
@@ -228,8 +295,19 @@ form button:hover{
 .modal-content button {
     padding: 12px; /* Adjust padding for smaller screens */
 }
+.moneyField, .itemField {
+    display: none;
+}
 
-/* Modal Background */
+/* Show money field when Money radio is selected */
+input[name="donationType"][value="money"]:checked ~ .moneyField {
+    display: block;
+}
+
+/* Show item field when Items radio is selected */
+input[name="donationType"][value="items"]:checked ~ .itemField {
+    display: block;
+}
 /* Modal Background */
 .modal {
     display: none;
