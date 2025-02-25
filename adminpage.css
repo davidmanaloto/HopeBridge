@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #0088ff88;
+    background-color: #ffffff;
     transition: opacity 0.5s ease; /* Transition for fade effect */
 }
 
@@ -16,7 +16,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 10px 20px; /* Reduced padding for a more compact look */
+    padding: 10px 20px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,18 +68,18 @@ header {
 .nav-menu {
     display: flex; /* Use flexbox for layout */
     align-items: center; /* Center items vertically */
-    margin-right: 40px; /* Space on the right */
+    margin-right: 7px; /* Space on the right */
 }
 
 .nav-menu a {
     color: #fffbfb; /* Link color */
     text-decoration: none; /* Remove underline */
-    margin-left: 20px; /* Space on the left */
-    margin-right: 30px; /* Space on the right */
+    margin-left: 20px; 
+    margin-right: 15px; 
     transition: color 0.3s; /* Smooth color transition */
-    padding: 10px 15px; /* Increased padding for a larger clickable area */
+    padding: 10px 20px; /* Increased padding for a larger clickable area */
     position: relative; /* Required for positioning the ::after element */
-    display: inline-block; /* Ensures the padding takes effect */
+    display: inline-block; 
 }
 
 .nav-menu a:hover {
@@ -102,6 +102,11 @@ header {
 .nav-link:hover::after {
     transform: scaleX(1); /* Show the underline on hover */
     transform-origin: center; /* Center the scaling effect */
+}
+
+.nav-menu a.active{
+    color: #ffcc00; /* Change text color to yellow */
+    text-shadow: 0 0 10px #ffcc00, 0 0 20px #000000; 
 }
 
 .search-form {
@@ -303,4 +308,13 @@ hr {
     .search-btn {
         font-size: 18px; /* Adjust button font size */
     }
+}
+
+.dashboard {
+    margin-top: 80px;
+    margin-left: 50px;
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+    letter-spacing: 4px;
+    text-align: left; 
 }

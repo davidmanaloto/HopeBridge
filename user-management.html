@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="logo-container">
-            <a href="adminpage.html"><img src="bird.jpeg" alt="Company Logo" class="Logo"></a>
+            <a href="adminpage.html"><img src="hopebridge.jpg" alt="Company Logo" class="Logo"></a>
             <a href="adminpage.html" class="HopeBridge">HopeBridge</a>
         </div>
         <form class="search-form" id="searchForm">
@@ -29,7 +29,7 @@
                 <a href="reports.html" class="nav-link reports">Reports</a>
                 <a href="abouts.html" class="nav-link about">About</a>
                 <a href="settings.html" class="nav-link settings">Settings</a>
-                <a href="#" class="nav-link logout">Log Out</a>
+                <a href="logout.html" class="nav-link logout">Log Out</a>
             </nav>
     </header>
 
@@ -113,6 +113,17 @@
             const query = document.getElementById('searchInput').value;
             // Handle search functionality here
             console.log("Search query:", query); // For demonstration purposes
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const currentLocation = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-menu a');
+
+            navLinks.forEach(link => {
+                if (link.href.includes(currentLocation)) {
+                    link.classList.add('active');
+                }
+            });
         });
     </script>
 </body>
