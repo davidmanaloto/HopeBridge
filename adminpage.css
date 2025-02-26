@@ -47,28 +47,9 @@ header {
     letter-spacing: 2px;
 }
 
-/* .HopeBridge::after {
-    content: '';
-    position: absolute;
-    left: 65px;
-    bottom: 14px;
-    width: 200px;
-    height: 3px;
-    background: #ffcc00;
-    border-radius: 5px;
-    transform: scaleX(0);
-    transition: transform .5s;
-}
-
-.HopeBridge:hover::after {
-    transform: scaleX(1);
-    transform-origin: center;
-} */
-
 .nav-menu {
     display: flex; /* Use flexbox for layout */
     align-items: center; /* Center items vertically */
-    margin-right: 7px; /* Space on the right */
 }
 
 .nav-menu a {
@@ -104,7 +85,7 @@ header {
     transform-origin: center; /* Center the scaling effect */
 }
 
-.nav-menu a.active{
+.nav-menu a.active {
     color: #ffcc00; /* Change text color to yellow */
     text-shadow: 0 0 10px #ffcc00, 0 0 20px #000000; 
 }
@@ -175,29 +156,134 @@ hr {
     margin: 10px 0; /* Space above and below the line */
 }
 
+.admin-user {
+    background-color: #fffbfb;
+    border-radius: 10px;
+    font-size: 25px;
+    display: inline-block;
+    padding: 5px;
+    margin-left: 150px;
+}
+
 .user-management table {
     width: 80%; /* Adjust width as needed */
     margin: 40px auto; /* Center the table */
-    border-collapse:collapse; 
+    border-collapse: collapse; 
     background-color: #fffbfb;
-    border-radius: 10px;
+    /* border-radius: 10px; */
+    cursor: pointer;
 }
 
 .user-management th, .user-management td {
     padding: 10px; /* Padding inside cells */
     text-align: center; /* Center align text */
+    border-radius: 5px;
 }
 
+/* Table Header Styles */
 .user-management th {
     background-color: #f2f2f2; /* Light gray background for header */
     font-weight: bold; /* Make header text bold */
+    transition: none; /* Disable any transition effects */
 }
 
+thead th {
+    cursor: default; /* Default cursor */
+    padding: 10px; /* Set consistent padding */
+    border: 1px solid #ccc; /* Set a consistent border */
+    background-color: #f9f9f9; /* Background color */
+    color: #333333; /* Text color */
+    transition: none; /* Disable transitions */
+}
+
+
+/* Popup Styles */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+    padding-top: 60px; /* Location of the box */
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.3s ease; /* Transition for opacity */
+}
+
+.popup.show {
+    display: block; /* Show the popup */
+    opacity: 1; /* Fully visible */
+}
+
+.popup-content {
+    background-color: #fff; /* White background for content */
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 400px; /* Set a maximum width to make it narrower */
+    height: 300px; /* Set a fixed height to make it taller */
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+    position: relative; /* Position relative for absolute positioning of close button */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Space out children */
+    transform: translateY(-20px); /* Start slightly above */
+    transition: transform 0.3s ease; /* Transition for transform */
+}
+
+.popup.show .popup-content {
+    transform: translateY(0); /* Move to original position */
+}
+
+.close {
+    color: #aaa; /* Gray color */
+    position: absolute; /* Position absolute to place it inside the popup */
+    right: 15px; /* Position it to the right */
+    top: 15px; /* Position it at the top */
+    font-size: 28px; /* Large font size */
+    font-weight: bold; /* Bold text */
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Change color on hover */
+    text-decoration: none; /* No underline */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Button container styles */
+.button-container {
+    margin-top: auto; /* Push the buttons to the bottom */
+    display: flex; /* Use flexbox for button layout */
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.button-container button {
+    margin-left: 10px; /* Space between buttons */
+    padding: 10px 15px; /* Add padding to buttons */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Optional: rounded corners */
+    background-color: #86919b; /* Button color */
+    color: white; /* White text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.button-container button:hover {
+    background-color: #ffcc00; /* Change color on hover */
+}
+
+/* Hover Effect for Table Rows */
 .user-management tr {
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    transition: transform 0.3s, background-color 0.3s; /* Smooth transition */
 }
 
 .user-management tr:hover {
+    transform: scale(1.05); /* This affects rows */
     background-color: #ffcc0054; /* Light gray background on hover */
 }
 
@@ -228,36 +314,6 @@ hr {
 .user-management td button:hover {
     background-color: #ffcc00;
     color: #030303;
-}
-
-.add-user {
-    display: block; /* Make the button a block element */
-    margin: 20px auto; /* Center the button and add vertical spacing */
-    background-color: #4a4a4a; /* Dark background for button */
-    color: white; /* White text */
-    border: none; /* No border */
-    padding: 10px 15px; /* Padding for button */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor */
-    transition: background-color 0.3s; /* Smooth background color transition */
-}
-
-.add-user:hover {
-    background-color: #ffcc00; /* Change background color on hover */
-    color: black;
-}
-
-.abouts, .reports {
-    margin: 20px 0; /* Space between sections */
-}
-
-.abouts ul, .reports ul {
-    list-style-type: none; /* Remove bullet points */
-    padding-left: 0; /* Remove padding */
-}
-
-.abouts li, .reports li {
-    margin: 5px 0; /* Space between list items */
 }
 
 /* Media Queries for Responsiveness */
@@ -310,11 +366,6 @@ hr {
     }
 }
 
-.dashboard {
-    margin-top: 80px;
-    margin-left: 50px;
-    display: flex;
-    justify-content: flex-start; /* Align to the left */
-    letter-spacing: 4px;
-    text-align: left; 
+.highlight {
+    background-color: #ffcc0054; /* Light yellow background for highlighted rows */
 }
