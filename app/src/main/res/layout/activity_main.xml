@@ -1,82 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#D7C3E3"
+    android:padding="20dp">
 
-
+    <!-- Logo -->
     <ImageView
-        android:id="@+id/startlogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/HopeBridgeLogo"
+        android:layout_gravity="center"
+        android:contentDescription="App Logo"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Welcome Text -->
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/startlogo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <ImageView
-        android:id="@+id/starttitle"
-        android:layout_width="660dp"
-        android:layout_height="500dp"
-        android:layout_marginTop="-300dp"
-        android:layout_marginLeft="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/startlogo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/logotitle"
-        tools:layout_editor_absoluteX="-125dp"
-        />
-    
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="407dp"
-        android:layout_height="209dp"
-        android:fontFamily="@font/helvetica_bold"
-        android:gravity="center"
-        android:text="Help the world heal with hope Bridges! You really think i needed all guards at the Hexgates?"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="Welcome to Hope Bridge!"
+        android:textSize="27sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/signinbutton"
-        />
+        android:textColor="#6F4E8e"
+        android:layout_marginTop="9dp"
+        android:gravity="center"/>
 
+    <!-- Description -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help the world heal with Hope Bridge! \nYou really think I needed all guards at the Hexgates?"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="10dp"/>
 
+    <!-- Sign In Button -->
     <Button
-        android:id="@+id/signinbutton"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#D7CBDF"
-        android:layout_marginLeft="55dp"
-        android:layout_marginBottom="120dp"
-        android:text="Sign in"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        android:fontFamily="@font/helvetica_bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
+        android:id="@+id/btnSignIn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#8E75A3"
+        android:text="SIGN IN"
+        android:textColor="@color/white"
+        android:layout_marginTop="120dp"
+    <!-- Register Button -->
     <Button
-        android:id="@+id/signupbuttongreen"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginLeft="55dp"
-        android:backgroundTint="#D7CBDF"
-        android:text="Create an Account"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        android:fontFamily="@font/helvetica_bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        android:id="@+id/btnRegister"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#725883"
+        android:text="REGISTER"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
