@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/HopeBridgeLogo"
+        android:src="@drawable/hopebridgelogo"
         android:layout_gravity="center"
         android:contentDescription="App Logo"
         android:layout_marginBottom="10dp"/>
