@@ -188,7 +188,7 @@ hr {
 }
 
 thead th {
-    cursor: default; /* Default cursor */
+    cursor: pointer; /* Default cursor */
     padding: 10px; /* Set consistent padding */
     border: 1px solid #ccc; /* Set a consistent border */
     background-color: #f9f9f9; /* Background color */
@@ -368,4 +368,166 @@ thead th {
 
 .highlight {
     background-color: #ffcc0054; /* Light yellow background for highlighted rows */
+}
+
+.fade {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.disaster-stats {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.disaster-stats h2{
+    font-size: 20px;
+}
+
+.stats-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-around; /* Space items evenly */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    width: 90%; /* Set width to 90% of the container */
+    margin: 0 auto; /* Center the container */
+}
+
+.stat-item {
+    width: 20%; /* Each item takes up 20% of the container */
+    height: 100px; /* Set a fixed height for the items */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack icon and text vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    margin: 10px; /* Space between items */
+    background-color: #f2f2f2; /* Background color for the item */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.stat-item:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.icon {
+    font-size: 40px; /* Size of the icon */
+    color: #ff5733; /* Color of the icon */
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+/* Fire Animation */
+.fire-item:hover .icon {
+    animation: burn 0.5s infinite alternate; /* Apply burning animation */
+}
+
+@keyframes burn {
+    0% {
+        transform: scale(1) rotate(0deg);
+        color: #ff5733; /* Original fire color */
+    }
+    50% {
+        transform: scale(1.1) rotate(-5deg); /* Slightly scale and rotate */
+        color: #ffcc00; /* Change color to a lighter yellow */
+    }
+    100% {
+        transform: scale(1) rotate(5deg); /* Return to original scale and rotate */
+        color: #ff5733; /* Return to original fire color */
+    }
+}
+
+/* Rain Animation */
+.rain-item:hover .icon {
+    animation: rain 0.5s infinite alternate; /* Apply rain animation */
+}
+
+@keyframes rain {
+    0% {
+        transform: translateY(0);
+        color: #3399ff; /* Original rain color */
+    }
+    50% {
+        transform: translateY(-5px); /* Move up slightly */
+        color: #66ccff; /* Change to a lighter blue */
+    }
+    100% {
+        transform: translateY(0); /* Return to original position */
+        color: #3399ff; /* Return to original rain color */
+    }
+}
+
+/* Flood Animation */
+.flood-item:hover .icon {
+    animation: flood 0.5s infinite alternate; /* Apply flood animation */
+}
+
+@keyframes flood {
+    0% {
+        transform: scale(1);
+        color: #33cc33; /* Original flood color */
+    }
+    50% {
+        transform: scale(1.1); /* Slightly scale up */
+        color: #66ff66; /* Change to a lighter green */
+    }
+    100% {
+        transform: scale(1); /* Return to original size */
+        color: #33cc33; /* Return to original flood color */
+    }
+}
+
+/* Earthquake Animation */
+.earthquake-item:hover .icon {
+    animation: shake 0.5s infinite alternate; /* Apply shake animation */
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+        color:#ff5733 ;
+    }
+    25% {
+        transform: translateX(-5px); /* Move left */
+        color:#ffc504 ;
+    }
+    50% {
+        transform: translateX(5px); /* Move right */
+        color:#ff8604 ;
+    }
+    75% {
+        transform: translateX(-5px); /* Move left */
+        color:#ff0404 ;
+    }
+    100% {
+        transform: translateX(0); /* Return to original position */
+        color:#ff5733 ;
+    }
+}
+
+.stat-value {
+    margin-top: 10px; /* Space between icon and text */
+    font-size: 15px; /* Font size for the text */
+    color: #333; /* Text color */
+}
+
+.flex-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space items evenly */
+    width: 90%; /* Set width to 90% of the container */
+    margin: 20px auto; /* Center the container */
+}
+
+.chart-container, .monthly-rates-container {
+    width: 48%; /* Each container takes up about half of the flex container */
+    height: 400px; /* Set a height for the charts */
+}
+
+.chart-container h2, .monthly-rates-container h2 {
+    text-align: center; /* Center the headings */
+    margin-bottom: 10px; /* Space below the headings */
 }

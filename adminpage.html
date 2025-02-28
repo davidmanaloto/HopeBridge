@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
@@ -28,6 +29,46 @@
         </nav>
     </header>
 
+    <main>
+        <div class="dashboard">
+            <h1>Admin Dashboard</h1>
+            <div class="disaster-stats">
+                <h2>Disaster Statistics for 2025</h2>
+                <div class="stats-container">
+                    <div class="stat-item fire-item">
+                        <ion-icon name="flame-outline" class="icon fire"></ion-icon>
+                        <div class="stat-value">Fire: 70%</div>
+                    </div>
+                    <div class="stat-item rain-item">
+                        <ion-icon name="rainy-outline" class="icon"></ion-icon>
+                        <div class="stat-value">Rain: 50%</div>
+                    </div>
+                    <div class="stat-item flood-item">
+                        <ion-icon name="water-outline" class="icon"></ion-icon>
+                        <div class="stat-value">Flood: 30%</div>
+                    </div>
+                    <div class="stat-item earthquake-item">
+                        <ion-icon name="warning-outline" class="icon"></ion-icon>
+                        <div class="stat-value">Earthquake: 20%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Flex Container for Chart and Monthly Rates -->
+            <div class="flex-container">
+                <div class="chart-container">
+                    <h2>Disaster Chart</h2>
+                    <canvas id="disasterChart"></canvas>
+                </div>
+                
+                <div class="monthly-rates-container">
+                    <h2>Monthly Disaster Rates</h2>
+                    <canvas id="monthlyRatesChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <!-- <div class="dashboard">
         <h1>Admin Dashboard</h1>
     </div> -->
@@ -43,6 +84,80 @@
                 }
             });
         });
+
+        const disasterData = {
+            fire: 70,
+            rain: 50,
+            flood: 30,
+            earthquake: 20
+        };
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector('.fire').style.width = disasterData.fire + '%';
+            document.querySelector('.rain').style.width = disasterData.rain + '%';
+            document.querySelector('.flood').style.width = disasterData.flood + '%';
+            document.querySelector('.earthquake').style.width = disasterData.earthquake + '%';
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+    // Bar Chart for Overall Disaster Statistics
+    const ctx = document.getElementById('disasterChart').getContext('2d');
+    const disasterChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Fire', 'Rain', 'Flood', 'Earthquake'],
+            datasets: [{
+                label: 'Disaster Statistics',
+                data: [40, 30, 20, 10], // Adjusted values to sum up to 100
+                backgroundColor: [
+                    'rgba(255, 87, 51, 0.6)', // Fire color
+                    'rgba(51, 153, 255, 0.6)', // Rain color
+                    'rgba(51, 204, 51, 0.6)', // Flood color
+                    'rgba(255, 204, 0, 0.6)' // Earthquake color
+                ],
+                borderColor: [
+                    'rgba(255, 87, 51, 1)',
+                    'rgba(51, 153, 255, 1)',
+                    'rgba(51, 204, 51, 1)',
+                    'rgba(255, 204, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100 // Set max value for y-axis to 100
+                }
+            }
+        }
+    });
+
+    // Line Chart for Monthly Disaster Rates
+    const monthlyCtx = document.getElementById('monthlyRatesChart').getContext('2d');
+    const monthlyRatesChart = new Chart(monthlyCtx, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [{
+                label: 'Monthly Disaster Rates',
+                data: [10, 15, 20, 25, 30, 35, 40, 30, 20, 15, 10, 5], // Sample data for monthly rates
+                fill: false,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                tension: 0.1 // Smoothness of the line
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100 // Set max value for y-axis to 100
+                }
+            }
+        }
+    });
+});
     </script>
 </body>
 </html>

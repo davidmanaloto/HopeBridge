@@ -1,34 +1,59 @@
 body {
-    background-color: #f3ebeb;
+    background-color: #ffffff;
     margin: 0;
     display: flex; /* Use flexbox for centering */
-    flex-direction: column; /* Stack elements vertically */
     justify-content: center; /* Center vertically */
     align-items: center; /* Center horizontally */
-    height: 100vh; /* Full height of the viewport */
+    height: 100vh; /* Changed to 100vh */
+    flex-direction: column; /* Stack items vertically */
+    gap: 15px;
+    font-size: 15px;
 }
 
-h1 {
-    margin-bottom: 20px; /* Space between the heading and the buttons */
-    font-size: 2em; /* Adjust font size as needed */
+.arrow-heading {
+    position: relative; /* Position relative to allow absolute positioning of the arrow */
+    padding-bottom: 10px; /* Space for the arrow */
 }
 
-.links {
-    display: flex; /* Use flexbox for the links container */
-    gap: 20px; /* Space between buttons */
+.arrow-heading::after {
+    content: ""; /* Empty content for the arrow */
+    position: absolute; /* Position it absolutely */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for horizontal centering */
+    top: 100%; /* Position below the heading */
+    border-left: 10px solid transparent; /* Left side of the arrow */
+    border-right: 10px solid transparent; /* Right side of the arrow */
+    border-top: 10px solid black; /* Color and size of the arrow */
 }
 
-.links a {
-    display: inline-block; /* Make the link behave like a button */
-    padding: 10px 20px; /* Add padding for button appearance */
-    background-color: #484848; /* Button background color */
-    color: #f3ebeb; /* Text color */
+.wrapper {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper .card {
+    width: 150px;
+    height: 50px;
+    border-radius: 7px;
+    background: #484848;
+    cursor: pointer;
+    transition: all 0.25s ease; /* Smooth transition for all properties */
+}
+
+.wrapper .card:hover {
+    transform: scale(0.8); /* Rotate the card 30 degrees on hover */
+}
+
+.wrapper .card a {
+    display: block; /* Make the link fill the card */
+    height: 100%; /* Make the link fill the card height */
+    width: 100%; /* Make the link fill the card width */
+    text-align: center; /* Center the text */
+    line-height: 50px; /* Match line-height to button height */
+    color: #ffffff; /* Text color */
     text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s; /* Smooth background color transition */
-}
-
-.links a:hover {
-    background-color: #f3ebeb; /* Change background color on hover */
-    color: #484848; /* Change text color on hover */
 }

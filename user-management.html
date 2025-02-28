@@ -23,7 +23,7 @@
         </form>
         <nav class="nav-menu">
             <a href="adminpage.html" class="nav-link home">Home</a>
-            <a href="user-management.html" class="nav-link user-management">User  Management</a>
+            <a href="user-management.html" class="nav-link user-management">User   Management</a>
             <a href="newss.html" class="nav-link news">News</a>
             <a href="pending.html" class="nav-link pending">Pending</a>
             <a href="reports.html" class="nav-link reports">Reports</a>
@@ -39,33 +39,33 @@
         <section class="user-management">
             <hr>
             <h1 class="admin-user">Admin</h1>
-            <table>
+            <table id="adminTable">
                 <thead>
                     <tr>
                         <th> </th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Contact Number</th>
-                        <th>Role</th>
+                        <th class="sortable" data-column="name">Name</th>
+                        <th class="sortable" data-column="email">Email</th>
+                        <th class="sortable" data-column="contact">Contact Number</th>
+                        <th class="sortable" data-column="role">Role</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr data-info="Admin 1: Lol, Email: Lol@example.com, Contact: 09123456789, Role: Admin">
-                        <td><img src="volunteer.jpeg" alt="User  1" class="user-image"></td>
+                        <td><img src="volunteer.jpeg" alt="User   1" class="user-image"></td>
                         <td>one</td>
                         <td>1@example.com</td>
                         <td>09123456784</td>
                         <td>Admin</td>
                     </tr>
                     <tr data-info="Admin 2: Crossfire, Email: Cf@example.com, Contact: 09123456789, Role: Front Developer">
-                        <td><img src="volunteer.jpeg" alt="User  2" class="user-image"></td>
+                        <td><img src="volunteer.jpeg" alt="User   2" class="user-image"></td>
                         <td>two</td>
                         <td>2@example.com</td>
                         <td>09123456783</td>
                         <td>Front Developer</td>
                     </tr>
                     <tr data-info="Admin 3: Valorant, Email: Valo@example.com, Contact: 09123456789, Role: Backend Developer">
-                        <td><img src="volunteer.jpeg" alt="User  3" class="user-image"></td>
+                        <td><img src="volunteer.jpeg" alt="User   3" class="user-image"></td>
                         <td>three</td>
                         <td>3o@example.com</td>
                         <td>09123456782</td>
@@ -83,40 +83,40 @@
         </section>
 
         <section class="user-management">
-            <h1 class="admin-user">User </h1>
-            <table>
+            <h1 class="admin-user">User  </h1>
+            <table id="userTable">
                 <thead>
                     <tr>
                         <th> </th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Contact Number</th>
-                        <th>Role</th>
+                        <th class="sortable" data-column="name">Name</th>
+                        <th class="sortable" data-column="email">Email</th>
+                        <th class="sortable" data-column="contact">Contact Number</th>
+                        <th class="sortable" data-column="role">Role</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-info="User  1: Lol, Email: Lol@example.com, Contact: 09123456789, Role: User">
+                    <tr data-info="User   1: Lol, Email: Lol@example.com, Contact: 09123456789, Role: User">
                         <td><img src="volunteer.jpeg" alt="User   1" class="user-image"></td>
                         <td>Lol</td>
                         <td>Lol@example.com</td>
                         <td>09123456789</td>
                         <td>User</td>
                     </tr>
-                    <tr data-info="User  2: Crossfire, Email: Cf@example.com, Contact: 09123456789, Role: User">
+                    <tr data-info="User   2: Crossfire, Email: Cf@example.com, Contact: 09123456789, Role: User">
                         <td><img src="volunteer.jpeg" alt="User   2" class="user-image"></td>
                         <td>Crossfire</td>
                         <td>Cf@example.com</td>
                         <td>09123456789</td>
                         <td>User</td>
                     </tr>
-                    <tr data-info="User  3: Valorant, Email: Valo@example.com, Contact: 09123456789, Role: User">
+                    <tr data-info="User   3: Valorant, Email: Valo@example.com, Contact: 09123456789, Role: User">
                         <td><img src="volunteer.jpeg" alt="User   3" class="user-image"></td>
                         <td>Valorant</td>
                         <td>Valo@example.com</td>
                         <td>09123456789</td>
                         <td>User</td>
                     </tr>
-                    <tr data-info="User  4: Tetris, Email: tetris@example.com, Contact: 09123456789, Role: User">
+                    <tr data-info="User   4: Tetris, Email: tetris@example.com, Contact: 09123456789, Role: User">
                         <td><img src="volunteer.jpeg" alt="User   4" class="user-image"></td>
                         <td>Tetris</td>
                         <td>tetris@example.com</td>
@@ -162,6 +162,16 @@
 
     <script>
 document.addEventListener("DOMContentLoaded", function() {
+    const currentLocation = window.location.pathname; // Get the current URL path
+    const navLinks = document.querySelectorAll('.nav-menu a'); // Select all navigation links
+
+    // Loop through each link and check if it matches the current location
+    navLinks.forEach(link => {
+        if (link.href.includes(currentLocation)) {
+            link.classList.add('active'); // Add active class if it matches
+        }
+    });
+
     const rows = document.querySelectorAll('tr[data-info]');
     const popup = document.getElementById('popup');
     const closeBtn = document.querySelector('.close');
@@ -242,6 +252,41 @@ document.addEventListener("DOMContentLoaded", function() {
                 popup.classList.remove('show'); // Close the popup after deletion
             }
         }
+    });
+
+    // Sorting functionality
+    const sortableHeaders = document.querySelectorAll('.sortable');
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            const tableBody = this.closest('table').querySelector('tbody');
+            const rowsArray = Array.from(tableBody.rows);
+            const columnIndex = Array.from(this.parentNode.children).indexOf(this);
+            const isAscending = this.classList.contains('asc');
+
+            // Sort rows based on the clicked column
+            rowsArray.sort((a, b) => {
+                const cellA = a.cells[columnIndex].textContent.trim();
+                const cellB = b.cells[columnIndex].textContent.trim();
+
+                // Handle sorting for different data types
+                if (columnIndex === 3) { // Contact Number
+                    return isAscending ? cellA.localeCompare(cellB, undefined, { numeric: true }) : cellB.localeCompare(cellA, undefined, { numeric: true });
+                } else {
+                    return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+                }
+            });
+
+            // Remove existing rows and append sorted rows with animation
+            rowsArray.forEach(row => {
+                row.classList.add('fade'); // Add fade class for animation
+                tableBody.appendChild(row);
+                setTimeout(() => {
+                    row.classList.remove('fade'); // Remove fade class after animation
+                }, 300); // Match this duration with the CSS transition duration
+            });
+
+            this.classList.toggle('asc', !isAscending); // Toggle the sorting direction
+        });
     });
 });
     </script>
