@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
+    flex-wrap: wrap;
 }
 
 body {
@@ -138,6 +139,16 @@ main {
     padding: 80px 20px 20px; /* Add padding to avoid overlap with header */
     opacity: 1; /* Initial opacity for fade effect */
     transition: opacity 0.5s ease; /* Transition for fade effect */
+}
+
+
+h1 {
+    text-align: start;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    margin-left: 80px;
+    font-size: 30px;
+    transition: font-size 0.3s ease-in;
 }
 
 h2 {
@@ -525,6 +536,14 @@ thead th {
 .chart-container, .monthly-rates-container {
     width: 48%; /* Each container takes up about half of the flex container */
     height: 400px; /* Set a height for the charts */
+    background-color: #fefef6;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 5px #b5b5b5;
+}
+
+.chart-container:hover, .monthly-rates-container:hover{
+    transform: scale(1.05);
 }
 
 .chart-container h2, .monthly-rates-container h2 {

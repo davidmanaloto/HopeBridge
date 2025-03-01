@@ -32,24 +32,25 @@
     <main>
         <div class="dashboard">
             <h1>Admin Dashboard</h1>
+            <!-- <hr> -->
             <div class="disaster-stats">
                 <h2>Disaster Statistics for 2025</h2>
                 <div class="stats-container">
                     <div class="stat-item fire-item">
                         <ion-icon name="flame-outline" class="icon fire"></ion-icon>
-                        <div class="stat-value">Fire: 70%</div>
+                        <div class="stat-value">Fire: 16%</div>
                     </div>
                     <div class="stat-item rain-item">
                         <ion-icon name="rainy-outline" class="icon"></ion-icon>
-                        <div class="stat-value">Rain: 50%</div>
+                        <div class="stat-value">Rain: 51%</div>
                     </div>
                     <div class="stat-item flood-item">
                         <ion-icon name="water-outline" class="icon"></ion-icon>
-                        <div class="stat-value">Flood: 30%</div>
+                        <div class="stat-value">Flood: 31%</div>
                     </div>
                     <div class="stat-item earthquake-item">
                         <ion-icon name="warning-outline" class="icon"></ion-icon>
-                        <div class="stat-value">Earthquake: 20%</div>
+                        <div class="stat-value">Earthquake: 2%</div>
                     </div>
                 </div>
             </div>
@@ -86,10 +87,10 @@
         });
 
         const disasterData = {
-            fire: 70,
-            rain: 50,
-            flood: 30,
-            earthquake: 20
+            fire: 16,
+            rain: 51,
+            flood: 31,
+            earthquake: 2
         };
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -108,7 +109,7 @@
             labels: ['Fire', 'Rain', 'Flood', 'Earthquake'],
             datasets: [{
                 label: 'Disaster Statistics',
-                data: [40, 30, 20, 10], // Adjusted values to sum up to 100
+                data: [16, 51, 31, 2], // Adjusted values to sum up to 100
                 backgroundColor: [
                     'rgba(255, 87, 51, 0.6)', // Fire color
                     'rgba(51, 153, 255, 0.6)', // Rain color
