@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="adminpage.css">
+    <link rel="stylesheet" href="settings.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -27,10 +27,35 @@
                 <a href="settings.html" class="nav-link settings">Settings</a>
                 <a href="logout.html" class="nav-link logout">Log Out</a>
             </nav>
-
     </header>
+    <main>
+        <section class="settings-section">
+            <h2>Settings</h2>
+            <div class="settings-container">
+                <div class="setting-item">
+                    <h3>User Management</h3>
+                    <button onclick="location.href='user-management.html'">Manage Users</button>
+                </div>
+                <div class="setting-item">
+                    <h3>Security</h3>
+                    <label><input type="checkbox"> Enable Two-Factor Authentication (2FA)</label>
+                    <label><input type="checkbox"> Allow Password Reset</label>
+                </div>
+                <div class="setting-item">
+                    <h3>Theme</h3>
+                    <label><input type="radio" name="theme" value="light" id="light-mode"> Light Mode</label>
+                    <label><input type="radio" name="theme" value="dark" id="dark-mode"> Dark Mode</label>
+                </div>
+                <div class="setting-item">
+                    <h3>Notifications</h3>
+                    <label><input type="checkbox"> Email Notifications</label>
+                    <label><input type="checkbox"> SMS Alerts</label>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <script>
+        <script>
         document.addEventListener("DOMContentLoaded", function() {
             const currentLocation = window.location.pathname;
             const navLinks = document.querySelectorAll('.nav-menu a');
@@ -42,6 +67,5 @@
             });
         });
     </script>
-    
 </body>
 </html>

@@ -61,7 +61,7 @@ header {
     transition: color 0.3s; /* Smooth color transition */
     padding: 10px 20px; /* Increased padding for a larger clickable area */
     position: relative; /* Required for positioning the ::after element */
-    display: inline-block; 
+    display: inline-block;
 }
 
 .nav-menu a:hover {
@@ -166,6 +166,7 @@ hr {
     border: 3px solid #000000b2; /* Light gray line */
     margin: 10px 0; /* Space above and below the line */
 }
+
 
 .admin-user {
     background-color: #fffbfb;

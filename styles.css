@@ -21,7 +21,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index:1000;
-    background-color: #264152; /* Use RGBA for transparency */
+    background-color:rgb(219, 224, 226); /* Use RGBA for transparency */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
 }
 
@@ -40,7 +40,7 @@ header {
 
 .HopeBridge {
     font-size: 1.8em; /* Slightly larger font size */
-    color: #ffffff; /* Changed text color to white */
+    color:rgb(49, 48, 48); /* Changed text color to white */
     user-select: none;
     font-weight: 900;
     text-decoration: none;
@@ -57,7 +57,7 @@ header {
 .logo-container .hope-bridge {
     font-size: 1.4em; /* Increased font size */
     font-weight: bold;
-    color: #ffffff;
+    color:rgb(49, 48, 48);
     text-decoration: none;
 }
 
@@ -74,7 +74,7 @@ header {
 
 .nav-menu a,
 .nav-menu button {
-    color: #ffffff;
+    color:rgb(49, 48, 48);
     text-decoration: none;
     padding: 8px 14px; 
     margin: 0 5px;
@@ -85,7 +85,6 @@ header {
     font-weight: 500;
     position: relative;
     transition: transform 0.3s ease, color 0.3s ease;
-    
 }
 
 .nav-menu a::before,
@@ -94,7 +93,7 @@ header {
     position: absolute;
     width: 0;
     height: 3px;
-    background: #e8491d;
+    background:rgb(73, 71, 71);
     bottom: -5px;
     left: 50%;
     transform: translateX(-50%);
@@ -103,7 +102,7 @@ header {
 
 .nav-menu a:hover,
 .nav-menu button:hover {
-    color: #e8491d;
+    color:rgb(73, 71, 71);
     transform: scale(1.1); 
 }
 
@@ -155,12 +154,12 @@ header {
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0;        
     width: 100%;
     height: 100%;
-    background: rgba(76, 68, 68, 0.5); /* Darker overlay */
+    background: rgba(198, 202, 202, 0.5); /* Light overlay */
     z-index: 5;
-}
+}   
 
 .tagline {
     font-family: 'Poppins', sans-serif;
@@ -179,25 +178,27 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    color:rgb(49, 48, 48);
 }
 .tagline h1 {
     margin: 0;
     font-size: 3.2em;
-    font-weight: 500;
-    color: #ffffff;
+    font-weight: 600;
+    color:rgb(49, 48, 48);
     margin-bottom:40px;
 }
 
 .tagline p {
     margin: 0;
-    font-size: 1.2em;
-    font-weight: 300;
+    font-size: 1.5em;
+    font-weight:400;
     margin-top:30px;
+    color:rgb(49, 48, 48);
 }
 
 .donatebtn {
     display: inline-block;
-    color: white !important;
+    color: black !important;
     font-size: 1.3em; /* Slightly bigger text */
     font-weight: bold;
     text-transform: uppercase;
@@ -205,7 +206,7 @@ header {
     padding: 16px 36px; /* Increased padding for bigger and wider button */
     border: none;
     cursor: pointer;
-    background: #264152; /* Matching header color */
+    background: rgb(219, 224, 226); /* Matching header color */
     border-radius: 50px;
     transition: background 0.3s ease-in-out;
     position: relative;
@@ -215,7 +216,7 @@ header {
 }
 
 .donatebtn:hover {
-    background: #345c72; /* Slightly lighter shade for hover */
+    background:rgb(241, 241, 241); /* Slightly lighter shade for hover */
 }
 
 .donatebtn::before {
@@ -234,11 +235,59 @@ header {
     left: 100%;
 }
 
-
-/* Main Content */
-main {
-    padding: 20px;
+#about {
+    padding: 80px 20px;
     text-align: center;
+    background-color: #f8f9fa;
+}
+
+.about-container {
+    display: flex;
+    max-width: 1100px;
+    margin: auto;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-content {
+    flex: 1;
+    text-align: left;
+}
+
+.about-content h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: rgb(49, 48, 48);
+}
+
+.about-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #555;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-content {
+        text-align: center;
+    }
 }
 
 form {
@@ -305,7 +354,7 @@ input[name="donationType"][value="money"]:checked ~ .moneyField {
 }
 
 /* Show item field when Items radio is selected */
-input[name="donationType"][value="items"]:checked ~ .itemField {
+input[name="donationType"][value="items"]:checked ~ .itemField {-
     display: block;
 }
 /* Modal Background */
@@ -479,8 +528,8 @@ to {
 .footer {
     text-align: center;
     padding: 20px;
-    background: #35424a;
-    color: #ffffff;
+    background:rgb(219, 224, 226); /* Use RGBA for transparency */
+    color: rgb(49, 48, 48); /* Matching header color */
     position: relative; /* This can be changed to fixed or absolute if needed */
     bottom: 0; /* This property has no effect if position is relative */
     width: 100%;
