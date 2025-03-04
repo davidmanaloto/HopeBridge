@@ -4,160 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="adminpage.css"> <!-- Your external CSS file -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <link rel="stylesheet" href="adminpage.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
+    <nav class="nav-menu">
         <div class="logo-container">
-            <a href="adminpage.html"><img src="hopebridge.jpg" alt="Company Logo" class="Logo"></a>
-            <a href="adminpage.html" class="HopeBridge">HopeBridge</a>
+            <a href="adminpage.html">
+                <img src="hopebridge.jpg" alt="Company Logo" class="logo">
+            </a>
+            <h1 class="site-title">HopeBridge</h1>
         </div>
-        <nav class="nav-menu">
-            <a href="adminpage.html" class="nav-link home">Home</a>
-            <a href="user-management.html" class="nav-link user-management">User  Management</a>
-            <a href="newss.html" class="nav-link news">News</a>
-            <a href="pending.html" class="nav-link pending">Pending</a>
-            <a href="reports.html" class="nav-link reports">Reports</a>
-            <a href="abouts.html" class="nav-link about">About Us</a>
-            <a href="settings.html" class="nav-link settings">Settings</a>
-            <a href="logout.html" class="nav-link logout">Log Out</a>
-        </nav>
-    </header>
-
-    <main>
-        <div class="dashboard">
-            <h1>Admin Dashboard</h1>
-            <!-- <hr> -->
-            <div class="disaster-stats">
-                <h2>Disaster Statistics for 2025</h2>
-                <div class="stats-container">
-                    <div class="stat-item fire-item">
-                        <ion-icon name="flame-outline" class="icon fire"></ion-icon>
-                        <div class="stat-value">Fire: 16%</div>
+        <div class="menu-sidebar">
+            <a href="adminpage.html" class="nav-link home"><ion-icon name="home-outline"></ion-icon> Home</a>
+            <a href="user-management.html" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> User Management</a>
+            <a href="newss.html" class="nav-link news"><ion-icon name="newspaper-outline"></ion-icon> News</a>
+            <a href="pending.html" class="nav-link pending"><ion-icon name="time-outline"></ion-icon> Pending</a>
+            <a href="reports.html" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Reports</a>
+            <a href="abouts.html" class="nav-link about"><ion-icon name="information-circle-outline"></ion-icon> About Us</a>
+            <a href="settings.html" class="nav-link settings"><ion-icon name="settings-outline"></ion-icon> Settings</a>
+            <a href="logout.html" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
+        </div>
+    </nav>
+    
+    <div class="dashboard-container">
+        <main>
+            <div class="overview-container">
+                <h2 style="text-align: center;">Disaster Overview</h2>
+                <div class="icons-container">
+                    <button id="prev" class="slide-button">❮</button>
+                    <div class="icon-cards">
+                        <div class="icon-card"><i class="fas fa-fire fa-3x"></i><h3>Fire</h3><p>5 Incidents</p><span class="green">↑ 10%</span><p class="small-text">More than last month</p></div>
+                        <div class="icon-card"><i class="fas fa-bolt fa-3x"></i><h3>Storm</h3><p>100 Incidents</p><span class="green">↑ 60%</span><p class="small-text">More than last month</p></div>
+                        <div class="icon-card"><i class="fas fa-water fa-3x"></i><h3>Flood</h3><p>3 Incidents</p><span class="red">↓ 5%</span><p class="small-text red-text">Less than last month</p></div>
+                        <div class="icon-card"><i class="fas fa-house-damage fa-3x"></i><h3>Earthquake</h3><p>1 Incident</p><span class="red">↓ 9%</span><p class="small-text red-text">Less than last month</p></div>
+                        <div class="icon-card"><i class="fas fa-wind fa-3x"></i><h3>Tornado</h3><p>6 Incidents</p><span class="red">↓ 30%</span><p class="small-text red-text">Less than last month</p></div>
+                        <div class="icon-card"><i class="fas fa-mountain fa-3x"></i><h3>Landslide</h3><p>10 Incidents</p><span class="red">↓ 23%</span><p class="small-text red-text">Less than last month</p></div>
                     </div>
-                    <div class="stat-item rain-item">
-                        <ion-icon name="rainy-outline" class="icon"></ion-icon>
-                        <div class="stat-value">Rain: 51%</div>
-                    </div>
-                    <div class="stat-item flood-item">
-                        <ion-icon name="water-outline" class="icon"></ion-icon>
-                        <div class="stat-value">Flood: 31%</div>
-                    </div>
-                    <div class="stat-item earthquake-item">
-                        <ion-icon name="warning-outline" class="icon"></ion-icon>
-                        <div class="stat-value">Earthquake: 2%</div>
-                    </div>
+                    <button id="next" class="slide-button">❯</button>
                 </div>
             </div>
             
-            <!-- Flex Container for Chart and Monthly Rates -->
-            <div class="flex-container">
-                <div class="chart-container">
-                    <h2>Disaster Chart</h2>
-                    <canvas id="disasterChart"></canvas>
+            <div class="chart-container">
+                <h2 style="text-align: center;">Disaster Statistics</h2>
+                <canvas id="donationChart"></canvas>
+            </div>          
+
+            <div class="donation-container">
+                <div class="header">
+                    <h2>Recent Activity</h2>
+                    <a href="#">View all</a>
                 </div>
-                
-                <div class="monthly-rates-container">
-                    <h2>Monthly Disaster Rates</h2>
-                    <canvas id="monthlyRatesChart"></canvas>
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date & Time</th>
+                            <th>Email</th>
+                            <th>Campaign</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Ryan Hemansyah</td><td>2 minutes ago</td><td>ryanher11@gmail.com</td><td>Education Care</td></tr>
+                        <tr><td>Rizaldi Ahmad</td><td>2 minutes ago</td><td>rizaldiahmad@gmail.com</td><td>Love and Care for the Little Children...</td></tr>
+                        <tr><td>Samsul Ulum</td><td>2 minutes ago</td><td>samulum@gmail.com</td><td>Book Donation For Children</td></tr>
+                        <tr><td>Firmansyah Dwi</td><td>2 minutes ago</td><td>fdwi99@gmail.com</td><td>Health Food Donation</td></tr>
+                        <tr><td>Dean Hartono</td><td>2 minutes ago</td><td>deanhartono@gmail.com</td><td>Medical Equipment Donation</td></tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </main>
-
-    <!-- <div class="dashboard">
-        <h1>Admin Dashboard</h1>
-    </div> -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const currentLocation = window.location.pathname;
-            const navLinks = document.querySelectorAll('.nav-menu a');
-
-            navLinks.forEach(link => {
-                if (link.href.includes(currentLocation)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        const disasterData = {
-            fire: 16,
-            rain: 51,
-            flood: 31,
-            earthquake: 2
-        };
-
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelector('.fire').style.width = disasterData.fire + '%';
-            document.querySelector('.rain').style.width = disasterData.rain + '%';
-            document.querySelector('.flood').style.width = disasterData.flood + '%';
-            document.querySelector('.earthquake').style.width = disasterData.earthquake + '%';
-        });
-
-        document.addEventListener("DOMContentLoaded", function() {
-    // Bar Chart for Overall Disaster Statistics
-    const ctx = document.getElementById('disasterChart').getContext('2d');
-    const disasterChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Fire', 'Rain', 'Flood', 'Earthquake'],
-            datasets: [{
-                label: 'Disaster Statistics',
-                data: [16, 51, 31, 2], // Adjusted values to sum up to 100
-                backgroundColor: [
-                    'rgba(255, 87, 51, 0.6)', // Fire color
-                    'rgba(51, 153, 255, 0.6)', // Rain color
-                    'rgba(51, 204, 51, 0.6)', // Flood color
-                    'rgba(255, 204, 0, 0.6)' // Earthquake color
-                ],
-                borderColor: [
-                    'rgba(255, 87, 51, 1)',
-                    'rgba(51, 153, 255, 1)',
-                    'rgba(51, 204, 51, 1)',
-                    'rgba(255, 204, 0, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100 // Set max value for y-axis to 100
-                }
-            }
-        }
-    });
-
-    // Line Chart for Monthly Disaster Rates
-    const monthlyCtx = document.getElementById('monthlyRatesChart').getContext('2d');
-    const monthlyRatesChart = new Chart(monthlyCtx, {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [{
-                label: 'Monthly Disaster Rates',
-                data: [10, 15, 20, 25, 30, 35, 40, 30, 20, 15, 10, 5], // Sample data for monthly rates
-                fill: false,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                tension: 0.1 // Smoothness of the line
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100 // Set max value for y-axis to 100
-                }
-            }
-        }
-    });
-});
-    </script>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
 </body>
 </html>

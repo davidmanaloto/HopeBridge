@@ -4,291 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="adminpage.css">
+    <link rel="stylesheet" href="adminpage.css"> <!-- Your external CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-    <header>
-        <div class="logo-container">
-            <a href="adminpage.html"><img src="hopebridge.jpg" alt="Company Logo" class="Logo"></a>
-            <a href="adminpage.html" class="HopeBridge">HopeBridge</a>
-        </div>
-        <form class="search-form" id="searchForm">
-            <input type="text" name="query" placeholder="Search here..." class="search-input" id="searchInput">
-            <button type="button" class="search-btn" id="searchButton">
-                <ion-icon name="search-outline" class="search-box"></ion-icon>
-            </button>
-        </form>
+    <body>
         <nav class="nav-menu">
-            <a href="adminpage.html" class="nav-link home">Home</a>
-            <a href="user-management.html" class="nav-link user-management">User   Management</a>
-            <a href="newss.html" class="nav-link news">News</a>
-            <a href="pending.html" class="nav-link pending">Pending</a>
-            <a href="reports.html" class="nav-link reports">Reports</a>
-            <a href="abouts.html" class="nav-link about">About Us</a>
-            <a href="settings.html" class="nav-link settings">Settings</a>
-            <a href="logout.html" class="nav-link logout">Log Out</a>
-        </nav>
-    </header>
-
-    <main id="mainContent">
-        <h2>User Management</h2>
-
-        <section class="user-management">
-            <hr>
-            <h1 class="admin-user">Admin</h1>
-            <table id="adminTable">
-                <thead>
-                    <tr>
-                        <th> </th>
-                        <th class="sortable" data-column="name">Name</th>
-                        <th class="sortable" data-column="email">Email</th>
-                        <th class="sortable" data-column="contact">Contact Number</th>
-                        <th class="sortable" data-column="role">Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-info="Admin 1: Lol, Email: Lol@example.com, Contact: 09123456789, Role: Admin">
-                        <td><img src="volunteer.jpeg" alt="User   1" class="user-image"></td>
-                        <td>one</td>
-                        <td>1@example.com</td>
-                        <td>09123456784</td>
-                        <td>Admin</td>
-                    </tr>
-                    <tr data-info="Admin 2: Crossfire, Email: Cf@example.com, Contact: 09123456789, Role: Front Developer">
-                        <td><img src="volunteer.jpeg" alt="User   2" class="user-image"></td>
-                        <td>two</td>
-                        <td>2@example.com</td>
-                        <td>09123456783</td>
-                        <td>Front Developer</td>
-                    </tr>
-                    <tr data-info="Admin 3: Valorant, Email: Valo@example.com, Contact: 09123456789, Role: Backend Developer">
-                        <td><img src="volunteer.jpeg" alt="User   3" class="user-image"></td>
-                        <td>three</td>
-                        <td>3o@example.com</td>
-                        <td>09123456782</td>
-                        <td>Backend Developer</td>
-                    </tr>
-                    <tr data-info="Admin 4: Tetris, Email: tetris@example.com, Contact: 09123456789, Role: UI/UX">
-                        <td><img src="volunteer.jpeg" alt="User   4" class="user-image"></td>
-                        <td>four</td>
-                        <td>4@example.com</td>
-                        <td>09123456781</td>
-                        <td>UI/UX</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="user-management">
-            <h1 class="admin-user">User  </h1>
-            <table id="userTable">
-                <thead>
-                    <tr>
-                        <th> </th>
-                        <th class="sortable" data-column="name">Name</th>
-                        <th class="sortable" data-column="email">Email</th>
-                        <th class="sortable" data-column="contact">Contact Number</th>
-                        <th class="sortable" data-column="role">Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-info="User   1: Lol, Email: Lol@example.com, Contact: 09123456789, Role: User">
-                        <td><img src="volunteer.jpeg" alt="User   1" class="user-image"></td>
-                        <td>Lol</td>
-                        <td>Lol@example.com</td>
-                        <td>09123456789</td>
-                        <td>User</td>
-                    </tr>
-                    <tr data-info="User   2: Crossfire, Email: Cf@example.com, Contact: 09123456789, Role: User">
-                        <td><img src="volunteer.jpeg" alt="User   2" class="user-image"></td>
-                        <td>Crossfire</td>
-                        <td>Cf@example.com</td>
-                        <td>09123456789</td>
-                        <td>User</td>
-                    </tr>
-                    <tr data-info="User   3: Valorant, Email: Valo@example.com, Contact: 09123456789, Role: User">
-                        <td><img src="volunteer.jpeg" alt="User   3" class="user-image"></td>
-                        <td>Valorant</td>
-                        <td>Valo@example.com</td>
-                        <td>09123456789</td>
-                        <td>User</td>
-                    </tr>
-                    <tr data-info="User   4: Tetris, Email: tetris@example.com, Contact: 09123456789, Role: User">
-                        <td><img src="volunteer.jpeg" alt="User   4" class="user-image"></td>
-                        <td>Tetris</td>
-                        <td>tetris@example.com</td>
-                        <td>09123456789</td>
-                        <td>User</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <span class="close">&times;</span>
-                <h2>Edit User Details</h2>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><strong>Name:</strong></td>
-                            <td><input type="text" id="editName" /></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Email:</strong></td>
-                            <td><input type="email" id="editEmail" /></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Contact Number:</strong></td>
-                            <td><input type="text" id="editContact" /></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Role:</strong></td>
-                            <td><input type="text" id="editRole" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="button-container">
-                    <button id="editButton">Save Changes</button>
-                    <button id="deleteButton">Delete User</button>
-                </div>
+            <div class="logo-container">
+                <a href="adminpage.html">
+                    <img src="hopebridge.jpg" alt="Company Logo" class="logo">
+                </a>
+                <h1 class="site-title">HopeBridge</h1>
             </div>
-        </div>
-
-    </main>
-
-    <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const currentLocation = window.location.pathname; // Get the current URL path
-    const navLinks = document.querySelectorAll('.nav-menu a'); // Select all navigation links
-
-    // Loop through each link and check if it matches the current location
-    navLinks.forEach(link => {
-        if (link.href.includes(currentLocation)) {
-            link.classList.add('active'); // Add active class if it matches
-        }
-    });
-
-    const rows = document.querySelectorAll('tr[data-info]');
-    const popup = document.getElementById('popup');
-    const closeBtn = document.querySelector('.close');
-    const editButton = document.getElementById('editButton');
-    const deleteButton = document.getElementById('deleteButton');
-    const searchButton = document.getElementById('searchButton');
-    const searchInput = document.getElementById('searchInput');
-    let currentRow; // To keep track of the currently selected row
-
-    // Show the popup when a row is clicked
-    rows.forEach(row => {
-        row.addEventListener('click', function() {
-            const cells = this.cells;
-            document.getElementById('editName').value = cells[1].textContent;
-            document.getElementById('editEmail').value = cells[2].textContent;
-            document.getElementById('editContact').value = cells[3].textContent;
-            document.getElementById('editRole').value = cells[4].textContent;
-
-            popup.classList.add('show'); // Add the show class to display the popup
-            currentRow = this; // Store the current row
-        });
-    });
-
-    // Search functionality
-    searchButton.addEventListener('click', function() {
-        const query = searchInput.value.toLowerCase();
-        rows.forEach(row => {
-            const cells = row.querySelectorAll('td');
-            let match = false;
-            cells.forEach(cell => {
-                if (cell.textContent.toLowerCase().includes(query)) {
-                    match = true;
-                }
-            });
-            if (match) {
-                row.style.backgroundColor = '#ffcc0054'; // Highlight matching row
-            } else {
-                row.style.backgroundColor = ''; // Reset background for non-matching rows
-            }
-        });
-    });
-
-    // Close the popup when the close button is clicked
-    closeBtn.addEventListener('click', function() {
-        popup.classList.remove('show'); // Remove the show class to hide the popup
-    });
-
-    // Close the popup when clicking outside of it
-    window.addEventListener('click', function(event) {
-        if (event.target === popup) {
-            popup.classList.remove('show'); // Remove the show class to hide the popup
-        }
-    });
-
-    // Save changes functionality
-    editButton.addEventListener('click', function() {
-        if (currentRow) {
-            const name = document.getElementById('editName').value;
-            const email = document.getElementById('editEmail').value;
-            const contact = document.getElementById('editContact').value;
-            const role = document.getElementById('editRole').value;
-
-            // Update the row with new values
-            currentRow.cells[1].textContent = name;
-            currentRow.cells[2].textContent = email;
-            currentRow.cells[3].textContent = contact;
-            currentRow.cells[4].textContent = role;
-
-            popup.classList.remove('show'); // Close the popup after saving changes
-        }
-    });
-
-    // Delete functionality
-    deleteButton.addEventListener('click', function() {
-        if (currentRow) {
-            if (confirm("Are you sure you want to delete this user?")) {
-                currentRow.remove(); // Remove the row from the table
-                popup.classList.remove('show'); // Close the popup after deletion
-            }
-        }
-    });
-
-    // Sorting functionality
-    const sortableHeaders = document.querySelectorAll('.sortable');
-    sortableHeaders.forEach(header => {
-        header.addEventListener('click', function() {
-            const tableBody = this.closest('table').querySelector('tbody');
-            const rowsArray = Array.from(tableBody.rows);
-            const columnIndex = Array.from(this.parentNode.children).indexOf(this);
-            const isAscending = this.classList.contains('asc');
-
-            // Sort rows based on the clicked column
-            rowsArray.sort((a, b) => {
-                const cellA = a.cells[columnIndex].textContent.trim();
-                const cellB = b.cells[columnIndex].textContent.trim();
-
-                // Handle sorting for different data types
-                if (columnIndex === 3) { // Contact Number
-                    return isAscending ? cellA.localeCompare(cellB, undefined, { numeric: true }) : cellB.localeCompare(cellA, undefined, { numeric: true });
-                } else {
-                    return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
-                }
-            });
-
-            // Remove existing rows and append sorted rows with animation
-            rowsArray.forEach(row => {
-                row.classList.add('fade'); // Add fade class for animation
-                tableBody.appendChild(row);
-                setTimeout(() => {
-                    row.classList.remove('fade'); // Remove fade class after animation
-                }, 300); // Match this duration with the CSS transition duration
-            });
-
-            this.classList.toggle('asc', !isAscending); // Toggle the sorting direction
-        });
-    });
-});
-    </script>
+            <div class="menu-sidebar">
+                <a href="adminpage.html" class="nav-link home"><ion-icon name="home-outline"></ion-icon>Home</a>
+                <a href="user-management.html" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> User Management</a>
+                <a href="newss.html" class="nav-link news"><ion-icon name="newspaper-outline"></ion-icon> News</a>
+                <a href="pending.html" class="nav-link pending"><ion-icon name="time-outline"></ion-icon> Pending</a>
+                <a href="reports.html" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Reports</a>
+                <a href="abouts.html" class="nav-link about"><ion-icon name="information-circle-outline"></ion-icon> About Us</a>
+                <a href="settings.html" class="nav-link settings"><ion-icon name="settings-outline"></ion-icon> Settings</a>
+                <a href="logout.html" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
+            </div>
+        </nav>        
 </body>
+<script src="main.js"></script>
 </html>

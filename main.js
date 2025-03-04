@@ -145,3 +145,107 @@ document.addEventListener("DOMContentLoaded", function () {
         searchBox.addEventListener('keypress', restrictInput);
     }
 });
+//active nav-menu when clicked
+document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll(".menu-sidebar a");
+
+    links.forEach(link => {
+        link.addEventListener("click", function () {
+            // Remove "active" from all links
+            links.forEach(l => l.classList.remove("active"));
+            // Add "active" class to the clicked link
+            this.classList.add("active");
+            // Store active page in localStorage
+            localStorage.setItem("activeNav", this.getAttribute("href"));
+        });
+    });
+
+    // Maintain active state after page reload
+    const activePage = localStorage.getItem("activeNav");
+    if (activePage) {
+        links.forEach(link => {
+            if (link.getAttribute("href") === activePage) {
+                link.classList.add("active");
+            }
+        });
+    }
+});
+//page transition effect
+document.addEventListener("DOMContentLoaded", function() {
+    document.body.classList.add("active");
+
+    const links = document.querySelectorAll(".menu-sidebar a");
+    links.forEach(link => {
+        link.addEventListener("click", function(e) {
+            e.preventDefault(); 
+            const target = this.getAttribute("href");
+            document.body.classList.remove("active");
+            setTimeout(() => {
+                window.location.href = target;
+            }, 500); // Delay matches transition time
+        });
+    });
+});
+//fade page transition
+document.addEventListener("DOMContentLoaded", function () {
+    document.body.classList.add("fade", "active");
+
+    const links = document.querySelectorAll(".menu-sidebar a");
+    links.forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault(); 
+            const target = this.getAttribute("href");
+
+            document.body.classList.remove("active");
+
+            setTimeout(() => {
+                window.location.href = target;
+            }, 500);
+        });
+    });
+});
+//animation slide
+document.addEventListener("DOMContentLoaded", function () {
+    const ctx = document.getElementById('donationChart').getContext('2d');
+
+    const disasterChart = new Chart(ctx, {
+        type: 'bar', // Bar chart for disasters
+        data: {
+            labels: ['Fire', 'Storm', 'Flood', 'Earthquake', 'Tornado', 'Landslide'], // Disaster categories
+            datasets: [{
+                label: 'Number of Incidents',
+                data: [5, 100, 3, 1, 6, 10], // Replace with real data
+                backgroundColor: ['#ff5733', '#3498db', '#2980b9', '#e74c3c', '#f39c12', '#27ae60'],
+                borderColor: '#333',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top', // Move legend to the top
+                    labels: {
+                        font: {
+                            size: 12
+                        },
+                        padding: 10
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+});
