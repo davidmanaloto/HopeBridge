@@ -1,27 +1,43 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>HopeBridge login</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="login-container">        
-        <form action="login" method="GET">
-            <div class="logo-container">
-                <a href="home.html"><img src="hopebridge.jpg" alt="Company Logo" class="Logo"></a>
-                <label>Welcome to </label>
-                <a href="home.html" class="HopeBridge">HopeBridge</a>
-            </div>
-            <input type="text" id="username" name="username" placeholder="Username">
-            <input type="password" id="password" name="password" placeholder="Password" required>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HopeBridge Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
 
-            <input type="submit" value="Login">
-            <a href="forgotpass.html" class="forgot-password">Forgot password?</a>
+    <div class="login-wrapper">
+        <!-- Left Section (Login Form) -->
+        <div class="login-container">
+            <form action="login" method="GET">
+                <h2>Login</h2>
+                <p>Sign in to your account</p>
+
+                <div class="input-group">
+                    <input type="text" id="username" name="username" placeholder="Username">
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+
+                <button type="submit">Login</button>
+                <a href="forgotpass.html" class="forgot-password">Forgot password?</a>
+
+                <div class="signup-container">
+                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                </div>
+            </form>
         </div>
-            <div class="signup-container">
-                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
-            </div>
-        </form>
- 
-    </body>
+
+        <!-- Right Section (Branding) -->
+        <div class="brand-container">
+            <img src="hopebridge.jpg" alt="Company Logo" class="logo">
+            <h2 class="HopeBridge">HopeBridge</h2>
+        </div>
+    </div>
+
+</body>
 </html>
