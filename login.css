@@ -24,7 +24,7 @@ body::before {
     left: 50%;
     width: 120%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(219, 217, 217, 0.1);
     transform: translate(-50%, -50%) rotate(10deg);
     border-radius: 50%;
     z-index: -1;
