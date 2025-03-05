@@ -433,3 +433,119 @@ document.addEventListener("DOMContentLoaded", function () {
             updateVisibleCards(); // Update the visible cards
         });
     });
+    //User Management js
+    document.addEventListener("DOMContentLoaded", function () {
+        const users = [
+            { name: "John Doe", email: "john@example.com", role: "admin" },
+            { name: "Jane Smith", email: "jane@example.com", role: "staff" },
+            { name: "Alice Brown", email: "alice@example.com", role: "volunteer" },
+            { name: "Bob Johnson", email: "bob@example.com", role: "admin" }
+        ];
+    
+        function generateUserRows() {
+            const tableBody = document.getElementById("userTableBody");
+            tableBody.innerHTML = ""; // Clear existing rows
+    
+            users.forEach(user => {
+                const row = document.createElement("tr");
+    
+                row.innerHTML = `
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td><span class="user-role ${user.role.toLowerCase()}">${user.role}</span></td>
+                    <td class="status">Active</td>
+                    <td class="action-buttons">
+                        <div class="dropdown">
+                            <button class="dots-menu"><i class="fas fa-ellipsis-v"></i></button>
+                            <div class="dropdown-content">
+                                <a href="#" class="view-user">View</a>
+                                <a href="#" class="edit-user">Edit</a>
+                                <a href="#" class="block-user">Block</a>
+                                <a href="#" class="delete-user">Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                `;
+    
+                tableBody.appendChild(row);
+            });
+    
+            attachEventListeners(); // Reattach event listeners after generating users
+        }
+    
+        function attachEventListeners() {
+            document.querySelectorAll(".dots-menu").forEach(button => {
+                button.addEventListener("click", function (event) {
+                    event.stopPropagation();
+                    let dropdown = this.nextElementSibling;
+    
+                    document.querySelectorAll(".dropdown-content").forEach(menu => {
+                        if (menu !== dropdown) menu.parentElement.classList.remove("show");
+                    });
+    
+                    this.parentElement.classList.toggle("show");
+                });
+            });
+    
+            document.querySelectorAll(".delete-user").forEach(button => {
+                button.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    let row = this.closest("tr");
+                    let userName = row.cells[0].textContent;
+    
+                    if (confirm(`Are you sure you want to delete ${userName}?`)) {
+                        row.remove();
+                        alert(`${userName} has been deleted.`);
+                    }
+                });
+            });
+    
+            document.querySelectorAll(".block-user").forEach(button => {
+                button.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    let row = this.closest("tr");
+                    let statusCell = row.cells[3];
+                    let userName = row.cells[0].textContent;
+    
+                    if (statusCell.textContent === "Active") {
+                        statusCell.textContent = "Inactive";
+                        statusCell.style.color = "red";
+                        alert(`${userName} has been blocked.`);
+                    } else {
+                        statusCell.textContent = "Active";
+                        statusCell.style.color = "green";
+                        alert(`${userName} has been unblocked.`);
+                    }
+                });
+            });
+        }
+    
+        function filterUsers() {
+            let searchInput = document.getElementById("searchInput").value.toLowerCase(); // Keep spaces inside input
+            let rows = document.querySelectorAll("#userTableBody tr");
+        
+            rows.forEach(row => {
+                let name = row.cells[0].textContent.toLowerCase();
+                let email = row.cells[1].textContent.toLowerCase();
+                let role = row.cells[2].textContent.toLowerCase();
+        
+                // Check if the input value exists in name, email, or role
+                if (name.includes(searchInput) || email.includes(searchInput) || role.includes(searchInput)) {
+                    row.style.display = ""; // Show matching row
+                } else {
+                    row.style.display = "none"; // Hide non-matching row
+                }
+            });
+        }
+        
+        document.getElementById("searchInput").addEventListener("input", filterUsers);
+    
+        generateUserRows();
+    
+        document.addEventListener("click", function () {
+            document.querySelectorAll(".dropdown").forEach(dropdown => {
+                dropdown.classList.remove("show");
+            });
+        });
+    });
+    
