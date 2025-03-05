@@ -11,13 +11,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f8f6f6;
-    background-image: url('fire.jpg'); /* Background Image */
-    background-size: cover;
-    background-position: center;
+    min-height: 100vh; /* Use min-height instead of height */
+    background: linear-gradient(135deg, #264152, #1b2d3b);
+    margin: 0; /* Prevent extra space */
+    overflow: hidden; /* Hide any unexpected scroll */
 }
 
+body::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(10deg);
+    border-radius: 50%;
+    z-index: -1;
+}
 /* Wrapper for Split Layout */
 .login-wrapper {
     display: flex;
