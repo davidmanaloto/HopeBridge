@@ -93,12 +93,12 @@ main {
     padding: 15px; /* Reduce padding */
     width: calc(100% - 260px);
 }
+
 .slide-button {
-    background-color: #264152;
-    color: white;
+    color:#2641528f;
+    background-color: #ffffff;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 10px 10px;
     cursor: pointer;
     font-size: 18px;
     position: absolute;
@@ -107,17 +107,18 @@ main {
     z-index: 10;
 }
 
+.slide-button:hover{
+    color: #264152;
+}
+
 #prev {
-    left: 10px;
+    left: 5px;
 }
 
 #next {
-    right: 10px;
+    right: 5px;
 }
 
-.slide-button:hover {
-    background-color: #1b2e3c;
-}
 .dashboard-container {
     display: flex;
     gap: 20px; /* Space between sections */
@@ -133,7 +134,6 @@ main {
     margin-bottom: 20px;
     flex: 1; /* Takes available space */
 }
-
 
 .icons-container {
     display: flex;
@@ -160,16 +160,6 @@ h2 {
     gap: 20px;
     overflow: hidden;
     white-space: nowrap;
-    animation: scrollCards 10s linear infinite;
-}
-
-@keyframes scrollCards {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
 }
 
 .icon-card {
@@ -181,7 +171,7 @@ h2 {
     text-align: center;
     margin: 0 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out; /* Smooth transition for jumping effect */
 }
 
 .icon-card:hover {
@@ -191,6 +181,10 @@ h2 {
 
 .icon-card i {
     color: #264152; /* Icon color */
+}
+
+.hidden {
+    display: none;
 }
 
 h3 {
@@ -219,28 +213,43 @@ span.red {
 }
 
 /* Chart Section */
-
 #chartContainer {
-    width: 60%; /* Adjust as needed */
-    max-width: 700px; /* Prevents it from becoming too wide */
+    display: flex; /* Use flexbox to arrange charts in a column */
+    flex-direction: column; /* Stack charts vertically */
+    gap: 50px; /* Space between charts */
+    width: 100%; /* Full width */
+    max-width: 900px; /* Prevents it from becoming too wide */
     margin: auto;
     text-align: center; 
 }
 
-#donationChart {
-    width: 100% !important; /* Ensure it follows the container width */
-    height: 400px !important; /* Adjust height as needed */
-    background-color: #f8f9fa; /* Light gray background */
-    padding: 20px; /* Adds spacing inside the container */
-    border-radius: 10px; /* Optional: rounds the corners */ 
-    box-sizing: border-box;
-    box-shadow:0px 4px 10px rgba(0, 0, 0, 0.1);;
+.chart-wrapper {
+    display: flex;
+    align-items: center; /* Center align items vertically */
+    justify-content: center; /* Center align items horizontally */
+    position: relative; /* Position relative for absolute positioning of counts */
+    width: 100%; /* Set to 100% to fill the container */
 }
 
-canvas {
-    width: 100% !important;
-    height: 100% !important;
+#barChart, #lineChart {
+    width: 100% !important; /* Make the charts take full width of the wrapper */
+    height: 500px !important; /* Increased height to make it larger */
+    transition: transform 0.3s; /* Add transition for hover effect */
+    background-color: #ffffff; /* Background color for the chart area */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px;
 }
+
+.chart-wrapper:hover #barChart,
+.chart-wrapper:hover #lineChart {
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+.incident-count {
+    font-size: 24px; /* Increase font size for incident counts */
+    position: absolute; /* Position absolute to place them on the sides */
+}
+
 /* Donations List Table */
 .donation-container {
     flex: 1; /* Same width */
@@ -248,7 +257,7 @@ canvas {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top:30px;
+    margin-top: 30px;
 }
 
 .header {
@@ -303,19 +312,21 @@ td i {
     color: #6c757d;
 }
 
-/* Slide Buttons */
-.slide-button {
-    background-color: #264152;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
+/* Jumping Animation */
+.jump {
+    animation: jump 0.3s ease forwards; /* Jump animation */
 }
 
-.slide-button:hover {
-    background-color: #1b2e3c;
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Jump up */
+    }
+    100% {
+        transform: translateY(0); /* Return to original position */
+    }
 }
 
 /* Responsive Design */

@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div id="toast" data-message="Your message here" data-type="success" style="display: none;"></div>
+    
     <nav class="nav-menu">
         <div class="logo-container">
             <a href="adminpage.html">
@@ -30,7 +32,7 @@
             <a href="logout.html" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
         </div>
     </nav>
-    
+
     <div class="dashboard-container">
         <main>
             <div class="overview-container">
@@ -39,7 +41,7 @@
                     <button id="prev" class="slide-button">❮</button>
                     <div class="icon-cards">
                         <div class="icon-card"><i class="fas fa-fire fa-3x"></i><h3>Fire</h3><p>5 Incidents</p><span class="green">↑ 10%</span><p class="small-text">More than last month</p></div>
-                        <div class="icon-card"><i class="fas fa-bolt fa-3x"></i><h3>Storm</h3><p>100 Incidents</p><span class="green">↑ 60%</span><p class="small-text">More than last month</p></div>
+                        <div class="icon-card"><i class="fas fa-bolt fa-3x"></i><h3>Storm</h3><p>40 Incidents</p><span class="green">↑ 60%</span><p class="small-text">More than last month</p></div>
                         <div class="icon-card"><i class="fas fa-water fa-3x"></i><h3>Flood</h3><p>3 Incidents</p><span class="red">↓ 5%</span><p class="small-text red-text">Less than last month</p></div>
                         <div class="icon-card"><i class="fas fa-house-damage fa-3x"></i><h3>Earthquake</h3><p>1 Incident</p><span class="red">↓ 9%</span><p class="small-text red-text">Less than last month</p></div>
                         <div class="icon-card"><i class="fas fa-wind fa-3x"></i><h3>Tornado</h3><p>6 Incidents</p><span class="red">↓ 30%</span><p class="small-text red-text">Less than last month</p></div>
@@ -51,8 +53,15 @@
             
             <div class="chart-container">
                 <h2 style="text-align: center;">Disaster Statistics</h2>
-                <canvas id="donationChart"></canvas>
-            </div>          
+                <div id="chartContainer">
+                    <div class="chart-wrapper">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+            </div>
 
             <div class="donation-container">
                 <div class="header">
