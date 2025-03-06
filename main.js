@@ -437,9 +437,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("DOMContentLoaded", function () {
         const users = [
             { name: "John Doe", email: "john@example.com", role: "admin" },
-            { name: "Jane Smith", email: "jane@example.com", role: "staff" },
-            { name: "Alice Brown", email: "alice@example.com", role: "volunteer" },
-            { name: "Bob Johnson", email: "bob@example.com", role: "admin" }
+            { name: "Jane Smith", email: "jane@example.com", role: "User" },
+            { name: "Alice Brown", email: "alice@example.com", role: "User" },
+            { name: "Bob Johnson", email: "bob@example.com", role: "User" }
         ];
     
         function generateUserRows() {
