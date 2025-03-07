@@ -378,45 +378,34 @@ td i {
 /*Organizations styles*/
 /* Admin Content */
 .admin-content {
-    width: calc(100% - 270px);
-    padding: 20px;
-    gap:10px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    min-height: 100vh;
-    max-width: 1400px; /* Ensures it's not too wide */
-    margin-left: 249px; /* Adjust based on sidebar width */
-    width: calc(100% - 260px); /* Try reducing this a bit */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between; /* Move everything to the top */
-    width:100%;
-    margin-bottom:20px;
-
+    align-items: flex-start; /* Align to the left */
+    justify-content: flex-start;
+    width: calc(100% - 260px); /* Ensure proper width */
+    max-width: 1400px;
+    margin-left: 260px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
 }
-
-.admin-content h2 {
+h2{
     color: #264152;
-    margin-bottom: 20px;
 }
-
 /* Search Bar */
 .search-filter-container {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
     align-items: center;
-    width:97%;
-    margin-right:40px;
+    width: 100%;
+    padding-bottom: 15px;
 }
 
 .search-bar {
     position: relative;
-    display: flex;
-    align-items: center;
-    flex:1;
+    flex: 1;
 }
 
 .search-bar ion-icon {
@@ -424,52 +413,30 @@ td i {
     left: 10px;
     font-size: 20px;
     color: gray;
-    margin-bottom:5px;
 }
 
 .search-bar input {
-    padding: 10px 10px 10px 35px; /* Leave space for icon */
-    width: 250px;
+    padding: 10px 10px 10px 35px;
+    width: 100%;
     border: 1px solid #ccc;
     border-radius: 15px;
     font-size: 15px;
     outline: none;
-    margin-left:15px;
+    margin-left:13px;
 }
 
-#searchOrg{
-    width:400px;
-    margin-right:60px;
-    padding-top:5px;
-
-}
-#filterType{
-    margin-left:20px;
-}
-#filterDonation{
-    margin-left:10px;
-}
-#addOrgBtn{
-    margin-left:70px;
-    border-radius:15px;
-    width:auto;
-}
-.search-filter-container input, 
-.search-filter-container select {
+.search-filter-container select,
+.search-filter-container button {
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .search-filter-container button {
     background-color: #264152;
     color: white;
-    padding: 10px 15px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
     transition: background 0.3s;
 }
 
@@ -477,77 +444,64 @@ td i {
     background-color: #1b2e3c;
 }
 
-/* User Management Table */
-.user-table, .org-table {
+/* Organization Table */
+.org-table {
     width: 100%;
     border-collapse: collapse;
     background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
 }
 
-.user-table th, .user-table td, .org-table th, .org-table td {
-    padding: 12px;
+/* Table Header */
+.org-table thead {
+    background-color: #264152;
+    color: white;
     text-align: left;
+}
+
+.org-table th, .org-table td {
+    padding: 12px 15px;
     border-bottom: 1px solid #ddd;
 }
 
-.user-table th, .org-table th {
-    background-color: #264152;
-    color: white;
-}
-
-.user-table tr:hover, .org-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-.role-badge {
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
+.org-table th {
     font-weight: bold;
 }
 
-.admin-badge {
-    background-color: #ffcc00;
-    color: black;
-}
-
-.user-badge {
-    background-color: #ddd;
-    color: black;
-}
-
-.status {
-    font-weight: bold;
-    color: green;
-}
-
-/* Actions */
-.group-btn {
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.edit-btn, .delete-btn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-right: 5px;
+/* Action Buttons */
+.actions {
+    display: flex;
+    gap: 5px;
 }
 
 .edit-btn {
-    background-color: #ffcc00;
+    background-color: #ffc107;
+    border: none;
     color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .delete-btn {
-    background-color: red;
+    background-color: #dc3545;
+    border: none;
     color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+
 /*Add Organization Modal*/
 /* Modal Overlay */
 .modal {
@@ -604,7 +558,7 @@ td i {
 /* Input Fields */
 .org-content input,
 .org-content textarea,
-.org-content select {
+.org-content select{
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -613,6 +567,39 @@ td i {
     border-radius: 8px;
     font-size: 14px;
     outline: none;
+}
+/* Style the file input */
+.org-content input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+/* Hide default file input */
+.org-content input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+/* Custom file upload button */
+.org-content input[type="file"]::before {
+    content: 'Choose Image';
+    display: inline-block;
+    background-color: #264152;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Hover effect */
+.org-content input[type="file"]:hover::before {
+    background-color: #1b2e3c;
 }
 
 /* Textarea */
@@ -649,53 +636,65 @@ td i {
         transform: translateY(0);
     }
 }
+/*separates admin content and the table*/
+.separator {
+    border: none;
+    height: 2px; /* Match the thickness */
+    background-color: #ccc; /* Soft gray color */
+    width: 100%;
+    margin-bottom:20px;
+}
+.separator1 {
+    border: none;
+    height: 2px; /* Match the thickness */
+    background-color: #ccc; /* Soft gray color */
+    width: 100%;
+    margin-bottom:20px;
+}
+
 
 /* User Management Styles */
+/* User Management Container */
 .user-management-container {
-    max-width: 1400px; /* Ensures it's not too wide */
+    max-width: 1400px;
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 0 auto; /* Centers horizontally */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Move everything to the top */
-    min-height: 100vh;
-    margin-left: 250px; /* Adjust based on sidebar width */
-    width: calc(100% - 260px); /* Try reducing this a bit */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin: 20px auto;
+    min-height: auto;
+    margin-left: 260px; 
+    width: calc(100% - 260px);
 }
 
+/* Header Styling */
 .user-management-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #264152;
     margin-bottom: 15px;
-    width: 100%;
-    padding: 10px;
-    border-bottom: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Aligns search bar with header */
 }
 
-.user-management-header h2 {
-    font-size: 24px;
-    color: #264152;
-    font-weight: bold;
+/* Search and Filters */
+.search-filter-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: auto; /* Prevents it from stretching too wide */
+    margin-bottom: 10px;
 }
 
 .search-bar {
+    position: relative;
     display: flex;
     align-items: center;
     background: #f1f3f5;
     padding: 8px 12px;
     border-radius: 20px;
-    align-self: flex-end; /* Aligns search bar to the right */
-    margin-bottom: 8px;
-}
-
-.search-bar i {
-    color: #6c757d;
-    margin-right: 8px;
+    width: 250px; /* Shorter search bar */
 }
 
 .search-bar input {
@@ -703,80 +702,115 @@ td i {
     background: transparent;
     outline: none;
     font-size: 14px;
-    width: 200px;
+    padding-left: 10px;
+    width: 100%;
 }
 
-/* User Table */
+.search-filter-container select,
+.search-filter-container button {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.search-filter-container select {
+    border: 1px solid #ccc;
+    background: white;
+}
+
+.search-filter-container button {
+    background-color: #264152;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-filter-container button:hover {
+    background-color: #1b2e3c;
+}
+
+/* User Table Styling */
 .user-table {
     width: 100%;
     border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
     margin-top: 5px;
     text-align: center;
 }
-
+th{
+    color:white;
+}
 .user-table thead {
     background-color: #264152;
     color: white;
 }
 
 .user-table th, .user-table td {
-    padding: 16px;
-    text-align: left;
+    padding: 12px 15px;
     border-bottom: 1px solid #ddd;
-    font-size: 15px; /* Increase text size */
+    font-size: 15px;
 }
 
-.user-table th {
-    font-size: 14px;
-    color: #f4f7fa;
-    text-transform: uppercase;
-}
-
-.user-table tr:last-child td {
-    border-bottom: none;
-}
-
-/* User Roles */
-.user-role {
-    padding: 5px 12px;
+/* Role Badge */
+.role-badge {
+    padding: 5px 10px;
     border-radius: 5px;
     font-size: 14px;
     font-weight: bold;
-    text-transform: uppercase;
 }
 
-.user-role.admin {
+.admin-badge {
     background-color: #ffcc00;
-    color: #000;
+    color: black;
 }
 
-.user-role.staff {
-    background-color: #17a2b8;
-    color: white;
-}
-
-.user-role.volunteer {
-    background-color: #28a745;
-    color: white;
+.user-badge {
+    background-color: #ddd;
+    color: black;
 }
 
 /* Action Buttons */
-.dots-menu {
-    background: none;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 5px;
-    margin-left: 20px;
+.actions {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
 }
 
+.edit-btn {
+    background-color: #ffc107;
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .user-management-header {
         flex-direction: column;
-        gap: 10px;
         text-align: center;
+        gap: 10px;
     }
 
     .search-bar {

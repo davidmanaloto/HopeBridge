@@ -31,12 +31,14 @@
     <div class="user-management-container">
         <div class="user-management-header">
             <h2>User Management</h2>
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search users..." onkeyup="filterUsers()">
+            <div class="search-filter-container">
+                <div class="search-bar">
+                    <ion-icon name="search-outline"></ion-icon>
+                    <input type="text" id="searchOrg" placeholder="Search Users...">
+                </div>
             </div>
         </div>
-    
+        <hr class="separator1">  
         <table class="user-table">
             <thead>
                 <tr>

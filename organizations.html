@@ -49,7 +49,8 @@
                 <option value="Clothes">Clothes</option>
             </select>
             <button id="addOrgBtn">+ Add Org</button>
-        </div>
+        </div> 
+        <hr class="separator">
         
        <!-- Add Organization Modal -->
 <div id="orgmodal" class="modal">
@@ -57,25 +58,30 @@
         <span class="close" onclick="closeModal('orgmodal')">&times;</span>
         <h2>Add Organization</h2>
         <form>
+            <label for="imageUpload">Upload an image:</label>
+            <input type="file" id="imageUpload" name="image" accept="image/*">
+
             <label for="orgName">Organization Name</label>
             <input type="text" id="orgName" name="Name" placeholder="Enter organization name" minlength="10" required>
 
             <label for="OrgType">Organization Type</label>
             <select id="TagsType" name="Tags">
-                <option value="Health">Health</option>
+                <option value="Health">NGO</option>
                 <option value="Education">Education</option>
-                <option value="Charity">Charity</option>
-                <option value="Rescue">Rescue</option>
-                <option value="Disaster">Disaster</option>
+                <option value="Charity">Animal Welfare</option>
+                <option value="Rescue">Environmental</option>
+                <option value="Disaster">Disaster Relief</option>  
+                <option value="Disaster">Community Development</option>
             </select>
 
             <label for="DonType">Donation Type</label>
             <select id="TagsType" name="Tags">
-                <option value="Health">Health</option>
-                <option value="Education">Education</option>
-                <option value="Charity">Charity</option>
-                <option value="Rescue">Rescue</option>
-                <option value="Disaster">Disaster</option>
+                <option value="Education">Monetary</option>
+                <option value="Foods">Foods</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Medical Supplies">Medical Supplies</option>
+                <option value="Education Materials">Education Materials</option>
+                <option value="Volunteer Services">Volunteer Services</option>
             </select>
 
             <label for="orgDescription">Description</label>
@@ -107,16 +113,42 @@
             </thead>
             <tbody id="orgList">
                 <tr>
+                    <td><img src="volunteer.png" alt="Org Image" width="50"></td>
                     <td>Helping Hands</td>
-                    <td>NGO</td>
-                    <td>Monetary</td>
-                    <td id="action-btn">
-                        <div class="group-btn">
-                            <button class="edit-btn">Edit</button>
-                            <button class="delete-btn">Delete</button>
-                        </td>
-                        </div>
+                    <td><a href="https://example.com" target="_blank">Visit</a></td>
+                    <td>NGO</td>  <!-- Organization Type -->
+                    <td>Monetary</td>  <!-- Donation Type -->
+                    <td>Helping communities in need through financial aid.</td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
                     </td>
+                </tr>
+                <tr>
+                    <td><img src="volunteer.png" alt="Org Image" width="50"></td>
+                    <td>Helping Hands</td>
+                    <td><a href="https://example.com" target="_blank">Visit</a></td>
+                    <td>NGO</td>  <!-- Organization Type -->
+                    <td>Monetary</td>  <!-- Donation Type -->
+                    <td>Helping communities in need through financial aid.</td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="volunteer.png" alt="Org Image" width="50"></td>
+                    <td>Helping Hands</td>
+                    <td><a href="https://example.com" target="_blank">Visit</a></td>
+                    <td>NGO</td>  <!-- Organization Type -->
+                    <td>Monetary</td>  <!-- Donation Type -->
+                    <td>Helping communities in need through financial aid.</td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
                 </tr>
             </tbody>
         </table>
