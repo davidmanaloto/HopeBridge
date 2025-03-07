@@ -379,14 +379,20 @@ td i {
 /* Admin Content */
 /* Admin Content */
 .admin-content {
-    margin-left: 270px;
+    margin-left: 250px;
     width: calc(100% - 270px);
     padding: 20px;
     background: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     min-height: 100vh;
-
+    max-width: 1400px; /* Ensures it's not too wide */
+    margin-left: 249px; /* Adjust based on sidebar width */
+    width: calc(100% - 260px); /* Try reducing this a bit */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Move everything to the top */
 }
 
 .admin-content h2 {
@@ -400,7 +406,7 @@ td i {
     gap: 10px;
     margin-bottom: 20px;
     align-items: center;
-    margin-left:5px;
+    margin-right:120px;
 }
 
 .search-bar {
@@ -420,15 +426,16 @@ td i {
     padding: 10px 10px 10px 35px; /* Leave space for icon */
     width: 250px;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 15px;
     font-size: 16px;
     outline: none;
     margin-left:15px;
 }
 
 #searchOrg{
-    width:300px;
-    margin-right:5px;
+    width:400px;
+    margin-right:60px;
+    padding-top:5px;
 
 }
 #filterType{
