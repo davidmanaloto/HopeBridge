@@ -377,11 +377,10 @@ td i {
 }
 /*Organizations styles*/
 /* Admin Content */
-/* Admin Content */
 .admin-content {
-    margin-left: 250px;
     width: calc(100% - 270px);
     padding: 20px;
+    gap:10px;
     background: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -392,7 +391,10 @@ td i {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Move everything to the top */
+    justify-content: space-between; /* Move everything to the top */
+    width:100%;
+    margin-bottom:20px;
+
 }
 
 .admin-content h2 {
@@ -406,13 +408,15 @@ td i {
     gap: 10px;
     margin-bottom: 20px;
     align-items: center;
-    margin-right:120px;
+    width:97%;
+    margin-right:40px;
 }
 
 .search-bar {
     position: relative;
     display: flex;
     align-items: center;
+    flex:1;
 }
 
 .search-bar ion-icon {
@@ -420,6 +424,7 @@ td i {
     left: 10px;
     font-size: 20px;
     color: gray;
+    margin-bottom:5px;
 }
 
 .search-bar input {
@@ -439,13 +444,15 @@ td i {
 
 }
 #filterType{
-    margin-left:10px;
+    margin-left:20px;
 }
 #filterDonation{
     margin-left:10px;
 }
 #addOrgBtn{
-    margin-left:10px;
+    margin-left:70px;
+    border-radius:15px;
+    width:auto;
 }
 .search-filter-container input, 
 .search-filter-container select {
@@ -518,7 +525,7 @@ td i {
 }
 
 /* Actions */
-.actions {
+.group-btn {
     cursor: pointer;
     font-size: 18px;
 }
@@ -541,7 +548,107 @@ td i {
     background-color: red;
     color: white;
 }
+/*Add Organization Modal*/
+/* Modal Overlay */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease-in-out;
+}
 
+/* Modal Content Box */
+.org-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #ff0000;
+}
+
+/* Modal Title */
+.org-content h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #264152;
+}
+
+/* Input Fields */
+.org-content input,
+.org-content textarea,
+.org-content select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Textarea */
+.org-content textarea {
+    resize: none;
+    height: 80px;
+}
+
+/* Submit Button */
+.org-content button {
+    width: 100%;
+    padding: 10px;
+    background-color: #264152;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.org-content button:hover {
+    background-color: #1b2e3c;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* User Management Styles */
 .user-management-container {
@@ -654,51 +761,7 @@ td i {
 }
 
 /* Action Buttons */
-.dots-menu {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 5px;
-    margin-left: 20px;
-}
 
-/* Dropdown Container */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Hidden Dropdown Content */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    min-width: 140px;
-    z-index: 1;
-    right: 0;
-}
-
-/* Dropdown Links */
-.dropdown-content a {
-    display: block;
-    padding: 12px;
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-}
-
-/* Hover Effect */
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-/* Show Dropdown on Click */
-.dropdown.show .dropdown-content {
-    display: block;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {

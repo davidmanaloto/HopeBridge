@@ -49,14 +49,57 @@
                 <option value="Food">Food</option>
                 <option value="Clothes">Clothes</option>
             </select>
-            <button id="addOrgBtn">Add Organization</button>
+            <button id="addOrgBtn">+ Add Org</button>
+        </div>
+        
+       <!-- Add Organization Modal -->
+<div id="orgmodal" class="modal">
+    <div class="org-content">
+        <span class="close" onclick="closeModal('orgmodal')">&times;</span>
+        <h2>Add Organization</h2>
+        <form>
+            <label for="orgName">Organization Name</label>
+            <input type="text" id="orgName" name="Name" placeholder="Enter organization name" minlength="10" required>
+
+            <label for="OrgType">Organization Type</label>
+            <select id="TagsType" name="Tags">
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
+                <option value="Charity">Charity</option>
+                <option value="Rescue">Rescue</option>
+                <option value="Disaster">Disaster</option>
+            </select>
+
+            <label for="DonType">Donation Type</label>
+            <select id="TagsType" name="Tags">
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
+                <option value="Charity">Charity</option>
+                <option value="Rescue">Rescue</option>
+                <option value="Disaster">Disaster</option>
+            </select>
+
+            <label for="orgDescription">Description</label>
+            <textarea id="orgDescription" name="Description" placeholder="Enter description" minlength="10" required></textarea>
+
+            <label for="orgLink">Organization Link</label>
+            <input type="url" id="orgLink" name="Link" placeholder="Enter website link" required>
+
+           
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
         </div>
         
         <table class="org-table">
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Name</th>
-                    <th>Type</th>
+                    <th>Links</th>
                     <th>Donation Type</th>
                     <th>Actions</th>
                 </tr>
@@ -66,9 +109,12 @@
                     <td>Helping Hands</td>
                     <td>NGO</td>
                     <td>Monetary</td>
-                    <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
+                    <td id="action-btn">
+                        <div class="group-btn">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                        </div>
                     </td>
                 </tr>
             </tbody>
