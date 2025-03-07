@@ -375,6 +375,167 @@ td i {
         padding: 8px;
     }
 }
+/*Organizations styles*/
+/* Admin Content */
+/* Admin Content */
+.admin-content {
+    margin-left: 270px;
+    width: calc(100% - 270px);
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+
+}
+
+.admin-content h2 {
+    color: #264152;
+    margin-bottom: 20px;
+}
+
+/* Search Bar */
+.search-filter-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    margin-left:5px;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar ion-icon {
+    position: absolute;
+    left: 10px;
+    font-size: 20px;
+    color: gray;
+}
+
+.search-bar input {
+    padding: 10px 10px 10px 35px; /* Leave space for icon */
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    outline: none;
+    margin-left:15px;
+}
+
+#searchOrg{
+    width:300px;
+    margin-right:5px;
+
+}
+#filterType{
+    margin-left:10px;
+}
+#filterDonation{
+    margin-left:10px;
+}
+#addOrgBtn{
+    margin-left:10px;
+}
+.search-filter-container input, 
+.search-filter-container select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-filter-container button {
+    background-color: #264152;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.search-filter-container button:hover {
+    background-color: #1b2e3c;
+}
+
+/* User Management Table */
+.user-table, .org-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.user-table th, .user-table td, .org-table th, .org-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table th, .org-table th {
+    background-color: #264152;
+    color: white;
+}
+
+.user-table tr:hover, .org-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.role-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.admin-badge {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.user-badge {
+    background-color: #ddd;
+    color: black;
+}
+
+.status {
+    font-weight: bold;
+    color: green;
+}
+
+/* Actions */
+.actions {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.edit-btn {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+}
+
+
 /* User Management Styles */
 .user-management-container {
     max-width: 1400px; /* Ensures it's not too wide */

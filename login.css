@@ -11,29 +11,34 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Use min-height instead of height */
-    background: linear-gradient(135deg, #264152, #1b2d3b);
-    margin: 0; /* Prevent extra space */
-    overflow: hidden; /* Hide any unexpected scroll */
+    height: 100vh;
+    background-color: #f8f6f6;
+    background-image: url('fire.jpg'); /* Background Image */
+    background-size: cover;
+    background-position: center;
 }
 
-body::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120%;
-    height: 100%;
-    background: rgba(219, 217, 217, 0.1);
-    transform: translate(-50%, -50%) rotate(10deg);
+.logo {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    z-index: -1;
+    object-fit: cover;
+    margin-bottom: 15px;
 }
+
+/* Branding Text */
+.HopeBridge {
+    font-size: 24px;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+
 /* Wrapper for Split Layout */
 .login-wrapper {
     display: flex;
     width: 800px;
-    height: 400px;
+    height: 350px;
     background: white;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -97,29 +102,14 @@ button:hover {
 /* Forgot Password */
 .forgot-password {
     display: block;
-    margin-top: 10px;
+    margin-top: 20px;
     color: #ffcc00;
     font-size: 14px;
     text-decoration: none;
+
 }
 
 .forgot-password:hover {
-    text-decoration: underline;
-}
-
-/* Signup Section */
-.signup-container {
-    margin-top: 15px;
-    font-size: 14px;
-}
-
-.signup-container a {
-    color: #ffcc00;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.signup-container a:hover {
     text-decoration: underline;
 }
 
@@ -133,19 +123,4 @@ button:hover {
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-.logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
-}
-
-/* Branding Text */
-.HopeBridge {
-    font-size: 24px;
-    color: #ffcc00;
-    font-weight: bold;
 }
