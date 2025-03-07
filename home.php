@@ -1,3 +1,10 @@
+<?php
+session_start();
+$error_message = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : "";
+$success_message = isset($_GET['success']) ? htmlspecialchars($_GET['success']) : "";
+$modal_to_open = isset($_GET['modal']) ? htmlspecialchars($_GET['modal']) : "";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +18,7 @@
 <body>
         <header>
             <div class="logo-container">
-                <a href="home.html"><img src="HopeBridgeLogo.png"Company Logo" class="Logo"></a>
+                <a href="home.html"><img src="HopeBridgeLogo.png"Company Logo class="Logo"></a>
                 <a href="home.html" class="HopeBridge">HopeBridge</a>
             </div>
            
@@ -50,10 +57,19 @@
             <div class="modal-content">
                 <span class="close" onclick="closeModal('loginModal')">&times;</span>
                 <h2>Login</h2>
+
+                <?php if (!empty($error_message) && $modal_to_open == "loginModal"): ?>
+                    <p class="error-message"><?php echo $error_message; ?></p>
+                <?php endif; ?>
+
+                <?php if (!empty($success_message) && $modal_to_open == "loginModal"): ?>
+                    <p class="success-message"><?php echo $success_message; ?></p>
+                <?php endif; ?>
+
                 <form action="login.php" method="post">
-                    <input type="text" name="username1" placeholder="Username" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
+                    <input type="text" name="username1" placeholder="Username" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). No special characters">
                     <div class="password-container">
-                        <input type="password" name="password1" id="password1" placeholder="Password" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
+                        <input type="password" name="password1" id="password1" placeholder="Password" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). No special characters">
                         <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
                         <img src="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)" style="display: none;">
                     </div>
@@ -71,11 +87,16 @@
             <div class="modal-content">
                 <span class="close" onclick="closeModal('signupModal')">&times;</span>
                 <h2>Sign Up</h2>
+
+                <?php if (!empty($error_message) && $modal_to_open == "signupModal"): ?>
+                    <p class="error-message"><?php echo $error_message; ?></p>
+                <?php endif; ?>
+
                 <form action="signup.php" method="post">
-                    <input type="text" name="username1" placeholder="Full Name" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
+                    <input type="text" name="username1" placeholder="Full Name" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). No special characters">
                     <input type="email" name="email1" placeholder="Email" required>
                     <div class="password-container">
-                        <input type="password" name="password1" id="password1" placeholder="Password" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). NO special characters">
+                        <input type="password" name="password1" id="password1" placeholder="Password" minlength="8" maxlength="16" pattern="^[a-zA-Z0-9]{8,16}$" required title="Up to (8 to 16 characters). No special characters">
                         <img src="hide.png" alt="hide" id="hide-icon" onclick="togglePassword('password1', this)">
                         <img src="show.png" alt="show" id="show-icon" onclick="togglePassword('password1', this)" style="display: none;">
                     </div>
@@ -92,5 +113,41 @@
         </footer>
     <script src="main.js"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const modalToOpen = params.get('modal');
+        
+        if (modalToOpen) {
+            openModal(modalToOpen); // Function to open the modal
+        }
+
+        // Auto-hide error messages after 3 seconds
+        setTimeout(() => {
+            document.querySelectorAll('.error-message, .success-message').forEach(msg => msg.remove());
+        }, 3000);
+    });
+</script>
+
 </body>
 </html>
+<style>
+    .success-message {
+    color: green;
+    font-size: 14px;
+    text-align: center;
+    background:rgb(230, 255, 230);
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+    .error-message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    background: #ffe6e6;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+</style>
