@@ -434,3 +434,172 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
     //User Management js
+    document.addEventListener("DOMContentLoaded", function () {
+        const users = [
+            { name: "John Doe", email: "john@example.com", role: "admin" },
+            { name: "Jane Smith", email: "jane@example.com", role: "User" },
+            { name: "Alice Brown", email: "alice@example.com", role: "User" },
+            { name: "Bob Johnson", email: "bob@example.com", role: "User" }
+        ];
+    
+        function generateUserRows() {
+            const tableBody = document.getElementById("userTableBody");
+            tableBody.innerHTML = ""; // Clear existing rows
+    
+            users.forEach(user => {
+                const row = document.createElement("tr");
+    
+                row.innerHTML = `
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td><span class="user-role ${user.role.toLowerCase()}">${user.role}</span></td>
+                    <td class="status">Active</td>
+                    <td class="action-buttons">
+                        <div class="dropdown">
+                            <button class="dots-menu"><i class="fas fa-ellipsis-v"></i></button>
+                            <div class="dropdown-content">
+                                <a href="#" class="view-user">View</a>
+                                <a href="#" class="edit-user">Edit</a>
+                                <a href="#" class="block-user">Block</a>
+                                <a href="#" class="delete-user">Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                `;
+    
+                tableBody.appendChild(row);
+            });
+    
+            attachEventListeners(); // Reattach event listeners after generating users
+        }
+    
+        function attachEventListeners() {
+            document.querySelectorAll(".dots-menu").forEach(button => {
+                button.addEventListener("click", function (event) {
+                    event.stopPropagation();
+                    let dropdown = this.nextElementSibling;
+    
+                    document.querySelectorAll(".dropdown-content").forEach(menu => {
+                        if (menu !== dropdown) menu.parentElement.classList.remove("show");
+                    });
+    
+                    this.parentElement.classList.toggle("show");
+                });
+            });
+    
+            document.querySelectorAll(".delete-user").forEach(button => {
+                button.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    let row = this.closest("tr");
+                    let userName = row.cells[0].textContent;
+    
+                    if (confirm(`Are you sure you want to delete ${userName}?`)) {
+                        row.remove();
+                        alert(`${userName} has been deleted.`);
+                    }
+                });
+            });
+    
+            document.querySelectorAll(".block-user").forEach(button => {
+                button.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    let row = this.closest("tr");
+                    let statusCell = row.cells[3];
+                    let userName = row.cells[0].textContent;
+    
+                    if (statusCell.textContent === "Active") {
+                        statusCell.textContent = "Inactive";
+                        statusCell.style.color = "red";
+                        alert(`${userName} has been blocked.`);
+                    } else {
+                        statusCell.textContent = "Active";
+                        statusCell.style.color = "green";
+                        alert(`${userName} has been unblocked.`);
+                    }
+                });
+            });
+        }
+    
+        function filterUsers() {
+            let searchInput = document.getElementById("searchInput").value.toLowerCase(); // Keep spaces inside input
+            let rows = document.querySelectorAll("#userTableBody tr");
+        
+            rows.forEach(row => {
+                let name = row.cells[0].textContent.toLowerCase();
+                let email = row.cells[1].textContent.toLowerCase();
+                let role = row.cells[2].textContent.toLowerCase();
+        
+                // Check if the input value exists in name, email, or role
+                if (name.includes(searchInput) || email.includes(searchInput) || role.includes(searchInput)) {
+                    row.style.display = ""; // Show matching row
+                } else {
+                    row.style.display = "none"; // Hide non-matching row
+                }
+            });
+        }
+        
+        document.getElementById("searchInput").addEventListener("input", filterUsers);
+    
+        generateUserRows();
+    
+        document.addEventListener("click", function () {
+            document.querySelectorAll(".dropdown").forEach(dropdown => {
+                dropdown.classList.remove("show");
+            });
+        });
+    });
+    
+
+    //Recent Activities
+    // Array to hold recent activities
+let recentActivities = JSON.parse(localStorage.getItem('recentActivities')) || [];
+
+// Function to log user activity
+function logActivity(page, action) {
+    const now = new Date();
+    const activity = {
+        page: page,
+        time: now.toLocaleString(),
+        action: action
+    };
+
+    // Always log the activity at the beginning of the array
+    recentActivities.unshift(activity); // Add new activity to the beginning of the array
+
+    // Limit to the last 5 activities (FIFO)
+    if (recentActivities.length > 5) {
+        recentActivities.pop(); // Remove the oldest activity from the end
+    }
+
+    updateActivityTable(); // Update the table
+    localStorage.setItem('recentActivities', JSON.stringify(recentActivities)); // Store in localStorage
+}
+
+// Function to update the activity table
+function updateActivityTable() {
+    const tableBody = document.getElementById("activityTableBody");
+    tableBody.innerHTML = ""; // Clear existing rows
+
+    // Render activities in the order they are stored (most recent first)
+    recentActivities.forEach(activity => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${activity.page}</td>
+            <td>${activity.time}</td>
+            <td>${activity.action}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Example of logging activities when navigating
+document.querySelectorAll(".menu-sidebar a").forEach(link => {
+    link.addEventListener("click", function () {
+        const page = this.textContent; // Get the page name from the link text
+        const action = "Visited"; // Define the action
+        logActivity(page, action); // Log the activity
+    });
+});
+
+// Initialize the activity table on page load
+document.addEventListener("DOMContentLoaded", updateActivityTable);

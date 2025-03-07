@@ -72,7 +72,7 @@ body {
     transition: all 0.3s ease-in-out;
     border-radius: 10px;
     margin: 8px auto;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .menu-sidebar a:hover {
@@ -100,7 +100,7 @@ main {
     border: none;
     padding: 10px 10px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 15px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -188,7 +188,7 @@ h2 {
 }
 
 h3 {
-    font-size: 20px; /* Adjusted size for headings */
+    font-size: 15px; /* Adjusted size for headings */
     margin: 10px 0 5px; /* Margin for spacing */
 }
 
@@ -246,7 +246,7 @@ span.red {
 }
 
 .incident-count {
-    font-size: 24px; /* Increase font size for incident counts */
+    font-size: 15px; /* Increase font size for incident counts */
     position: absolute; /* Position absolute to place them on the sides */
 }
 
@@ -432,7 +432,7 @@ td i {
     width: 250px;
     border: 1px solid #ccc;
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 15px;
     outline: none;
     margin-left:15px;
 }
@@ -459,7 +459,7 @@ td i {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .search-filter-container button {
@@ -469,7 +469,7 @@ td i {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     transition: background 0.3s;
 }
 
@@ -527,7 +527,7 @@ td i {
 /* Actions */
 .group-btn {
     cursor: pointer;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .edit-btn, .delete-btn {
@@ -678,7 +678,7 @@ td i {
 }
 
 .user-management-header h2 {
-    font-size: 26px;
+    font-size: 24px;
     color: #264152;
     font-weight: bold;
 }
@@ -723,7 +723,7 @@ td i {
     padding: 16px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-    font-size: 16px; /* Increase text size */
+    font-size: 15px; /* Increase text size */
 }
 
 .user-table th {
@@ -761,6 +761,14 @@ td i {
 }
 
 /* Action Buttons */
+.dots-menu {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 20px;
+}
 
 
 /* Responsive Design */
@@ -784,4 +792,57 @@ td i {
         flex-direction: column;
         gap: 5px;
     }
+}
+
+
+/* About Us */
+.footer {
+    background-color: #264152; /* Match the sidebar color */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px; /* Space above the footer */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around; /* Space between sections */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.footer h3 {
+    margin-bottom: 10px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.contact-links {
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: center; /* Center the links */
+    gap: 20px; /* Space between links */
+    margin: 10px 0; /* Margin above and below the links */
+}
+
+.contact-link {
+    color: #ffcc00; /* Highlight contact links */
+    text-decoration: none;
+    display: flex; /* Align icon and text */
+    align-items: center; /* Center vertically */
+}
+
+.contact-link ion-icon {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+.feedback-link {
+    color: #ffcc00; /* Highlight feedback link */
+    text-decoration: none;
+}
+
+.feedback-link:hover {
+    text-decoration: underline; /* Underline on hover */
 }

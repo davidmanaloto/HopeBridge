@@ -48,7 +48,7 @@
                 </div>
             </div>
             
-            <div class="chart-container">
+            <!-- <div class="chart-container">
                 <h2 style="text-align: center;">Disaster Statistics</h2>
                 <div id="chartContainer">
                     <div class="chart-wrapper">
@@ -58,33 +58,58 @@
                         <canvas id="lineChart"></canvas>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="donation-container">
                 <div class="header">
                     <h2>Recent Activity</h2>
                     <a href="#">View all</a>
                 </div>
-                <table>
+                <table id="activityTable">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Page</th>
                             <th>Date & Time</th>
-                            <th>Email</th>
-                            <th>Campaign</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr><td>Ryan Hemansyah</td><td>2 minutes ago</td><td>ryanher11@gmail.com</td><td>Education Care</td></tr>
-                        <tr><td>Rizaldi Ahmad</td><td>2 minutes ago</td><td>rizaldiahmad@gmail.com</td><td>Love and Care for the Little Children...</td></tr>
-                        <tr><td>Samsul Ulum</td><td>2 minutes ago</td><td>samulum@gmail.com</td><td>Book Donation For Children</td></tr>
-                        <tr><td>Firmansyah Dwi</td><td>2 minutes ago</td><td>fdwi99@gmail.com</td><td>Health Food Donation</td></tr>
-                        <tr><td>Dean Hartono</td><td>2 minutes ago</td><td>deanhartono@gmail.com</td><td>Medical Equipment Donation</td></tr>
+                    <tbody id="activityTableBody">
+                        <!-- Recent activities will be dynamically inserted here -->
                     </tbody>
                 </table>
             </div>
-        </main>
-    </div>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="about-us">
+                        <h3>About Us</h3>
+                        <p>We are dedicated to providing timely information and support during disasters. Our mission is to help communities prepare for and respond to emergencies effectively.</p>
+                        <h4>Contact Us</h4>
+                        <div class="contact-links">
+                            <p>
+                                <a href="mailto:info@example.com" class="contact-link">
+                                    <ion-icon name="mail-outline"></ion-icon> info@example.com
+                                </a>
+                            </p>
+                            <p>
+                                <a href="tel:+1234567890" class="contact-link">
+                                    <ion-icon name="call-outline"></ion-icon> +1 234 567 890
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#" class="contact-link">
+                                    <ion-icon name="logo-facebook"></ion-icon> Facebook
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feedback">
+                        <h3>Feedback</h3>
+                        <p>We value your feedback! Please let us know how we can improve our services.</p>
+                        <a href="feedback.html" class="feedback-link">Give Feedback</a>
+                    </div>
+                </div>
+            </footer>
     
     <script src="main.js"></script>
 </body>
