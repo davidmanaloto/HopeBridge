@@ -486,3 +486,36 @@ document.querySelectorAll(".menu-sidebar a").forEach(link => {
 
 // Initialize the activity table on page load
 document.addEventListener("DOMContentLoaded", updateActivityTable);
+
+
+// Dation Tracker
+// Function to generate a random 6-digit donation ID
+function generateDonationId() {
+    return Math.floor(100000 + Math.random() * 900000); // Generates a number between 100000 and 999999
+}
+
+// Function to add a new donation entry
+function addDonationEntry(name, email, number, state, datePending, dateApprovedDeclined) {
+    const tableBody = document.getElementById("donationTableBody");
+
+    // Create a new row
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+        <td>${generateDonationId()}</td>
+        <td>${name}</td>
+        <td>${email}</td>
+        <td>${number}</td>
+        <td>${state}</td>
+        <td>${datePending}</td>
+        <td>${dateApprovedDeclined || ''}</td> <!-- If no date, leave it empty -->
+    `;
+
+    // Append the new row to the table body
+    tableBody.appendChild(newRow);
+}
+
+// Example usage: Adding some donation entries
+// These values should come from your Android app
+addDonationEntry("qq", "q@example.com", "(123) 456-7890", "Approved", "2023-10-01", "2023-10-02");
+addDonationEntry("saw", "s@example.com", "(987) 654-3210", "Pending", "2023-10-03", "");
+addDonationEntry("three", "t@example.com", "(555) 123-4567", "Declined", "2023-10-04", "2023-10-05");

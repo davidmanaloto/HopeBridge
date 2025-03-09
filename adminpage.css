@@ -11,7 +11,7 @@ body {
     justify-content: center; /* Centers horizontally */
     align-items: flex-start; /* Aligns to the top */
     min-height: 100vh;
-    background-color: #f8f6f6;
+    background-color: #ffffff;
     margin: 0;
     padding: 20px;
 }
@@ -57,7 +57,7 @@ body {
 .menu-sidebar {
     width: 100%;
     margin-top: 20px;
-    box-shadow: #6c757d;
+    /* box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); */
 }
 
 .menu-sidebar a {
@@ -143,14 +143,14 @@ main {
     background-color: white;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); */
     overflow: hidden;
     position: relative;
 }
 
 h2 {
     text-align: center;
-    font-size: 24px; /* Adjust size as needed */
+    font-size: 20px; /* Adjust size as needed */
     font-weight: bold;
     margin-bottom: 15px; /* Adds spacing below the title */
 }
@@ -160,6 +160,8 @@ h2 {
     gap: 20px;
     overflow: hidden;
     white-space: nowrap;
+    background-color: #e7fffb97;
+    padding: 20px 0;
 }
 
 .icon-card {
@@ -170,13 +172,13 @@ h2 {
     border-radius: 10px;
     text-align: center;
     margin: 0 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); */
     transition: transform 0.2s ease-in-out; /* Smooth transition for jumping effect */
 }
 
 .icon-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); */
 }
 
 .icon-card i {
@@ -188,7 +190,7 @@ h2 {
 }
 
 h3 {
-    font-size: 15px; /* Adjusted size for headings */
+    font-size: 13px; /* Adjusted size for headings */
     margin: 10px 0 5px; /* Margin for spacing */
 }
 
@@ -211,17 +213,64 @@ span.red {
 .red-text {
     color: red;
 }
+/* Donation Tracker */
+.donation-tracker {
+    flex: 1; /* Same width */
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.tracker-bg {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items to the start */
+    background-color: #e7fffb97;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.header-tracker {
+    display: flex; /* Use flexbox for layout */
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 15px;
+}
+
+.header-tracker h2 {
+    text-align: left; /* Aligns the header text to the left */
+    margin: 0; /* Remove default margin */
+    font-size: 18px; /* Adjust font size as needed */
+    color: #264152; /* Set the color of the header */
+    flex: 1; /* Allow the header to take available space */
+}
+
+.tracker-table thead tr {
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #264152;
+}
+
+.tracker-tablebody td{
+    font-size: 14px;
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
 
 /* Chart Section */
 #chartContainer {
-    display: flex; /* Use flexbox to arrange charts in a column */
-    flex-direction: column; /* Stack charts vertically */
+    display: flex; /* Use flexbox to arrange charts in a row */
+    flex-direction: row; /* Arrange charts horizontally */
     gap: 50px; /* Space between charts */
     width: 100%; /* Full width */
-    max-width: 900px; /* Prevents it from becoming too wide */
+    max-width: 1000px; /* Adjusted max-width to accommodate multiple charts */
     margin: auto;
     text-align: center; 
+    
 }
+
 
 .chart-wrapper {
     display: flex;
@@ -246,7 +295,7 @@ span.red {
 }
 
 .incident-count {
-    font-size: 15px; /* Increase font size for incident counts */
+    font-size: 13px; /* Increase font size for incident counts */
     position: absolute; /* Position absolute to place them on the sides */
 }
 
@@ -256,26 +305,33 @@ span.red {
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 30px;
+    /* box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); */
 }
 
-.header {
+.recent-container{
+    background-color: #e7fffb97;
+    padding: 25px;
+    max-width: 40%;
+    border-radius: 5px;
+}
+
+.header-recent {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
 }
 
-.header h2 {
+.header-recent h2 {
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
 }
 
-.header a {
+.header-recent a {
     text-decoration: none;
-    color: #007bff;
-    font-size: 14px;
+    color: #00e1ff;
+    font-size: 13px;
+    /* padding: 5px; */
 }
 
 table {
@@ -283,14 +339,14 @@ table {
     border-collapse: collapse;
 }
 
-thead {
-    background-color: #f1f3f5;
-}
-
 th, td {
-    padding: 12px;
+    padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+
+#activityTableBody{
+    font-size: 14px;
 }
 
 .amount {
@@ -302,9 +358,10 @@ tr:last-child td {
     border-bottom: none;
 }
 
-th {
+#activityTable thead th {
     font-size: 14px;
-    color: #6c757d;
+    color: #ffffff;
+    background-color: #264152;
 }
 
 td i {
@@ -388,7 +445,7 @@ td i {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); */
     margin-top: 25px;
 }
 h2{
@@ -524,7 +581,7 @@ h2{
     background-color: white;
     padding: 25px;
     border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); */
     width: 400px;
     max-width: 90%;
     position: relative;
@@ -660,7 +717,7 @@ h2{
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);  */
     margin: 20px auto;
     min-height: auto;
     margin-left: 260px; 
@@ -829,30 +886,7 @@ th{
 }
 
 
-/* About Us */
-.footer {
-    background-color: #264152; /* Match the sidebar color */
-    color: white;
-    padding: 20px;
-    text-align: center;
-    margin-top: 20px; /* Space above the footer */
-    border-radius: 10px; /* Rounded corners */
-}
 
-.footer-content {
-    display: flex;
-    justify-content: space-around; /* Space between sections */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-}
-
-.footer h3 {
-    margin-bottom: 10px;
-}
-
-.footer p {
-    margin: 0;
-    font-size: 14px;
-}
 
 .contact-links {
     display: flex; /* Use flexbox for horizontal layout */
