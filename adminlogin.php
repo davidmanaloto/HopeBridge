@@ -32,9 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_result($hashed_password, $role);
             $stmt->fetch();
 
+            $_SESSION['username'] = $user;
+            $_SESSION['role'] = $role;
+
             if ($hashed_password && password_verify($pass, $hashed_password)) {
                 if ($role === 'Admin') {
-                    $_SESSION['username'] = $user;
                     header("Location: admindashboard.php");
                     exit();
                 } else {

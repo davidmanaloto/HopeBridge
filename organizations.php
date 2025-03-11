@@ -12,6 +12,21 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+if (isset($_GET['action']) && $_GET['action'] === 'delete_org' && isset($_GET['id'])) {
+    $orgId = intval($_GET['id']);
+    $deleteSql = "DELETE FROM organizations_table WHERE org_id = ?";
+    
+    $stmt = $conn->prepare($deleteSql);
+    $stmt->bind_param("i", $orgId);
+    
+    if ($stmt->execute()) {
+        echo json_encode(["success" => true]);
+    } else {
+        echo json_encode(["success" => false, "error" => "Failed to delete organization."]);
+    }
+    exit; // Stop further execution
+}
+
 $sql = "SELECT o.org_id, o.org_name AS org_name, o.website_link AS website_link, o.donation_link, o.description, 
         GROUP_CONCAT(t.tag SEPARATOR ', ') AS tags 
         FROM organizations_table o 
@@ -43,13 +58,15 @@ $result = $conn->query($sql);
                 <h1 class="site-title">HopeBridge</h1>
             </div>
             <div class="menu-sidebar">
-                <a href="admindashboard.php" class="nav-link home"><ion-icon name="home-outline"></ion-icon> Home</a>
-                <a href="user-management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> User Management</a>
-                <!--<a href="reports.html" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Reports</a>-->
-                <a href="addorgs.php" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Add Orgs</a><!-- Added -->
-                <!--<a href="organizations.html" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Organizations</a>-->
-                <!--<a href="settings.html" class="nav-link settings"><ion-icon name="settings-outline"></ion-icon> Settings</a>-->
-                <a href="logout.php" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
+            <a href="admindashboard.php" class="nav-link home"><ion-icon name="home-outline"></ion-icon> Home</a>
+            <a href="donations.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon>Donations</a>
+            <a href="verifyuser.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> Verify</a>
+            <a href="user-management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> User Management</a>
+            <!--<a href="reports.html" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Reports</a>-->
+            <a href="addorgs.php" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Add Orgs</a><!-- Added -->
+            <a href="organizations.php" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Organizations</a>
+            <!--<a href="settings.html" class="nav-link settings"><ion-icon name="settings-outline"></ion-icon> Settings</a>-->
+            <a href="logout.php" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
             </div>
         </nav>
         
@@ -90,7 +107,7 @@ $result = $conn->query($sql);
             <tbody id="orgList">
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($row['org_name']); ?></td>
+                        <td class="org-name"><?php echo htmlspecialchars($row['org_name']); ?></td>
                         <td><a href="<?php echo htmlspecialchars($row['website_link']); ?>" target="_blank">Visit</a></td>
                         <td>
                             <?php if (!empty($row['donation_link'])): ?>
@@ -99,11 +116,11 @@ $result = $conn->query($sql);
                                 N/A
                             <?php endif; ?>
                         </td>
-                        <td><?php echo htmlspecialchars($row['tags']); ?></td>
-                        <td><?php echo nl2br(htmlspecialchars($row['description'])); ?></td>
+                        <td class="org-tags"><?php echo htmlspecialchars($row['tags']); ?></td>
+                        <td class="org-description"><?php echo nl2br(htmlspecialchars($row['description'])); ?></td>
                         <td>
                         <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
+                        <button class="delete-btn" data-id="<?php echo $row['org_id']; ?>">Delete</button>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -111,6 +128,7 @@ $result = $conn->query($sql);
         </table>
 </body>
 <script src="main.js"></script>
+<script src="org_management.js"></script>
 </html>
 
 <?php $conn->close(); ?>

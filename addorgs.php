@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tags = $_POST['tags']; // Expecting comma-separated values
     $description = $_POST['description'];
 
-    $sql = "INSERT INTO organizations_table (org_name, org_type, website_link, donation_link, donation_tpye, description) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO organizations_table (org_name, org_type, website_link, donation_link, donation_type, description) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssss", $org_name, $org_type, $website_link, $donation_link, $donation_type, $description);
 
@@ -67,31 +67,34 @@ $conn->close();
                 <h1 class="site-title">HopeBridge</h1>
             </div>
             <div class="menu-sidebar">
-                <a href="admindashboard.php" class="nav-link home"><ion-icon name="home-outline"></ion-icon> Home</a>
-                <a href="user-management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> User Management</a>
-                <!--<a href="reports.html" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Reports</a>-->
-                <!--<a href="addorgs.php" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Add Orgs</a>--><!-- Added -->
-                <a href="organizations.php" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Organizations</a>
-                <!--<a href="settings.html" class="nav-link settings"><ion-icon name="settings-outline"></ion-icon> Settings</a>-->
-                <a href="logout.php" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
+            <a href="admindashboard.php" class="nav-link home"><ion-icon name="home-outline"></ion-icon> Home</a>
+            <a href="donations.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon>Donations</a>
+            <a href="verifyuser.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> Verify</a>
+            <a href="user-management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> User Management</a>
+            <!--<a href="reports.html" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Reports</a>-->
+            <a href="addorgs.php" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Add Orgs</a><!-- Added -->
+            <a href="organizations.php" class="nav-link reports"><ion-icon name="document-text-outline"></ion-icon> Organizations</a>
+            <!--<a href="settings.html" class="nav-link settings"><ion-icon name="settings-outline"></ion-icon> Settings</a>-->
+            <a href="logout.php" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
             </div>
         </nav>
         <h2>Add Organization</h2>
+        <div class="user-management-container"> <!-- Temporary Design-->
         <form method="POST" action="addorgs.php">
             <label for="org_name">Organization Name:</label>
-            <input type="text" id="org_name" name="org_name" required>
+            <input type="text" id="org_name" name="org_name" required><br>
 
             <label for="org_type">Organization Type:</label>
-            <input type="text" id="org_type" name="org_type" required>
+            <input type="text" id="org_type" name="org_type" required><br>
             
             <label for="website_link">Website Link:</label>
-            <input type="url" id="website_link" name="website_link" required> <!-- change back to url after checking -->
+            <input type="url" id="website_link" name="website_link" required><br> <!-- change back to url after checking -->
             
             <label for="donation_link">Donation Link:</label>
-            <input type="url" id="donation_link" name="donation_link" required>
+            <input type="url" id="donation_link" name="donation_link" required><br>
 
             <label for="donation_type">Donation Type:</label>
-            <input type="text" id="donation_type" name="donation_type" required>
+            <input type="text" id="donation_type" name="donation_type" required><br>
             
             <label for="tags">Tags (Select multiple):</label>
             <select id="tags" name="tags[]" multiple required>
@@ -101,15 +104,16 @@ $conn->close();
                 <option value="rescue">Rescue</option>
                 <option value="charity">Charity</option>
             </select>
-            <div id="selectedTags"></div>
+            <div id="selectedTags"></div><br>
             <input type="hidden" id="tagsInput" name="tags_list">
 
             
             <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="4" required></textarea>
+            <textarea id="description" name="description" rows="4" required></textarea><br>
             
             <button type="submit">Add Organization</button>
-        </form>       
+        </form> 
+</div> 
 </body>
 <script src="main.js"></script>
 <script>

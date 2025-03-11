@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Request Verification</h2>
+    <p>Click the button below to request verification.</p>
+
+    <form id="verificationForm">
+        <button type="submit">Request Verification</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        document.getElementById("verificationForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent page reload
+
+            fetch("submitverification.php", {
+                method: "POST",
+                body: new FormData(this),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("message").textContent = data.message; // Show response message
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+
+</body>
+</html>

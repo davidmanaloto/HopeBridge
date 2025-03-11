@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+// Check if the user is an admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
+    die(json_encode(['error' => 'Unauthorized access.']));
+}
+
 // Database connection
 $servername = "localhost";
 $username = "root";
@@ -12,77 +17,59 @@ if ($conn->connect_error) {
     die(json_encode(['error' => 'Connection failed: ' . $conn->connect_error]));
 }
 
+// Handle actions
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
 
     switch ($action) {
-        case 'get_users':
-            $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
-            $sql = "SELECT id, username, email, role, status FROM user_table WHERE role != 'Admin'";
-        
-            if ($filter === 'verified') {
-                $sql .= " AND status = 'Verified'";
-            } elseif ($filter === 'User') {
-                $sql .= " AND status = 'User'";
-            }
-            
-            error_log("Executing Query: " . $sql);
+        case 'get_pending_users':
+            // Get users pending verification (assuming "status = 'Pending'" means unverified)
+            $sql = "SELECT id, username, email, role, status FROM user_table WHERE status = 'Pending'";
             $result = $conn->query($sql);
             $users = [];
-        
-            while ($row = $result->fetch_assoc()) {
-                $users[] = $row;
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $users[] = $row;
+                }
             }
-        
             header('Content-Type: application/json');
             echo json_encode($users);
             break;
 
-        case 'delete_user':
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
+        case 'verify_user':
+            if (isset($_POST['id'])) {
+                $id = $_POST['id'];
+
+                // Approve user by setting status to "Active"
+                $sql = "UPDATE user_table SET status = 'Active' WHERE id = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("i", $id);
+
+                if ($stmt->execute()) {
+                    echo json_encode(['success' => true]);
+                } else {
+                    echo json_encode(['error' => 'Error verifying user.']);
+                }
+                $stmt->close();
+            }
+            break;
+
+        case 'reject_user':
+            if (isset($_POST['id'])) {
+                $id = $_POST['id'];
+
+                // Reject user by deleting them (optional: change status instead of delete)
                 $sql = "DELETE FROM user_table WHERE id = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("i", $id);
+
                 if ($stmt->execute()) {
                     echo json_encode(['success' => true]);
                 } else {
-                    echo json_encode(['error' => 'Error deleting user.']);
+                    echo json_encode(['error' => 'Error rejecting user.']);
                 }
-            }
-            break;
-
-        case 'block_user':
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-                // Toggle status between 'Active' and 'Blocked'
-                $sql = "UPDATE user_table SET status = IF(status='Active', 'Blocked', 'Active') WHERE id = ?";
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("i", $id);
-                if ($stmt->execute()) {
-                    echo json_encode(['success' => true]);
-                } else {
-                    echo json_encode(['error' => 'Error updating status.']);
-                }
-            }
-            break;
-
-        case 'edit_user':
-            if (isset($_POST['id'], $_POST['username'], $_POST['email'], $_POST['role'])) {
-                $id = $_POST['id'];
-                $username = $_POST['username'];
-                $email = $_POST['email'];
-                $role = $_POST['role'];
-
-                $sql = "UPDATE user_table SET username = ?, email = ?, role = ? WHERE id = ?";
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("sssi", $username, $email, $role, $id);
-                
-                if ($stmt->execute()) {
-                    echo json_encode(['success' => true]);
-                } else {
-                    echo json_encode(['error' => 'Error updating user.']);
-                }
+                $stmt->close();
             }
             break;
 
@@ -100,16 +87,17 @@ if (isset($_GET['action'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="adminpage.css"> 
+    <title>Verify Users</title>
+    <link rel="stylesheet" href="adminpage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="main.js"></script>
 </head>
 <body>
-    <nav class="nav-menu">
+<nav class="nav-menu">
         <div class="logo-container">
             <a href="admindashboard.php">
                 <img src="hopebridge.jpg" alt="Company Logo" class="logo">
@@ -128,21 +116,15 @@ if (isset($_GET['action'])) {
             <a href="logout.php" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
             </div>
     </nav>
-    
-    <div class="user-management-container"> 
-        <div class="user-management-header">
-            <h2>User Management</h2>
-            <select id="filterSelect">
-                <option value="all">All</option>
-                <option value="verified">Verified</option>
-                <option value="unverified">Unverified</option>
-            </select>
+
+    <div class="user-management-container">
+    <div class="user-management-header">
+            <h2>Pending User Verification</h2>
             <div class="search-bar">
                 <i class="fas fa-search"></i>
                 <input type="text" id="searchInput" placeholder="Search users..." onkeyup="filterUsers()">
             </div>
         </div>
-
         <table class="user-table">
             <thead>
                 <tr>
@@ -153,11 +135,11 @@ if (isset($_GET['action'])) {
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="userTableBody"></tbody>
+            <tbody id="verifyTableBody"></tbody>
         </table>
+    </div>
 
-    <script src="main.js"></script>
-    <script src="user_management.js"></script>
+    <script src="verify_user.js"></script>
 </body>
 </html>
 <?php $conn->close(); ?>
