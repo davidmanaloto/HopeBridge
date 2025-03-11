@@ -32,5 +32,49 @@
         </div>
     </nav>
 
+    <div class="pending-verification-container">
+        <div class="Verify-user-header">
+            <h2>Pending User Verification</h2>
+            <div class="search-filter-container">
+                <div class="search-bar">
+                    <ion-icon name="search-outline"></ion-icon>
+                    <input type="text" id="searchOrg" placeholder="Search Users...">
+                </div>
+            </div>
+            <hr class="separator">
+        <table class="pending-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Registration Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="pending-table-body">
+                <tr>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>2025-03-11</td>
+                    <td>
+                        <button class="approve-btn">Approve</button>
+                        <button class="reject-btn">Reject</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>janesmith@example.com</td>
+                    <td>2025-03-10</td>
+                    <td class="action-buttons">
+                        <div class="btn-group">
+                        <button class="approve-btn">Approve</button>
+                        <button class="reject-btn">Reject</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>
 </body>
 </html>

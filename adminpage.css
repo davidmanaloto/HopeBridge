@@ -885,32 +885,98 @@ th{
     }
 }
 
-
-
-
-.contact-links {
-    display: flex; /* Use flexbox for horizontal layout */
-    justify-content: center; /* Center the links */
-    gap: 20px; /* Space between links */
-    margin: 10px 0; /* Margin above and below the links */
+/*Pending User Verification*/
+.pending-verification-container {
+    max-width: 1200px;
+    width: calc(100% - 250px); /* Adjust based on your sidebar width */
+    margin-left: 250px; /* Matches sidebar width */
+    padding: 20px;
+    overflow: auto;
 }
 
-.contact-link {
-    color: #ffcc00; /* Highlight contact links */
-    text-decoration: none;
-    display: flex; /* Align icon and text */
-    align-items: center; /* Center vertically */
+
+.Verify-user-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px;
+    flex-wrap: wrap; /* Prevents overflow issues */
 }
 
-.contact-link ion-icon {
-    margin-right: 5px; /* Space between icon and text */
+.Verify-user-header h2 {
+    margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0; /* Prevents the text from being squished */
 }
 
-.feedback-link {
-    color: #ffcc00; /* Highlight feedback link */
-    text-decoration: none;
+.search-container {
+    flex-grow: 0; /* Prevents it from expanding too much */
+    width: 300px; /* Ensures a fixed width */
+    max-width: 100%;
 }
 
-.feedback-link:hover {
-    text-decoration: underline; /* Underline on hover */
+
+.Verify-user-header h2 {
+    margin: 0; /* Removes extra margin */
+    white-space: nowrap; /* Prevents wrapping */
+}
+
+.search-container {
+    flex-grow: 1; /* Allows the search bar to take remaining space */
+    max-width: 300px; /* Ensures it doesn’t take too much space */
+}
+
+.pending-table {
+    width: 100%;
+    table-layout: fixed; /* Ensures even column distribution */
+    border-collapse: separate; /* Allows border radius */
+    border-spacing: 0; /* Removes gaps between cells */
+    border-radius: 10px; /* Adjust the roundness */
+    overflow: hidden; /* Prevents content from overflowing */
+}
+
+.pending-table th, .pending-table td {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+.pending-table th {
+    background-color: #264152;
+    color: white;
+}
+/*Actions button*/
+
+.action-buttons {
+    display: flex;
+    gap: 5px; /* Adds space between Approve and Reject buttons */
+}
+
+
+.approve-btn, .reject-btn {
+    background-color: #28a745;
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.approve-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.approve-btn:hover {
+    background-color: #218838;
+}
+
+.reject-btn {
+    background-color: red;
+    color: white;
+}
+
+.reject-btn:hover {
+    background-color: darkred;
 }

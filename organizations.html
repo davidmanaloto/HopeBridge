@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="adminpage.css">
+    <link rel="stylesheet" href="adminpage.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div id="toast" data-message="Your message here" data-type="success" style="display: none;"></div>
+    
     <nav class="nav-menu">
         <div class="logo-container">
             <a href="adminpage.html">
@@ -23,14 +25,15 @@
             <a href="adminpage.html" class="nav-link home"><ion-icon name="home-outline"></ion-icon> Home</a>
             <a href="organizations.html" class="nav-link reports"><ion-icon name="business-outline"></ion-icon> Organizations</a>
             <a href="user-management.html" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> User Management</a>
+            <a href="notification.html" class="nav-link user-management"><ion-icon name="notifications-outline"></ion-icon> Notification</a>
+            <a href="pending.html" class="nav-link user-management"><ion-icon name="hourglass-outline"></ion-icon> Pending</a>
             <a href="settings.html" class="nav-link settings"><ion-icon name="settings-outline"></ion-icon> Settings</a>
             <a href="logout.html" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
         </div>
     </nav>
-    
+
     <main class="admin-content">
         <h2>Manage Organizations</h2>
-        
         <div class="search-filter-container">
             <div class="search-bar">
                 <ion-icon name="search-outline"></ion-icon>
@@ -51,7 +54,7 @@
             <button id="addOrgBtn">+ Add Org</button>
         </div> 
         <hr class="separator">
-        
+
        <!-- Add Organization Modal -->
 <div id="orgmodal" class="modal">
     <div class="org-content">
