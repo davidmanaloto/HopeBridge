@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Hopebridge</string>
+    <string name="spinner_prompt">Please Select</string>
 </resources>
+

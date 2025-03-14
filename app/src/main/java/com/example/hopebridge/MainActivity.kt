@@ -9,6 +9,7 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,22 +27,17 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         val heightOfScreen = Resources.getSystem().displayMetrics.heightPixels
         val startlogo = findViewById<ImageView>(R.id.startlogo)
-        val starttitle = findViewById<ImageView>(R.id.starttitle)
+        val starttitle = findViewById<TextView>(R.id.starttitle)
         val main = findViewById<ConstraintLayout>(R.id.main)
 
 
         val popup = listOf<View>(
             findViewById(R.id.message),
-            findViewById(R.id.signinbutton),
-            findViewById(R.id.signupbuttongreen)
+            findViewById(R.id.btnSignIn),
+            findViewById(R.id.btnRegister)
         )
 
         popup.forEach { it.visibility = View.GONE }
@@ -71,18 +67,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         // CLICK LISTENER NG SIGN IN BUTTON
-        val signinButton = findViewById<Button>(R.id.signinbutton)
+        val signinButton = findViewById<Button>(R.id.btnSignIn)
         signinButton.setOnClickListener {
             // Handle the sign-in button click
-            val intent = Intent(this, Signin::class.java) // Replace with your actual activity
+            val intent = Intent(this, Signin::class.java)
             startActivity(intent)
         }
 
         //CLICK LISTENER NG SIGN UP BUTTON
-        val signupbutton = findViewById<Button>(R.id.signupbuttongreen)
+        val signupbutton = findViewById<Button>(R.id.btnRegister)
         signupbutton.setOnClickListener {
-            // Handle the sign-in button click
-            val intent = Intent(this, Signup::class.java) // Replace with your actual activity
+
+            val intent = Intent(this, Signup::class.java)
             startActivity(intent)
         }
     }
@@ -116,7 +112,7 @@ class MainActivity : AppCompatActivity() {
     // ANIMATION NG LOGO AND TITLE PRA UMANGAT PAG UMANGAT NA SI POPUP
     private fun animateLogoAndTitle() {
         val startlogo = findViewById<ImageView>(R.id.startlogo)
-        val starttitle = findViewById<ImageView>(R.id.starttitle)
+        val starttitle = findViewById<TextView>(R.id.starttitle)
 
         // DITO SA LOGO
         startlogo.animate()

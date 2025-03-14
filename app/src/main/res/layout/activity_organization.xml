@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
@@ -40,7 +39,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="100dp"
-            android:src="@drawable/notification"
+            android:background="@drawable/notification"
             android:contentDescription="Notifications"/>
     </androidx.appcompat.widget.Toolbar>
 
@@ -60,28 +59,29 @@
             android:padding="16dp">
 
             <Button
+                android:id="@+id/news"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:padding="0dp"
+                android:backgroundTint="@color/white"
+                android:text="News"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <Button
                 android:id="@+id/userpost"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:padding="0dp"
                 android:backgroundTint="@color/white"
-                android:textColor="@color/black"
                 android:text="Project"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/news"
-                />
-
-            <Button
-                android:id="@+id/news"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:padding="0dp"
-                android:background="@drawable/squarecorner"
-                android:text="News"
-                android:textSize="15sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 />
 
             <Button
@@ -89,10 +89,9 @@
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:padding="0dp"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/squarecorner"
                 android:text="Organization"
                 android:textSize="15sp"
-                android:textColor="@color/black"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/userpost"
                 />
@@ -135,7 +134,7 @@
                 android:id="@+id/description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="A Tornado caused widespread damage in Lucao, Dagupan City, leaving thousands of families and children without access to safe water and sanitation facilities"
+                android:text="A Tornado caused widespread damage in Lucao, Dagupan City, leaving thousands of families and children without access to safe water and sanitation facilities. See more..."
                 android:textSize="14sp"
                 android:textColor="#333333"
                 app:layout_constraintTop_toBottomOf="@id/locationIcon"
@@ -148,7 +147,7 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:backgroundTint="#8E75A3"
-                android:text="Donate Here"
+                android:text="More Details"
                 android:textColor="#FFFFFF"
                 app:layout_constraintTop_toBottomOf="@id/description"
                 app:layout_constraintStart_toStartOf="parent"
@@ -187,8 +186,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
             android:padding="16dp"
+            android:gravity="start"
             android:clickable="true"
             android:focusable="true"
             >
@@ -208,12 +207,42 @@
                 android:textColor="@color/black"/>
         </LinearLayout>
 
-
+        <!-- Divider -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#A0A0A0"/>
 
+        <LinearLayout
+            android:id="@+id/project_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            >
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/create_project"
+                android:layout_marginEnd="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Project"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#A0A0A0"/>
 
         <LinearLayout
             android:id="@+id/about_section"

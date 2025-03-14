@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -14,8 +13,8 @@
         android:id="@+id/settingslogo"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/example"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/hblogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/settingslogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="50dp"/>
 
     <!-- Welcome Message -->
     <TextView
@@ -55,7 +54,7 @@
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:background="@drawable/rounded_input_bg"
-        android:hint="Email or Username"
+        android:hint="Email"
         android:textSize="16sp"
         android:inputType="text"
         android:padding="12dp"
@@ -64,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@id/message"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="90dp"/>
 
     <!-- Password Input -->
     <EditText

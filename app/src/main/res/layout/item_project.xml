@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@android:color/white">
+
+
+    <ImageView
+        android:id="@+id/projectImageDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:id="@+id/projectNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name Project"
+        android:textSize="35sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/projectSummaryTextView"
+        android:layout_width="match_parent"
+        android:text="Summarize"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:paddingTop="10dp"/>
+
+    <Button
+        android:id="@+id/moredetails"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:backgroundTint="#8E75A3"
+        android:text="Donate Here"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/projectSummaryTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
