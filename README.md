@@ -3,7 +3,7 @@ FOR DESIGNING:
 
 DATA AND TABLES:
   Some but most data is stored and loaded within the JS files.
-  Look for "<td> data </td>" inside the JS files.
+  Look for "table_data" inside the JS files.
 
 ORGANIZING:
   Create a "css" folder.
