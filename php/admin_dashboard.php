@@ -15,12 +15,12 @@ if ($_SESSION['role'] !== 'Admin') {
 }
 // Fetch users from the database
 //$sql = "SELECT id, username, email, status FROM user_table WHERE role != 'Admin'";
-$sql = "SELECT u.id, u.username, u.email, u.status, 
+$sql = "SELECT u.id, u.username, u.email, u.status, u.verification_status, 
                COALESCE(SUM(d.amount), 0) AS amount 
         FROM user_table u
         LEFT JOIN donations d ON u.id = d.user_id
         WHERE u.role != 'Admin'
-        GROUP BY u.id";
+        GROUP BY u.id, u.verification_status";
 
 $result = $conn->query($sql);
 
@@ -57,6 +57,7 @@ if (!$result) {
             <a href="admin_dashboard.php" class="nav-link home"><ion-icon name="home-outline"></ion-icon> Home</a>
             <a href="donation_management.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Donation Management</a>
             <a href="donation_approved.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Donation Approved</a>
+            <a href="org_management.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Organizations</a>
             <a href="fetch_events.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Event Management</a>
             <a href="user_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon>User Management</a>
             <a href="verify_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> Verify Requests</a>
@@ -70,6 +71,7 @@ if (!$result) {
                 <th>Email</th>
                 <th>Status</th>
                 <th>Donations</th>
+                <th>Verification</th>
             </tr>
         </thead>
         <tbody>
@@ -79,6 +81,7 @@ if (!$result) {
                     <td><?php echo htmlspecialchars($row['email']); ?></td>
                     <td><?php echo htmlspecialchars($row['status']); ?></td>
                     <td><?php echo htmlspecialchars($row['amount']); ?></td>
+                    <td><?php echo htmlspecialchars($row['verification_status']); ?></td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
