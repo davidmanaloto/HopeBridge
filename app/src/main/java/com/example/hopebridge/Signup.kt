@@ -22,7 +22,7 @@ import retrofit2.Callback
 
 interface SignupService {
     @FormUrlEncoded
-    @POST("hopebridge/signup.php")
+    @POST("HopeBridge_Web/php/signup.php")
     fun signup(
         @Field("email") email: String,
         @Field("username") username: String,

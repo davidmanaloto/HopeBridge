@@ -18,6 +18,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Donate"
+            android:exported="false" />
+        <activity
+            android:name=".Donations"
+            android:exported="false" />
+        <activity
             android:name=".UserPost"
             android:exported="false" />
         <activity

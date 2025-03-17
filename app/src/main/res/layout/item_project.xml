@@ -4,15 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@android:color/white">
+    android:background="@drawable/rounded_input_bg"
+    >
 
+    <ImageView
+        android:id="@+id/dot_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/three_dots"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"/>
 
     <ImageView
         android:id="@+id/projectImageDisplay"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:adjustViewBounds="true"/>
+        android:adjustViewBounds="true"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/projectNameTextView"
@@ -27,23 +36,69 @@
     <TextView
         android:id="@+id/projectSummaryTextView"
         android:layout_width="match_parent"
-        android:text="Summarize"
         android:layout_height="wrap_content"
+        android:text="Summarize"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:paddingTop="10dp"/>
 
+    <TextView
+        android:id="@+id/seeMoreButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See More"
+        android:textSize="14sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginStart="300dp"
+
+        />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#A0A0A0"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+
+        <TextView
+            android:id="@+id/numberfund"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Raised"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/fundgoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Goal"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+
+
     <Button
-        android:id="@+id/moredetails"
+        android:id="@+id/donatebtn"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:backgroundTint="#8E75A3"
-        android:text="Donate Here"
+        android:text="Donate now"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/projectSummaryTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        />
+
+
 
 </LinearLayout>

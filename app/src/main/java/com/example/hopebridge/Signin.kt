@@ -27,7 +27,7 @@ import androidx.core.view.WindowInsetsCompat
 
 interface LoginApi {
     @FormUrlEncoded
-    @POST("hopebridge/login.php") // Your actual PHP endpoint
+    @POST("HopeBridge_Web/php/login.php") // Your actual PHP endpoint
     fun login(
         @Field("email") email: String,
         @Field("password") password: String

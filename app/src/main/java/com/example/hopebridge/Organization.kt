@@ -18,9 +18,7 @@ class Organization : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_organization)
 
         val hamburger: View = findViewById(R.id.hamburger)
@@ -29,7 +27,6 @@ class Organization : AppCompatActivity() {
         val logoutSection: View = findViewById(R.id.logout_section)
         val newsButton: Button = findViewById(R.id.news)
         val aboutSection: View = findViewById(R.id.about_section)
-        val projectSection: View = findViewById(R.id.project_section)
         val userpost: Button = findViewById(R.id.userpost)
 
         sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE)
@@ -60,11 +57,6 @@ class Organization : AppCompatActivity() {
 
         aboutSection.setOnClickListener {
             val intent = Intent(this, About::class.java)
-            startActivity(intent)
-        }
-
-        projectSection.setOnClickListener {
-            val intent = Intent(this, CreateProject::class.java)
             startActivity(intent)
         }
 

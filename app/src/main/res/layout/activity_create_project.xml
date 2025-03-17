@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -47,7 +48,6 @@
             android:textStyle="bold"
             android:padding="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/back"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
@@ -176,10 +176,10 @@
 
 
         <TextView
-            android:id="@+id/environmentTextView"
+            android:id="@+id/yurorg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Is your project Rural or Urban"
+            android:text="Your Organization"
             android:textSize="20sp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
@@ -201,38 +201,9 @@
             android:prompt="@string/spinner_prompt"
             android:padding="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/environmentTextView"
+            app:layout_constraintTop_toBottomOf="@id/yurorg"
             app:layout_constraintEnd_toEndOf="parent" />
 
-            <TextView
-                android:id="@+id/projectOrgTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Your Organisation"
-                android:textSize="20sp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:padding="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/environmentSpinner"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-            <EditText
-                android:id="@+id/nameorg"
-                android:layout_width="400dp"
-                android:layout_height="55dp"
-                android:background="@drawable/rounded_input_bg"
-                android:textSize="20sp"
-                android:inputType="textEmailAddress"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/projectOrgTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/fund"
@@ -246,12 +217,12 @@
                 android:textStyle="bold"
                 android:padding="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nameorg"
+                app:layout_constraintTop_toBottomOf="@id/environmentSpinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
             <EditText
-                android:id="@+id/fundgoal"
+                android:id="@+id/donategoal"
                 android:layout_width="400dp"
                 android:layout_height="55dp"
                 android:background="@drawable/rounded_input_bg"
@@ -271,7 +242,7 @@
                 android:backgroundTint="#8E75A3"
                 android:text="Sumbit"
                 android:textColor="#FFFFFF"
-                app:layout_constraintTop_toBottomOf="@id/fundgoal"
+                app:layout_constraintTop_toBottomOf="@id/donategoal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"/>

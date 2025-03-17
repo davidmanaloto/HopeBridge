@@ -59,7 +59,6 @@ class Homepage : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         userpost.setOnClickListener {
             val intent = Intent(this, UserPost::class.java)
             startActivity(intent)
