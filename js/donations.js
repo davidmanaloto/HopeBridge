@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 //Loads Donations
 function loadDonations() {
-    const filter = document.getElementById("filterStatus").value;
-    fetch(`donation_action.php?action=get_donations&status=${filter}`)
+    fetch(`donation_action.php?action=get_donations&status`)
         .then(response => response.json())
         .then(donations => {
             const tableBody = document.getElementById("donationTableBody");
@@ -30,12 +29,7 @@ function loadDonations() {
                     <td>${donation.date_created}</td>
                     <td class="status">${donation.status}</td>
                     <td>
-                        <select onchange="updateStatus(${donation.id}, this)">
-                            <option value="Pending" ${donation.status === "Pending" ? "selected" : ""}>Pending</option>
-                            <option value="Completed" ${donation.status === "Completed" ? "selected" : ""}>Completed</option>
-                            <option value="Failed" ${donation.status === "Failed" ? "selected" : ""}>Failed</option>
-                        </select>
-                        <button class="delete-donation" onclick="deleteDonation(${donation.id})">Delete</button>
+                        <button onclick="approveDonation(${donation.id})">Approve</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
@@ -53,42 +47,22 @@ document.getElementById("searchInput").addEventListener("input", function () {
         row.style.display = shouldShow ? "" : "none";
     });
 });
-//Filter Status
-document.getElementById("filterStatus").addEventListener("change", function () {
-    let filterValue = this.value.toLowerCase();
-    document.querySelectorAll("tbody tr").forEach(row => {
-        let status = row.querySelector(".status").textContent.toLowerCase();
-        row.style.display = (filterValue === "all" || status === filterValue) ? "" : "none";
-    });
-});
-//Delete Donation
-function deleteDonation(id) {
-    if (confirm("Are you sure you want to delete this donation?")) {
-        fetch(`donation_actions.php?action=delete_donation&id=${id}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    loadDonations();
-                } else {
-                    alert("Failed to delete donation.");
-                }
-            })
-            .catch(error => console.error("Error deleting donation:", error));
-    }
-}
-//Update Donation Status
-function updateStatus(id, selectElement) {
-    const newStatus = selectElement.value;
-    fetch("donation_action.php?action=update_status", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `id=${id}&status=${newStatus}`
-    })
+// Approves a donation and removes it from the table
+function approveDonation(id) {
+    if (confirm("Are you sure you want to approve this donation?")) {
+        fetch("donation_action.php?action=update_status", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `id=${id}&status=Completed`
+        })
         .then(response => response.json())
         .then(data => {
-            if (!data.success) {
-                alert("Failed to update status.");
+            if (data.success) {
+                document.getElementById(`donation-${id}`).remove(); // Remove the row from the table
+            } else {
+                alert("Failed to approve donation.");
             }
         })
-        .catch(error => console.error("Error updating status:", error));
+        .catch(error => console.error("Error approving donation:", error));
+    }
 }

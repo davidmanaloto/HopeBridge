@@ -27,12 +27,6 @@ if ($_SESSION['role'] !== 'Admin') {
     <h2>Donation Management</h2>
 
     <input type="text" id="searchInput" placeholder="Search donations...">
-    <select id="filterStatus">
-        <option value="all">All</option>
-        <option value="Pending">Pending</option>
-        <option value="Completed">Completed</option>
-        <option value="Failed">Failed</option>
-    </select>
 
     <table border="1">
         <thead>
@@ -48,7 +42,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </tr>
         </thead>
         <tbody id="donationTableBody">
-            <tr><td colspan="6" style="text-align: center;">Loading donations...</td></tr>
+            <tr><td colspan="8" style="text-align: center;">Loading donations...</td></tr>
         </tbody>
     </table>
 

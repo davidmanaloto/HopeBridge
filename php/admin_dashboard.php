@@ -14,7 +14,14 @@ if ($_SESSION['role'] !== 'Admin') {
     exit();
 }
 // Fetch users from the database
-$sql = "SELECT id, username, email, status FROM user_table WHERE role != 'Admin'";
+//$sql = "SELECT id, username, email, status FROM user_table WHERE role != 'Admin'";
+$sql = "SELECT u.id, u.username, u.email, u.status, 
+               COALESCE(SUM(d.amount), 0) AS amount 
+        FROM user_table u
+        LEFT JOIN donations d ON u.id = d.user_id
+        WHERE u.role != 'Admin'
+        GROUP BY u.id";
+
 $result = $conn->query($sql);
 
 // Check for query errors
@@ -49,6 +56,7 @@ if (!$result) {
         <div class="menu-sidebar">
             <a href="admin_dashboard.php" class="nav-link home"><ion-icon name="home-outline"></ion-icon> Home</a>
             <a href="donation_management.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Donation Management</a>
+            <a href="donation_approved.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Donation Approved</a>
             <a href="fetch_events.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Event Management</a>
             <a href="user_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon>User Management</a>
             <a href="verify_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> Verify Requests</a>
@@ -61,6 +69,7 @@ if (!$result) {
                 <th>Username</th>
                 <th>Email</th>
                 <th>Status</th>
+                <th>Donations</th>
             </tr>
         </thead>
         <tbody>
@@ -69,6 +78,7 @@ if (!$result) {
                     <td><?php echo htmlspecialchars($row['username']); ?></td>
                     <td><?php echo htmlspecialchars($row['email']); ?></td>
                     <td><?php echo htmlspecialchars($row['status']); ?></td>
+                    <td><?php echo htmlspecialchars($row['amount']); ?></td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
