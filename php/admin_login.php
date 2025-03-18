@@ -107,7 +107,7 @@ if (empty($errors)) {
         </div>
 
         <div class="brand-container">
-            <img src="hopebridge.jpg" alt="Company Logo" class="logo">
+        <img src="../image/hopebridge.jpg" alt="Company Logo" class="logo">
             <h2 class="HopeBridge">HopeBridge</h2>
         </div>
     </div>

@@ -1,0 +1,724 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: flex-start; /* Aligns to the top */
+    min-height: 100vh;
+    background-color: #f8f6f6;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Sidebar Navigation */
+.nav-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #264152;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+/* Logo & Title */
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.site-title {
+    font-size: 1.5em;
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Sidebar Links */
+.menu-sidebar {
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: #6c757d;
+}
+
+.menu-sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    width: 85%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+    margin: 8px auto;
+    font-size: 16px;
+}
+
+.menu-sidebar a:hover {
+    background-color: #1b2e3c;
+    transform: scale(1.05);
+}
+
+.menu-sidebar a.active {
+    background-color: #ffcc00;
+    color: black;
+    border-radius: 12px 0 0 12px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Main Content */
+main {
+    margin-left: 260px; /* Closer to sidebar */
+    padding: 15px; /* Reduce padding */
+    width: calc(100% - 260px);
+}
+
+.slide-button {
+    color:#2641528f;
+    background-color: #ffffff;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.slide-button:hover{
+    color: #264152;
+}
+
+#prev {
+    left: 5px;
+}
+
+#next {
+    right: 5px;
+}
+
+.dashboard-container {
+    display: flex;
+    gap: 20px; /* Space between sections */
+    width: 100%;
+    align-items: flex-start; /* Aligns all sections at the top */
+}
+
+.overview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    flex: 1; /* Takes available space */
+}
+
+.icons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px; /* Adjust size as needed */
+    font-weight: bold;
+    margin-bottom: 15px; /* Adds spacing below the title */
+}
+
+.icon-cards {
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.icon-card {
+    flex: 0 0 auto;
+    width: 200px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out; /* Smooth transition for jumping effect */
+}
+
+.icon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.icon-card i {
+    color: #264152; /* Icon color */
+}
+
+.hidden {
+    display: none;
+}
+
+h3 {
+    font-size: 20px; /* Adjusted size for headings */
+    margin: 10px 0 5px; /* Margin for spacing */
+}
+
+span.green {
+    color: green;
+    font-weight: bold;
+}
+
+span.red {
+    color: red;
+    font-weight: bold;
+}
+
+.small-text {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+.red-text {
+    color: red;
+}
+
+/* Chart Section */
+#chartContainer {
+    display: flex; /* Use flexbox to arrange charts in a column */
+    flex-direction: column; /* Stack charts vertically */
+    gap: 50px; /* Space between charts */
+    width: 100%; /* Full width */
+    max-width: 900px; /* Prevents it from becoming too wide */
+    margin: auto;
+    text-align: center; 
+}
+
+.chart-wrapper {
+    display: flex;
+    align-items: center; /* Center align items vertically */
+    justify-content: center; /* Center align items horizontally */
+    position: relative; /* Position relative for absolute positioning of counts */
+    width: 100%; /* Set to 100% to fill the container */
+}
+
+#barChart, #lineChart {
+    width: 100% !important; /* Make the charts take full width of the wrapper */
+    height: 500px !important; /* Increased height to make it larger */
+    transition: transform 0.3s; /* Add transition for hover effect */
+    background-color: #ffffff; /* Background color for the chart area */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px;
+}
+
+.chart-wrapper:hover #barChart,
+.chart-wrapper:hover #lineChart {
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+.incident-count {
+    font-size: 24px; /* Increase font size for incident counts */
+    position: absolute; /* Position absolute to place them on the sides */
+}
+
+/* Donations List Table */
+.donation-container {
+    flex: 1; /* Same width */
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.header a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f1f3f5;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.amount {
+    color: green;
+    font-weight: bold;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+th {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+td i {
+    cursor: pointer;
+    color: #6c757d;
+}
+
+/* Jumping Animation */
+.jump {
+    animation: jump 0.3s ease forwards; /* Jump animation */
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Jump up */
+    }
+    100% {
+        transform: translateY(0); /* Return to original position */
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .icons-container {
+        flex-direction: column; /* Stack icons on smaller screens */
+        align-items: center; /* Center align */
+    }
+
+    .icon-card {
+        margin: 10px 0; /* Space between stacked cards */
+        width: 80%; /* Adjust width for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        width: 200px;
+    }
+
+    main {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+
+    .menu-sidebar a {
+        width: 90%;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-menu {
+        width: 180px;
+    }
+
+    main {
+        margin-left: 190px;
+        width: calc(100% - 190px);
+    }
+
+    table { 
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+/*Organizations styles*/
+/* Admin Content */
+/* Admin Content */
+.admin-content {
+    margin-left: 250px;
+    width: calc(100% - 270px);
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    max-width: 1400px; /* Ensures it's not too wide */
+    margin-left: 249px; /* Adjust based on sidebar width */
+    width: calc(100% - 260px); /* Try reducing this a bit */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Move everything to the top */
+}
+
+.admin-content h2 {
+    color: #264152;
+    margin-bottom: 20px;
+}
+
+/* Search Bar */
+.search-filter-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    margin-right:120px;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar ion-icon {
+    position: absolute;
+    left: 10px;
+    font-size: 20px;
+    color: gray;
+}
+
+.search-bar input {
+    padding: 10px 10px 10px 35px; /* Leave space for icon */
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+    outline: none;
+    margin-left:15px;
+}
+
+#searchOrg{
+    width:400px;
+    margin-right:60px;
+    padding-top:5px;
+
+}
+#filterType{
+    margin-left:10px;
+}
+#filterDonation{
+    margin-left:10px;
+}
+#addOrgBtn{
+    margin-left:10px;
+}
+.search-filter-container input, 
+.search-filter-container select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-filter-container button {
+    background-color: #264152;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.search-filter-container button:hover {
+    background-color: #1b2e3c;
+}
+
+/* User Management Table */
+.user-table, .org-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.user-table th, .user-table td, .org-table th, .org-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table th, .org-table th {
+    background-color: #264152;
+    color: white;
+}
+
+.user-table tr:hover, .org-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.role-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.admin-badge {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.user-badge {
+    background-color: #ddd;
+    color: black;
+}
+
+.status {
+    font-weight: bold;
+    color: green;
+}
+
+/* Actions */
+.actions {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.edit-btn {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+}
+
+
+/* User Management Styles */
+.user-management-container {
+    max-width: 100vw; /* Ensures it's not too wide */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 auto; /* Centers horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Move everything to the top */
+    min-height: 100vh;
+    margin-left: 250px; /* Adjust based on sidebar width */
+    width: calc(100% - 260px); /* Try reducing this a bit */
+}
+
+.user-management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.user-management-header h2 {
+    font-size: 26px;
+    color: #264152;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #f1f3f5;
+    padding: 8px 12px;
+    border-radius: 20px;
+    align-self: flex-end; /* Aligns search bar to the right */
+    margin-bottom: 8px;
+}
+
+.search-bar i {
+    color: #6c757d;
+    margin-right: 8px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    width: 200px;
+}
+
+/* User Table */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.user-table thead {
+    background-color: #264152;
+    color: white;
+}
+
+.user-table th, .user-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px; /* Increase text size */
+}
+
+.user-table th {
+    font-size: 14px;
+    color: #f4f7fa;
+    text-transform: uppercase;
+}
+
+.user-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* User Roles */
+.user-role {
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.user-role.admin {
+    background-color: #ffcc00;
+    color: #000;
+}
+
+.user-role.staff {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.user-role.volunteer {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Action Buttons */
+.dots-menu {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 20px;
+}
+
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Hidden Dropdown Content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    min-width: 140px;
+    z-index: 1;
+    right: 0;
+}
+
+/* Dropdown Links */
+.dropdown-content a {
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Hover Effect */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show Dropdown on Click */
+.dropdown.show .dropdown-content {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-management-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .user-table th, .user-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

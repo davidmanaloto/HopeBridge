@@ -21,13 +21,18 @@ if ($_SESSION['role'] !== 'Admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donation Management</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/management.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <nav class="nav-menu">
         <div class="logo-container">
             <a href="admin_dashboard.php">
-                <img src="hopebridge.jpg" alt="Company Logo" class="logo">
+            <img src="../image/hopebridge.jpg" alt="Company Logo" class="logo">
             </a>
             <h1 class="site-title">HopeBridge</h1>
         </div>
@@ -42,11 +47,16 @@ if ($_SESSION['role'] !== 'Admin') {
             <a href="admin_logout.php" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
         </div>
     </nav>
-    <h2>Donation Management</h2>
-
+    <div class="user-management-container"> 
+        <div class="user-management-header">
+        <h2>Donation Management</h2>
+    <div class="search-bar">
+                <i class="fas fa-search"></i>
     <input type="text" id="searchInput" placeholder="Search donations...">
+    </div>
+    </div>
 
-    <table border="1">
+    <table class="user-table">
         <thead>
             <tr>
                 <th>ID</th>

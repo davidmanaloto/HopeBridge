@@ -24,7 +24,7 @@ function loadOrganizations() {
                     <td>${org.tags}</td>
                     <td>${org.description}</td>
                     <td>
-                         <button onclick="openEditOrganizationModal(${org.id}, '${org.name}', '${org.website}', '${org.donation_link}','${org.description}')">Edit</button>
+                         <button onclick="openEditOrganizationModal(${org.id}, '${org.name}', '${org.website}', '${org.donation_link}','${org.tags}','${org.description}')">Edit</button>
                         <button onclick="deleteOrganization(${org.id})">Delete</button>
                     </td>
                 `;
@@ -34,18 +34,33 @@ function loadOrganizations() {
         .catch(error => console.error("Error fetching organizations:", error));
 }
 function showAddOrganizationModal() {
+    // Clear previous input values
+    document.getElementById("orgName").value = "";
+    document.getElementById("orgWebsite").value = "";
+    document.getElementById("orgDonationLink").value = "";
+    document.getElementById("orgTags").value = "";
+    document.getElementById("orgDescription").value = "";
+
+    // Show the modal
     document.getElementById("addOrganizationModal").style.display = "block";
 }
 
 function closeAddOrganizationModal() {
     document.getElementById("addOrganizationModal").style.display = "none";
 }
+
 function addOrganization() {
-    const name = document.getElementById("orgName").value;
-    const website = document.getElementById("orgWebsite").value;
-    const donationLink = document.getElementById("orgDonationLink").value;
-    const tags = document.getElementById("orgTags").value;
-    const description = document.getElementById("orgDescription").value;
+    const name = document.getElementById("orgName").value.trim();
+    const website = document.getElementById("orgWebsite").value.trim();
+    const donationLink = document.getElementById("orgDonationLink").value.trim();
+    const tags = document.getElementById("orgTags").value.trim();
+    const description = document.getElementById("orgDescription").value.trim();
+
+    // Prevent empty submissions
+    if (!name || !website || !donationLink || !tags || !description) {
+        alert("Please fill in all fields before submitting.");
+        return;
+    }
 
     fetch("org_action.php?action=add_organization", {
         method: "POST",
@@ -64,12 +79,13 @@ function addOrganization() {
     .catch(error => console.error("Error adding organization:", error));
 }
 
-function openEditOrganizationModal(id, name, website, donationLink, tag, description) {
+
+function openEditOrganizationModal(id, name, website, donationLink, tags, description) {
     document.getElementById("editOrgId").value = id;
     document.getElementById("editOrgName").value = name;
     document.getElementById("editOrgWebsite").value = website;
     document.getElementById("editOrgDonationLink").value = donationLink;
-    document.getElementById("editOrgTag").value = tag;
+    document.getElementById("editOrgTag").value = tags;
     document.getElementById("editOrgDescription").value = description;
 
     document.getElementById("editOrganizationModal").style.display = "block";

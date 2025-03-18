@@ -70,12 +70,18 @@ if (isset($_GET['action'])) {
     <meta charset="UTF-8">
     <title>User Management</title>
     <script src="../js/user_management.js"></script>
+    <link rel="stylesheet" href="../css/management.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <nav class="nav-menu">
         <div class="logo-container">
             <a href="admin_dashboard.php">
-                <img src="hopebridge.jpg" alt="Company Logo" class="logo">
+            <img src="../image/hopebridge.jpg" alt="Company Logo" class="logo">
             </a>
             <h1 class="site-title">HopeBridge</h1>
         </div>
@@ -90,15 +96,21 @@ if (isset($_GET['action'])) {
             <a href="admin_logout.php" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
         </div>
     </nav>
+
+    <div class="user-management-container"> 
+        <div class="user-management-header">
     <h2>User Management</h2>
     <select id="filterSelect">
         <option value="all">All</option>
         <option value="Verified">Verified</option>
         <option value="User">Unverified</option>
     </select>
+    </div>
+    <div class="search-bar">
+        <i class="fas fa-search"></i>
     <input type="text" id="searchInput" placeholder="Search users...">
-    
-    <table>
+    </div>
+    <table class="user-table">
         <thead>
             <tr>
                 <th>Name</th>
