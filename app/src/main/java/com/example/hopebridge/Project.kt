@@ -6,7 +6,8 @@ data class Project(
     val imageUrl: String?,
     val funds_raised: Double,
     val donationGoal: String,
-    val organizationId: Int
+    val organizationId: Int,
+    val userId: Int
 )
 
 

@@ -207,13 +207,21 @@ class UserPost : AppCompatActivity() {
     }
 
     private fun saveDonationToDatabase(projectName: String, amount: Double) {
-        val projectService = ApiClient.getRetrofitInstance().create(ProjectService::class.java)
+        val sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE)
+        val userId = sharedPreferences.getInt("user_id", -1)
 
-        val call = projectService.saveDonation(projectName, amount)
+        if (userId == -1) {
+            Toast.makeText(this@UserPost, "User ID not found. Please log in again.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val projectService = ApiClient.getRetrofitInstance().create(ProjectService::class.java)
+        val call = projectService.saveDonation(userId, projectName, amount) // Pass userId
+
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@UserPost, "Donated to $projectName" , Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@UserPost, "Donated to $projectName", Toast.LENGTH_SHORT).show()
                     fetchProjects() // Refresh project UI
                 } else {
                     Toast.makeText(this@UserPost, "Failed to save donation", Toast.LENGTH_SHORT).show()
@@ -225,6 +233,7 @@ class UserPost : AppCompatActivity() {
             }
         })
     }
+
 
     private fun fetchProjects() {
         val projectService = ApiClient.getRetrofitInstance().create(ProjectService::class.java)
