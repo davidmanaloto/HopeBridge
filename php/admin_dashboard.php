@@ -66,7 +66,7 @@ if (!$result) {
     </nav>
     <div class="user-management-container"> 
         <div class="user-management-header">
-            <h2>User Management</h2>
+            <h2>Admin Dashboard</h2>
     </div>
     <table class="user-table">
         <thead>
