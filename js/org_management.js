@@ -106,7 +106,7 @@ function saveOrganizationChanges() {
     fetch("org_action.php?action=edit_organization", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}&website=${encodeURIComponent(website)}&donation_link=${encodeURIComponent(donationLink)}&tag=${encodeURIComponent(tag)}&description=${encodeURIComponent(description)}`
+        body: `id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}&website=${encodeURIComponent(website)}&donation_link=${encodeURIComponent(donationLink)}&tags=${encodeURIComponent(tag)}&description=${encodeURIComponent(description)}`
     })
     .then(response => response.json())
     .then(data => {
