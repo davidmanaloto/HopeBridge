@@ -523,6 +523,19 @@ td i {
     font-size: 18px;
 }
 
+.add-btn{
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+}
+.add-btn{
+    background-color: #39b3ff;
+    color: black;
+}
+
 .edit-btn, .delete-btn {
     padding: 5px 10px;
     border: none;

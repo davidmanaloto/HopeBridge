@@ -15,12 +15,13 @@ if ($_SESSION['role'] !== 'Admin') {
 }
 
 // Fetch approved donations
-$query = "SELECT d.id, u.username AS donor_name, o.name AS organization_name, d.amount, d.receipt_path, d.date_created 
+$query = "SELECT d.id, u.username AS donor_name, o.name AS organization_name, COALESCE(p.project_name,'Direct Donation') AS project_name, d.amount, d.receipt_path, d.date_created 
           FROM donations d
           JOIN user_table u ON d.user_id = u.id
           JOIN organizations o ON d.organization_id = o.id
+          LEFT JOIN projects p on d.project_id = p.project_id
           WHERE d.status = 'completed'
-          ORDER BY d.date_created DESC";
+          ORDER BY d.date_created DESC";  
 $result = $conn->query($query);
 ?>
 
@@ -50,7 +51,7 @@ $result = $conn->query($query);
             <a href="donation_management.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Donation Management</a>
             <a href="donation_approved.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Donation Approved</a>
             <a href="org_management.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Organizations</a>
-            <a href="fetch_events.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Event Management</a>
+            <a href="project_view.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Project Management</a>
             <a href="user_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon>User Management</a>
             <a href="verify_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> Verify Requests</a>
             <a href="admin_logout.php" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
@@ -64,6 +65,7 @@ $result = $conn->query($query);
         <thead>
             <tr>
                 <th>Donor Name</th>
+                <th>Project Name</th>
                 <th>Organization</th>
                 <th>Amount</th>
                 <th>Receipt</th>
@@ -74,6 +76,7 @@ $result = $conn->query($query);
         <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?= htmlspecialchars($row['donor_name']) ?></td>
+                    <td><?= htmlspecialchars($row['project_name']) ?>
                     <td><?= htmlspecialchars($row['organization_name']) ?></td>
                     <td>$<?= number_format($row['amount'], 2) ?></td>
                     <td>

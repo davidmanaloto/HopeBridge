@@ -35,7 +35,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Admin') {
             <a href="donation_management.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Donation Management</a>
             <a href="donation_approved.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Donation Approved</a>
             <a href="org_management.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Organizations</a>
-            <a href="fetch_events.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Event Management</a>
+            <a href="project_view.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Project Management</a>
             <a href="user_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon>User Management</a>
             <a href="verify_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> Verify Requests</a>
             <a href="admin_logout.php" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
@@ -46,7 +46,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Admin') {
     <h2>Organization Management</h2>
     </div>
 
-    <button onclick="showAddOrganizationModal()">Add Organization</button>
+    <button class="add-btn" onclick="showAddOrganizationModal()">Add Organization</button>
 
     <div id="addOrganizationModal" class="modal">
     <div class="modal-content">
@@ -68,7 +68,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Admin') {
         <label for="orgDescription">Description:</label>
         <textarea id="orgDescription" required></textarea><br>
 
-        <button onclick="addOrganization()">Submit</button>
+        <button class="add-btn" onclick="addOrganization()">Submit</button>
         </form>
     </div>
     </div>
