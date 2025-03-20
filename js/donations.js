@@ -24,7 +24,7 @@ function loadDonations() {
                     <td class="organization-name">${donation.organization_name}</td>
                     <td>$${parseFloat(donation.amount).toFixed(2)}</td>
                     <td>
-                    ${donation.receipt_path ? `<a href="${donation.receipt_path}" target="_blank">View Receipt</a>` : "No Receipt"}
+                    ${donation.receipt_path ? `<a href="${donation.receipt_path.replace(/^\/?php\//, '')}" target="_blank" rel="noopener noreferrer>"View Receipt"</a>` : "No Receipt"}
                     </td>
                     <td>${donation.date_created}</td>
                     <td class="status">${donation.status}</td>

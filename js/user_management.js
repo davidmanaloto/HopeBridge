@@ -28,8 +28,8 @@ function loadUsers(filter = "all") {
                     <td>${user.role}</td>
                     <td class="status">${user.status}</td>
                     <td>
-                        <button onclick="toggleStatus(${user.id}, this)">${user.status === "Active" ? "Block" : "Unblock"}</button>
-                        <button onclick="deleteUser(${user.id}, this)">Delete</button>
+                        <button class="add-btn" onclick="toggleStatus(${user.id}, this)">${user.status === "Active" ? "Block" : "Unblock"}</button>
+                        <button class="delete-btn" onclick="deleteUser(${user.id}, this)">Delete</button>
                     </td>
                 `;
                 tableBody.appendChild(row);

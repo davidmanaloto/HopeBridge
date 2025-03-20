@@ -24,8 +24,8 @@ function loadOrganizations() {
                     <td>${org.tags}</td>
                     <td>${org.description}</td>
                     <td>
-                         <button onclick="openEditOrganizationModal(${org.id}, '${org.name}', '${org.website}', '${org.donation_link}','${org.tags}','${org.description}')">Edit</button>
-                        <button onclick="deleteOrganization(${org.id})">Delete</button>
+                         <button class="edit-btn" onclick="openEditOrganizationModal(${org.id}, '${org.name}', '${org.website}', '${org.donation_link}','${org.tags}','${org.description}')">Edit</button>
+                        <button class="delete-btn" onclick="deleteOrganization(${org.id})">Delete</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
