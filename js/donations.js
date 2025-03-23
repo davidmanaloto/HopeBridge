@@ -12,7 +12,7 @@ function loadDonations() {
             tableBody.innerHTML = "";
 
             if (donations.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan='8' style='text-align: center;'>No donations found</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan='9' style='text-align: center;'>No donations found</td></tr>`;
                 return;
             }
 
@@ -21,10 +21,11 @@ function loadDonations() {
                 row.innerHTML = `
                     <td>${donation.id}</td>
                     <td class="donor-name">${donation.donor_name}</td>
+                    <td>${donation.project_name || 'N/A'}</td>
                     <td class="organization-name">${donation.organization_name}</td>
-                    <td>$${parseFloat(donation.amount).toFixed(2)}</td>
+                    <td>${parseFloat(donation.amount).toFixed(2)}</td>
                     <td>
-                    ${donation.receipt_path ? `<a href="${donation.receipt_path.replace(/^\/?php\//, '')}" target="_blank" rel="noopener noreferrer>"View Receipt"</a>` : "No Receipt"}
+                    ${donation.receipt_path ? `<a href="${donation.receipt_path.replace(/^\/?php\//, '')}" target="_blank" rel="noopener noreferrer">View Receipt</a>` : ""}
                     </td>
                     <td>${donation.date_created}</td>
                     <td class="status">${donation.status}</td>

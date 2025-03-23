@@ -43,7 +43,7 @@ if ($_SESSION['role'] !== 'Admin') {
             <a href="org_management.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Organizations</a>
             <a href="project_view.php" class="nav-link donation-management"><ion-icon name="people-outline"></ion-icon>Project Management</a>
             <a href="user_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon>User Management</a>
-            <a href="verify_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> Verify Requests</a>
+            <a href="verify_management.php" class="nav-link user-management"><ion-icon name="people-outline"></ion-icon> Verify Org Requests</a>
             <a href="admin_logout.php" class="nav-link logout"><ion-icon name="log-out-outline"></ion-icon> Log Out</a>
         </div>
     </nav>
@@ -61,6 +61,7 @@ if ($_SESSION['role'] !== 'Admin') {
             <tr>
                 <th>ID</th>
                 <th>Donor Name</th>
+                <th>Project Name</th> <!--Added-->
                 <th>Organization Name</th>
                 <th>Amount</th>
                 <th>Receipt</th>
@@ -70,7 +71,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </tr>
         </thead>
         <tbody id="donationTableBody">
-            <tr><td colspan="8" style="text-align: center;">Loading donations...</td></tr>
+            <tr><td colspan="9" style="text-align: center;">Loading donations...</td></tr>
         </tbody>
     </table>
 
