@@ -2,7 +2,6 @@ package com.example.hopebridge
 
 import android.animation.ObjectAnimator
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -40,6 +39,7 @@ class UserPost : AppCompatActivity() {
         val createProject: Button = findViewById(R.id.Createproj)
         val orgsButton: Button = findViewById(R.id.orgs)
         val newsButton: Button = findViewById(R.id.news)
+        val notif: ImageView = findViewById(R.id.notif)
         projectContainer = findViewById(R.id.projectContainer)
 
         burgers.translationX = -900f
@@ -54,8 +54,13 @@ class UserPost : AppCompatActivity() {
             isMenuOpen = !isMenuOpen
         }
 
+        notif.setOnClickListener {
+            val intent = Intent(this, Notification::class.java)
+            startActivity(intent)
+        }
+
         profileSection.setOnClickListener {
-            val intent = Intent(this, User::class.java)
+            val intent = Intent(this, UserInfo::class.java)
             startActivity(intent)
         }
 

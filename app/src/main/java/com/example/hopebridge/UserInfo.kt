@@ -1,21 +1,13 @@
 package com.example.hopebridge
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import java.io.File
 
-class User : AppCompatActivity() {
+class UserInfo : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

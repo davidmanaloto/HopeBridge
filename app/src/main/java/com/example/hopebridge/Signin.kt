@@ -32,6 +32,7 @@ interface LoginApi {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<ResponseBody>
+
 }
 
 class Signin : AppCompatActivity() {
@@ -129,7 +130,7 @@ class Signin : AppCompatActivity() {
         finish() // Close Login activity
     }
 
-    override fun    onBackPressed() {
+    override fun onBackPressed() {
         // Navigate back to StartPage
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -150,7 +151,7 @@ class Signin : AppCompatActivity() {
         isPasswordVisible = !isPasswordVisible
         passwordEditText.setSelection(passwordEditText.text.length) // Keep cursor position
     }
-    // Function to send login data to the server
+
     private fun sendLoginData(email: String, password: String) {
         val loginApi = ApiClient.getRetrofitInstance().create(LoginApi::class.java)
         loginApi.login(email, password).enqueue(object : Callback<ResponseBody> {
@@ -196,4 +197,5 @@ class Signin : AppCompatActivity() {
             }
         })
     }
+
 }

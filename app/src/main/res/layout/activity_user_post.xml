@@ -39,11 +39,10 @@
             android:id="@+id/notif"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="70dp"
             android:src="@drawable/notification"
             android:contentDescription="Notifications"/>
     </androidx.appcompat.widget.Toolbar>
-
 
     <FrameLayout
         android:layout_width="match_parent"

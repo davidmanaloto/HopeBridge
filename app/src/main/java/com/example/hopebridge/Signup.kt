@@ -1,110 +1,101 @@
 package com.example.hopebridge
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.InputType
 import android.view.MotionEvent
+import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.content.ContextCompat
 import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 
-interface SignupService {
-    @FormUrlEncoded
-    @POST("HopeBridge_Web/php/signup.php")
-    fun signup(
-        @Field("email") email: String,
-        @Field("username") username: String,
-        @Field("password") password: String
-    ): Call<ResponseBody>
-}
 
 class Signup : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private var isPasswordVisible = false
     private lateinit var emailEditText: EditText
     private lateinit var usernameEditText: EditText
+    private lateinit var userBtn: Button
+    private lateinit var orgBtn: Button
+    private lateinit var userSignInLayout: LinearLayout
+    private lateinit var orgSignInLayout: LinearLayout
+    private lateinit var organizationEditText: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_signup)
-
 
         emailEditText = findViewById(R.id.email)
         usernameEditText = findViewById(R.id.username)
-
-        val signin = findViewById<Button>(R.id.signin)
-        val signupButton: Button = findViewById(R.id.loginButton)
         passwordEditText = findViewById(R.id.password)
+        val signupButton: Button = findViewById(R.id.btnSignUp)
+        userBtn = findViewById(R.id.userbtn)
+        orgBtn = findViewById(R.id.orgbtn)
+        userSignInLayout = findViewById(R.id.userSignInLayout)
+        orgSignInLayout = findViewById(R.id.orgSignInLayout)
+        organizationEditText = findViewById(R.id.organizationName)
 
-        signupButton.setOnClickListener {
-            val password = passwordEditText.text.toString()
-            val email = emailEditText.text.toString()
-            val username = usernameEditText.text.toString()
 
-            // Check if any fields are empty
-            if (email.isEmpty() || username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener // Early return if validation fails
-            }
+        val defaultDrawable = ContextCompat.getDrawable(this, R.drawable.squarecorner)
+        val selectedDrawable = ContextCompat.getDrawable(this, R.drawable.colorsquare)
 
-            // Check for whitespace only in username
-            if (username.trim().isEmpty()) {
-                Toast.makeText(this, "Please enter a valid username", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener // Early return if validation fails
-            }
+        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        val fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
-            // Check for whitespace and punctuation in username
-            if (!isValidUsername(username)) {
-                Toast.makeText(this, "Username cannot contain spaces or punctuation", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener // Early return if validation fails
-            }
+        userSignInLayout.visibility = View.VISIBLE
+        orgSignInLayout.visibility = View.GONE
+        userBtn.background = selectedDrawable
 
-            // Check for whitespace and punctuation in password
-            if (!isValidPassword(password)) {
-                Toast.makeText(this, "Password cannot contain spaces or punctuation", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener // Early return if validation fails
-            }
-
-            // Password length validation
-            if (password.length < 6) {
-                Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener // Early return if validation fails
-            }
-
-            // All checks passed, send the data
-            sendSignupData(email, username, password)
+        orgBtn.setOnClickListener {
+            userSignInLayout.animate()
+                .alpha(0f)
+                .setDuration(fadeOut.duration)
+                .withEndAction {
+                    userSignInLayout.visibility = View.GONE
+                    orgSignInLayout.visibility = View.VISIBLE
+                    orgSignInLayout.alpha = 0f
+                    orgSignInLayout.animate().alpha(1f).setDuration(fadeIn.duration).start()
+                }
+                .start()
+            orgBtn.background = selectedDrawable
+            userBtn.background = defaultDrawable
         }
 
-        signin.setOnClickListener {
-            val intent = Intent(this@Signup, Signin::class.java)
-            startActivity(intent)
+        userBtn.setOnClickListener {
+            orgSignInLayout.animate()
+                .alpha(0f)
+                .setDuration(fadeOut.duration)
+                .withEndAction {
+                    orgSignInLayout.visibility = View.GONE
+                    userSignInLayout.visibility = View.VISIBLE
+                    userSignInLayout.alpha = 0f
+                    userSignInLayout.animate().alpha(1f).setDuration(fadeIn.duration).start()
+                }
+                .start()
+            userBtn.background = selectedDrawable
+            orgBtn.background = defaultDrawable
         }
+
 
 
         passwordEditText.setOnTouchListener { v, event ->
-            val DRAWABLE_RIGHT = 2
-
             if (event.action == MotionEvent.ACTION_UP) {
-                val drawableRight = passwordEditText.compoundDrawables[DRAWABLE_RIGHT]
-
+                val drawableRight = passwordEditText.compoundDrawables[2]
                 if (drawableRight != null) {
                     val boundsWidth = drawableRight.bounds.width()
                     val drawableAreaStart = passwordEditText.right - boundsWidth - passwordEditText.paddingRight
-
                     if (event.rawX >= drawableAreaStart) {
                         togglePasswordVisibility()
                         return@setOnTouchListener true
@@ -117,61 +108,16 @@ class Signup : AppCompatActivity() {
 
     private fun togglePasswordVisibility() {
         if (isPasswordVisible) {
-            // Hide password
             passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             passwordEditText.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.eyecnot, 0)
         } else {
-            // Show password
             passwordEditText.inputType = InputType.TYPE_CLASS_TEXT
             passwordEditText.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.eyec, 0)
         }
         isPasswordVisible = !isPasswordVisible
-        passwordEditText.setSelection(passwordEditText.text.length) // Keep cursor position
-    }
-    private fun sendSignupData(email: String, username: String, password: String) {
-        val apiService = ApiClient.getRetrofitInstance().create(SignupService::class.java)
-
-        apiService.signup(email, username, password).enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: retrofit2.Response<ResponseBody>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@Signup, "Signup successful!", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@Signup, Signin::class.java)
-                    startActivity(intent)
-                } else {
-                    // Capture error information and show in Toast
-                    val errorBody = response.errorBody()
-                    if (errorBody != null) {
-                        try {
-                            val errorBodyString = errorBody.string()
-
-                            // Extract the error message from the JSON
-                            val jsonObject = JSONObject(errorBodyString)
-                            val errorMessage = jsonObject.getString("error") // Assuming your PHP returns "error" key
-
-                            Toast.makeText(this@Signup, errorMessage, Toast.LENGTH_LONG).show()
-                        } catch (e: Exception) {
-                            Toast.makeText(this@Signup, "Error parsing response: ${e.message}", Toast.LENGTH_LONG).show()
-                        }
-                    } else {
-                        Toast.makeText(this@Signup, "Response error: ${response.message()}", Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Toast.makeText(this@Signup, "Request failed: ${t.message}", Toast.LENGTH_LONG).show()
-            }
-        })
+        passwordEditText.setSelection(passwordEditText.text.length)
     }
 
-    private fun isValidUsername(username: String): Boolean {
-        // Check if username contains spaces or punctuation
-        return !username.contains(Regex("[\\s\\p{Punct}]"))
-    }
 
-    private fun isValidPassword(password: String): Boolean {
-        // Check if password contains spaces or punctuation
-        return !password.contains(Regex("[\\s\\p{Punct}]"))
-    }
+
 }
-

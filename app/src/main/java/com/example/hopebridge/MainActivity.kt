@@ -1,129 +1,252 @@
 package com.example.hopebridge
 
 import android.content.Intent
-import android.content.res.Resources
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.text.InputType
+import android.view.MotionEvent
 import android.view.View
-import android.view.animation.AlphaAnimation
+import android.view.View.OnTouchListener
+import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.content.ContextCompat
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
+
+interface ApiService {
+    @FormUrlEncoded
+    @POST("HopeBridge_Web/php/login.php") // User Login API
+    fun userLogin(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Call<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("HopeBridge_Web/php/org_login.php") // Organization Login API
+    fun orgLogin(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Call<LoginResponse>
+}
+
 
 class MainActivity : AppCompatActivity() {
-    private var isPopupShown = false // Flag to check if the popup is shown
     private var backPressedTime: Long = 0
     private val backPressedDelay: Long = 3000 // 3 seconds
+    private var isPasswordVisible = false
+    private lateinit var apiService: ApiService
+    private lateinit var sharedPref: SharedPreferences
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        apiService = ApiClient.getRetrofitInstance().create(ApiService::class.java)
+        sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE)
 
-        val heightOfScreen = Resources.getSystem().displayMetrics.heightPixels
-        val startlogo = findViewById<ImageView>(R.id.startlogo)
-        val starttitle = findViewById<TextView>(R.id.starttitle)
-        val main = findViewById<ConstraintLayout>(R.id.main)
+        val userBtn = findViewById<Button>(R.id.userbtn)
+        val orgBtn = findViewById<Button>(R.id.orgbtn)
+        val userSignInLayout = findViewById<LinearLayout>(R.id.userSignInLayout)
+        val orgSignInLayout = findViewById<LinearLayout>(R.id.orgSignInLayout)
+        val registerBtn = findViewById<Button>(R.id.btnRegister)
+        val passwordEditText = findViewById<EditText>(R.id.password)
+        val orgPasswordEditText = findViewById<EditText>(R.id.orgPassword)
+        val userEmail = findViewById<EditText>(R.id.email)
+        val userPassword = findViewById<EditText>(R.id.password)
+        val userLoginBtn = findViewById<Button>(R.id.btnSignIn)
+        val orgEmail = findViewById<EditText>(R.id.orgEmail)
+        val orgPassword = findViewById<EditText>(R.id.orgPassword)
+        val orgLoginBtn = findViewById<Button>(R.id.orgSignIn)
 
+        // Get drawables
+        val defaultDrawable = ContextCompat.getDrawable(this, R.drawable.squarecorner)
+        val selectedDrawable = ContextCompat.getDrawable(this, R.drawable.colorsquare)
 
-        val popup = listOf<View>(
-            findViewById(R.id.message),
-            findViewById(R.id.btnSignIn),
-            findViewById(R.id.btnRegister)
-        )
+        // Show user sign-in form by default
+        userSignInLayout.visibility = View.VISIBLE
+        orgSignInLayout.visibility = View.GONE
+        userBtn.background = selectedDrawable
 
-        popup.forEach { it.visibility = View.GONE }
+        // Load animations
+        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        val fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
-
-        // ANIMATION NG LOGO
-        val logoAnimation = AlphaAnimation(0f, 1f).apply {
-            duration = 1000
-            fillAfter = true
-        }
-        startlogo.startAnimation(logoAnimation)
-
-        // ANIMATION NG TITLE
-        val fadeInAnimation = AlphaAnimation(0f, 1f).apply {
-            duration = 2000
-            fillAfter = true
-        }
-        starttitle.startAnimation(fadeInAnimation)
-
-        // LISTENER PRA MAG GO YUNG ANIMATION NG POPUP
-        main.setOnClickListener {
-            if (!isPopupShown) {
-                showPopup(popup, heightOfScreen)
-                animateLogoAndTitle()
-                isPopupShown = true // Set flag that the popup is shown
+        if (sharedPref.getBoolean("isLoggedIn", false)) {
+            val userType = sharedPref.getString("type", "")
+            if (userType == "user") {
+                startActivity(Intent(this, Homepage::class.java))
+            } else if (userType == "organization") {
+                startActivity(Intent(this, OrgHomepage::class.java))
             }
+            finish()
         }
 
-        // CLICK LISTENER NG SIGN IN BUTTON
-        val signinButton = findViewById<Button>(R.id.btnSignIn)
-        signinButton.setOnClickListener {
-            // Handle the sign-in button click
-            val intent = Intent(this, Signin::class.java)
-            startActivity(intent)
+
+        userLoginBtn.setOnClickListener {
+            val email = userEmail.text.toString().trim()
+            val password = userPassword.text.toString().trim()
+            loginUser(email, password)
         }
 
-        //CLICK LISTENER NG SIGN UP BUTTON
-        val signupbutton = findViewById<Button>(R.id.btnRegister)
-        signupbutton.setOnClickListener {
+        orgLoginBtn.setOnClickListener {
+            val email = orgEmail.text.toString().trim()
+            val password = orgPassword.text.toString().trim()
+            loginOrganization(email, password)
+        }
 
+        registerBtn.setOnClickListener {
             val intent = Intent(this, Signup::class.java)
             startActivity(intent)
         }
+
+
+        orgBtn.setOnClickListener { v: View? ->
+            userSignInLayout.animate()
+                .alpha(0f)
+                .setDuration(fadeOut.duration)
+                .withEndAction {
+                    userSignInLayout.visibility = View.GONE
+                    orgSignInLayout.visibility = View.VISIBLE
+                    orgSignInLayout.alpha = 0f
+                    orgSignInLayout.animate().alpha(1f).setDuration(fadeIn.duration).start()
+                }
+                .start()
+            orgBtn.background = selectedDrawable
+            userBtn.background = defaultDrawable
+        }
+
+        userBtn.setOnClickListener { v: View? ->
+            orgSignInLayout.animate()
+                .alpha(0f)
+                .setDuration(fadeOut.duration)
+                .withEndAction {
+                    orgSignInLayout.visibility = View.GONE
+                    userSignInLayout.visibility = View.VISIBLE
+                    userSignInLayout.alpha = 0f
+                    userSignInLayout.animate().alpha(1f).setDuration(fadeIn.duration).start()
+                }
+                .start()
+            userBtn.background = selectedDrawable
+            orgBtn.background = defaultDrawable
+        }
+
+
+        val passwordToggleListener = OnTouchListener { v: View, event: MotionEvent ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                val editText = v as EditText
+                val drawableRight =
+                    editText.compoundDrawablesRelative[2]
+                if (drawableRight != null) {
+                    val boundsWidth = drawableRight.bounds.width()
+                    val drawableAreaStart =
+                        editText.right - boundsWidth - editText.paddingRight
+                    if (event.rawX >= drawableAreaStart) {
+                        togglePasswordVisibility(editText)
+                        return@OnTouchListener true
+                    }
+                }
+            }
+            false
+        }
+
+        passwordEditText.setOnTouchListener(passwordToggleListener)
+        orgPasswordEditText.setOnTouchListener(passwordToggleListener)
+    }
+
+    private fun loginUser(email: String, password: String) {
+        apiService.userLogin(email, password).enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful && response.body()?.status == "success") {
+                    val user = response.body()
+                    saveUserSession(user?.id, user?.username, user?.email, "user")
+                    Toast.makeText(applicationContext, "User Login Successful!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@MainActivity, Homepage::class.java))
+                } else {
+                    Toast.makeText(applicationContext, "Invalid user credentials", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                Toast.makeText(applicationContext, "Login Failed: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun loginOrganization(email: String, password: String) {
+        apiService.orgLogin(email, password).enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful && response.body()?.status == "success") {
+                    val org = response.body()
+                    saveUserSession(org?.id, org?.username, org?.email, "organization")
+                    Toast.makeText(applicationContext, "Organization Login Successful!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@MainActivity, OrgHomepage::class.java))
+                } else {
+                    Toast.makeText(applicationContext, "Invalid organization credentials", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                Toast.makeText(applicationContext, "Login Failed: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun saveUserSession(id: Int?, username: String?, email: String?, type: String) {
+        val editor = sharedPref.edit()
+        editor.putInt("id", id ?: -1)
+        editor.putString("username", username)
+        editor.putString("email", email)
+        editor.putString("type", type)
+        editor.putBoolean("isLoggedIn", true)
+        editor.apply()
+    }
+
+
+    private fun togglePasswordVisibility(passwordEditText: EditText) {
+        if (isPasswordVisible) {
+            passwordEditText.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            passwordEditText.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                0,
+                0,
+                R.drawable.eyecnot,
+                0
+            )
+        } else {
+            passwordEditText.inputType = InputType.TYPE_CLASS_TEXT
+            passwordEditText.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                0,
+                0,
+                R.drawable.eyec,
+                0
+            )
+        }
+        isPasswordVisible = !isPasswordVisible
+        passwordEditText.setSelection(passwordEditText.text.length)
     }
 
     override fun onBackPressed() {
         if (backPressedTime + backPressedDelay > System.currentTimeMillis()) {
-            // Exit the app if back button is pressed again within the delay
-            super.onBackPressed() // This will finish the activity and exit the app
-            return
+            super.onBackPressed()
         } else {
-            // Show a toast message for the first back press
-            Toast.makeText(this, "Press back again to close the app", Toast.LENGTH_SHORT).show()
+            toast("Press back again to close the app")
         }
         backPressedTime = System.currentTimeMillis()
     }
 
-
-
-    // POPUP ANIMATION
-    private fun showPopup(popupViews: List<View>, heightOfScreen: Int) {
-        popupViews.forEach { view ->
-            view.visibility = View.VISIBLE
-            view.translationY = heightOfScreen.toFloat() // Start below the screen
-            view.animate()
-                .translationY(-200f) // Move to original position
-                .setDuration(500)
-                .start()
-        }
+    private fun toast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    // ANIMATION NG LOGO AND TITLE PRA UMANGAT PAG UMANGAT NA SI POPUP
-    private fun animateLogoAndTitle() {
-        val startlogo = findViewById<ImageView>(R.id.startlogo)
-        val starttitle = findViewById<TextView>(R.id.starttitle)
 
-        // DITO SA LOGO
-        startlogo.animate()
-            .translationY(-300f) // Adjust as needed
-            .setDuration(500) // Duration of the animation
-            .start()
-
-        // DITO SA TITLE
-        starttitle.animate()
-            .translationY(-300f) // Adjust as needed
-            .setDuration(500) // Duration of the animation
-            .start()
-    }
 }
