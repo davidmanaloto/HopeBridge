@@ -39,7 +39,8 @@ class Organization : AppCompatActivity() {
         val userpost: Button = findViewById(R.id.userpost)
         organizationContainer = findViewById(R.id.organizationContainer)
 
-        sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+
         val username = sharedPreferences.getString("username", "Guest") ?: "Guest"
         findViewById<TextView>(R.id.welcome).text = "Welcome $username"
 

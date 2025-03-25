@@ -22,6 +22,7 @@ class Homepage : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
 
 
+
         val username = sharedPreferences.getString("username", "Guest") ?: "Guest"
         findViewById<TextView>(R.id.welcome).text = "Welcome $username"
 

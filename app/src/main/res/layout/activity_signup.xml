@@ -68,7 +68,7 @@
     <ImageView
         android:id="@+id/background"
         android:layout_width="400dp"
-        android:layout_height="370dp"
+        android:layout_height="400dp"
         android:layout_marginLeft="5dp"
         android:background="@drawable/bottom_nav_background"
         app:layout_constraintTop_toBottomOf="@+id/userbtn"
@@ -137,6 +137,33 @@
             android:text="SIGN UP"
             android:textColor="@color/white" />
 
+        <TextView
+            android:id="@+id/noacc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an Account?"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/helvetica_bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSignUp"
+            />
+
+        <Button
+            android:id="@+id/signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="Sign In"
+            android:textSize="16sp"
+            android:fontFamily="@font/helvetica_bold"
+            android:textColor="#6F4E8e"
+            app:layout_constraintTop_toBottomOf="@id/noacc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -164,7 +191,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-            android:id="@+id/organizationName"
+            android:id="@+id/orgName"
             android:layout_width="300dp"
             android:layout_height="55dp"
             android:layout_marginTop="12dp"
@@ -176,7 +203,7 @@
             android:textColorHint="@color/black" />
 
         <EditText
-            android:id="@+id/orgPassword"
+            android:id="@+id/orgPass"
             android:layout_width="300dp"
             android:layout_height="55dp"
             android:background="@drawable/rounded_input_bg"

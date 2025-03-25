@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import retrofit2.Call
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         val userSignInLayout = findViewById<LinearLayout>(R.id.userSignInLayout)
         val orgSignInLayout = findViewById<LinearLayout>(R.id.orgSignInLayout)
         val registerBtn = findViewById<Button>(R.id.btnRegister)
+        val orgRegisterbtn = findViewById<Button>(R.id.orgRegister)
         val passwordEditText = findViewById<EditText>(R.id.password)
         val orgPasswordEditText = findViewById<EditText>(R.id.orgPassword)
         val userEmail = findViewById<EditText>(R.id.email)
@@ -109,8 +111,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        orgRegisterbtn.setOnClickListener {
+            val intent = Intent(this, Signup::class.java)
+            startActivity(intent)
+        }
 
-        orgBtn.setOnClickListener { v: View? ->
+
+        orgBtn.setOnClickListener { _: View? ->
             userSignInLayout.animate()
                 .alpha(0f)
                 .setDuration(fadeOut.duration)
@@ -125,7 +132,7 @@ class MainActivity : AppCompatActivity() {
             userBtn.background = defaultDrawable
         }
 
-        userBtn.setOnClickListener { v: View? ->
+        userBtn.setOnClickListener { _: View? ->
             orgSignInLayout.animate()
                 .alpha(0f)
                 .setDuration(fadeOut.duration)
@@ -201,15 +208,24 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun saveUserSession(id: Int?, username: String?, email: String?, type: String) {
-        val editor = sharedPref.edit()
-        editor.putInt("id", id ?: -1)
+    private fun saveUserSession(userId: Int?, username: String?, email: String?, userType: String) {
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        if (userType == "user") {
+            editor.putInt("user_id", userId ?: -1)
+        } else if (userType == "organization") {
+            editor.putInt("organization_id", userId ?: -1)  // Store organization_id properly
+        }
+
         editor.putString("username", username)
         editor.putString("email", email)
-        editor.putString("type", type)
-        editor.putBoolean("isLoggedIn", true)
+        editor.putString("user_type", userType)
+        editor.putBoolean("isLoggedIn", true) // Ensure this flag is set
         editor.apply()
     }
+
+
 
 
     private fun togglePasswordVisibility(passwordEditText: EditText) {

@@ -24,12 +24,6 @@
             android:name=".OrgHomepage"
             android:exported="false" />
         <activity
-            android:name=".SigninOrg"
-            android:exported="false" />
-        <activity
-            android:name=".SignupOrg"
-            android:exported="false" />
-        <activity
             android:name=".Notification"
             android:exported="false" />
         <activity
@@ -63,9 +57,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Signin"
-            android:exported="false" />
         <activity
             android:name=".Signup"
             android:exported="false" />

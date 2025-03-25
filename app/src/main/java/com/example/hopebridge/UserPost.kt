@@ -19,7 +19,6 @@ import retrofit2.Response
 
 
 
-
 class UserPost : AppCompatActivity() {
 
     private var isMenuOpen = false
@@ -44,7 +43,9 @@ class UserPost : AppCompatActivity() {
 
         burgers.translationX = -900f
 
-        sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+
+
         val username = sharedPreferences.getString("username", "Guest") ?: "Guest"
         findViewById<TextView>(R.id.welcome).text = "Welcome $username"
 
@@ -212,7 +213,7 @@ class UserPost : AppCompatActivity() {
     }
 
     private fun saveDonationToDatabase(projectName: String, amount: Double) {
-        val sharedPreferences = getSharedPreferences("userPrefs", MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
         val userId = sharedPreferences.getInt("user_id", -1)
 
         if (userId == -1) {
