@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create Project"
-            android:textSize="50sp"
+            android:textSize="30sp"
             android:layout_marginTop="60dp"
             android:layout_marginLeft="20dp"
             android:textColor="@color/black"
@@ -85,7 +85,7 @@
 
         <EditText
             android:id="@+id/name"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="@drawable/rounded_input_bg"
             android:textSize="20sp"
@@ -115,7 +115,7 @@
 
         <EditText
             android:id="@+id/summproject"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="70dp"
             android:background="@drawable/rounded_input_bg"
             android:textSize="20sp"
@@ -223,7 +223,7 @@
 
             <EditText
                 android:id="@+id/donategoal"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/rounded_input_bg"
                 android:textSize="20sp"

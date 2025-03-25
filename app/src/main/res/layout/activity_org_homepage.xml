@@ -7,7 +7,6 @@
     android:background="#FFFFFF">
 
 
-    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
@@ -20,8 +19,8 @@
 
         <ImageView
             android:id="@+id/hamburger"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/burgir"
             android:contentDescription="Menu"/>
 
@@ -29,16 +28,17 @@
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
+            android:layout_marginLeft="90dp"
             android:text="HOPE BRIDGE"
             android:textSize="18sp"
             android:textColor="#FFFFFF"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            />
 
         <ImageView
             android:id="@+id/notif"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="70dp"
             android:src="@drawable/notification"
             android:contentDescription="Notifications"/>

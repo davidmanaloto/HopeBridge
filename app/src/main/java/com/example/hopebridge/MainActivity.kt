@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
         apiService = ApiClient.getRetrofitInstance().create(ApiService::class.java)
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, OrgHomepage::class.java))
             }
             finish()
+            checkLoginStatus()
         }
 
 
@@ -171,23 +173,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loginUser(email: String, password: String) {
-        apiService.userLogin(email, password).enqueue(object : Callback<LoginResponse> {
+        val call = apiService.userLogin(email, password)
+
+        call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful && response.body()?.status == "success") {
-                    val user = response.body()
-                    saveUserSession(user?.id, user?.username, user?.email, "user")
-                    Toast.makeText(applicationContext, "User Login Successful!", Toast.LENGTH_SHORT).show()
+                    val userId = response.body()?.id
+                    val username = response.body()?.username
+                    val userType = "user" // or "organization" depending on the login
+
+                    saveUserSession(userId, username, email, userType)
+
+                    // Navigate to the home screen
                     startActivity(Intent(this@MainActivity, Homepage::class.java))
+                    finish()
                 } else {
-                    Toast.makeText(applicationContext, "Invalid user credentials", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Invalid login credentials", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(applicationContext, "Login Failed: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Login failed: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
+
 
     private fun loginOrganization(email: String, password: String) {
         apiService.orgLogin(email, password).enqueue(object : Callback<LoginResponse> {
@@ -208,6 +218,23 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun checkLoginStatus() {
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+        val userType = sharedPreferences.getString("user_type", "") // Corrected key from "type" to "user_type"
+
+        if (isLoggedIn) {
+            if (userType == "user") {
+                startActivity(Intent(this, Homepage::class.java))
+            } else if (userType == "organization") {
+                startActivity(Intent(this, OrgHomepage::class.java))
+            }
+            finish()
+        }
+    }
+
+
+
     private fun saveUserSession(userId: Int?, username: String?, email: String?, userType: String) {
         val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -215,7 +242,7 @@ class MainActivity : AppCompatActivity() {
         if (userType == "user") {
             editor.putInt("user_id", userId ?: -1)
         } else if (userType == "organization") {
-            editor.putInt("organization_id", userId ?: -1)  // Store organization_id properly
+            editor.putInt("organization_id", userId ?: -1)
         }
 
         editor.putString("username", username)
@@ -224,8 +251,6 @@ class MainActivity : AppCompatActivity() {
         editor.putBoolean("isLoggedIn", true) // Ensure this flag is set
         editor.apply()
     }
-
-
 
 
     private fun togglePasswordVisibility(passwordEditText: EditText) {

@@ -1,8 +1,13 @@
 package com.example.hopebridge
 
+import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -22,13 +27,23 @@ interface DonateService {
 class OrgHomepage : AppCompatActivity() {
     private lateinit var orgContainer: LinearLayout
     private lateinit var donateService: DonateService
+    private var isMenuOpen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_org_homepage)
 
+        val hamburger: View = findViewById(R.id.hamburger)
+        val burgers: View = findViewById(R.id.burgers)
+        val profileSection: View = findViewById(R.id.profile_section)
+        val logoutSection: View = findViewById(R.id.logout_section)
+        val aboutSection: View = findViewById(R.id.about_section)
+        val notif: ImageView = findViewById(R.id.notif)
+
         orgContainer = findViewById(R.id.OrganizationContainer)
         donateService = ApiClient.getRetrofitInstance().create(DonateService::class.java)
+
+        burgers.translationX = -900f
 
         val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
         val orgEmail = sharedPreferences.getString("email", "")
@@ -39,6 +54,31 @@ class OrgHomepage : AppCompatActivity() {
             fetchCompletedDonations(orgEmail)
         } else {
             Toast.makeText(this, "No Organization Logged In", Toast.LENGTH_SHORT).show()
+        }
+
+        hamburger.setOnClickListener {
+            val targetX = if (isMenuOpen) -900f else 0f
+            ObjectAnimator.ofFloat(burgers, "translationX", targetX).setDuration(100).start()
+            isMenuOpen = !isMenuOpen
+        }
+
+        notif.setOnClickListener {
+            val intent = Intent(this, Notification::class.java)
+            startActivity(intent)
+        }
+
+        profileSection.setOnClickListener {
+            val intent = Intent(this, UserInfo::class.java)
+            startActivity(intent)
+        }
+
+        aboutSection.setOnClickListener {
+            val intent = Intent(this, About::class.java)
+            startActivity(intent)
+        }
+
+        logoutSection.setOnClickListener {
+            logoutUser()
         }
     }
 
@@ -79,5 +119,16 @@ class OrgHomepage : AppCompatActivity() {
 
             orgContainer.addView(view)
         }
+    }
+
+    private fun logoutUser() {
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
+
+        // Redirect to login screen
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

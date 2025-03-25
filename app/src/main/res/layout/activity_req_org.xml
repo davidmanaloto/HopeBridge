@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Requirement"
-                android:textSize="50sp"
+                android:textSize="30sp"
                 android:layout_marginTop="60dp"
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="To complete your registration, please fill out the required form with the necessary details. Providing accurate information will help us process your signup smoothly."
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -85,7 +85,7 @@
 
             <EditText
                 android:id="@+id/OrgEmail"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/rounded_input_bg"
                 android:textSize="20sp"
@@ -115,7 +115,7 @@
 
             <EditText
                 android:id="@+id/Orgname"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/rounded_input_bg"
                 android:textSize="20sp"
@@ -145,7 +145,7 @@
 
             <EditText
                 android:id="@+id/Orgpass"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/rounded_input_bg"
                 android:textSize="20sp"
@@ -177,7 +177,7 @@
 
             <EditText
                 android:id="@+id/contactnumb"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/rounded_input_bg"
                 android:textSize="20sp"
@@ -207,7 +207,7 @@
 
             <EditText
                 android:id="@+id/orgAddress"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/rounded_input_bg"
                 android:textSize="20sp"
@@ -238,7 +238,7 @@
 
             <EditText
                 android:id="@+id/orgReason"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/rounded_input_bg"
                 android:textSize="20sp"
@@ -269,7 +269,7 @@
 
             <EditText
                 android:id="@+id/documentEditText"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/rounded_input_bg"
                 android:textSize="20sp"

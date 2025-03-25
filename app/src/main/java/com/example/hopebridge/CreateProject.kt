@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -48,9 +49,11 @@ interface ProjectService {
 
     @GET("HopeBridge_Web/php/fetch_organizations.php")
     fun fetchOrganizations(): Call<List<OrganizationData>>
+
+    @DELETE("HopeBridge_Web/project_php/delete_project.php")
+    fun deleteProject(@Query("project_name") projectName: String): Call<String>
+
 }
-
-
 
 class CreateProject : AppCompatActivity() {
     private lateinit var imageAdd: LinearLayout

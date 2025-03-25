@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import okhttp3.ResponseBody
@@ -44,6 +45,7 @@ class Signup : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_signup)
 
         val userBtn = findViewById<Button>(R.id.userbtn)
@@ -51,6 +53,7 @@ class Signup : AppCompatActivity() {
         val userSignInLayout = findViewById<LinearLayout>(R.id.userSignInLayout)
         val orgSignInLayout = findViewById<LinearLayout>(R.id.orgSignInLayout)
         val signinButton: Button = findViewById(R.id.signin)
+        val orgsigninButton: Button = findViewById(R.id.orgsignin)
         val nextButton: Button = findViewById(R.id.orgNextPage)
         emailEditText = findViewById(R.id.email)
         usernameEditText = findViewById(R.id.username)
@@ -84,6 +87,11 @@ class Signup : AppCompatActivity() {
         }
 
         signinButton.setOnClickListener {
+            val intent = Intent(this@Signup, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        orgsigninButton.setOnClickListener {
             val intent = Intent(this@Signup, MainActivity::class.java)
             startActivity(intent)
         }

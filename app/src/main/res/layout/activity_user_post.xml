@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/hamburger"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/burgir"
             android:contentDescription="Menu"/>
 
@@ -28,7 +28,7 @@
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
+            android:layout_marginLeft="90dp"
             android:text="HOPE BRIDGE"
             android:textSize="18sp"
             android:textColor="#FFFFFF"
@@ -37,8 +37,8 @@
 
         <ImageView
             android:id="@+id/notif"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="70dp"
             android:src="@drawable/notification"
             android:contentDescription="Notifications"/>
@@ -120,17 +120,16 @@
 
         <Button
             android:id="@+id/Createproj"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:drawableTop="@drawable/create_project"
             android:background="@drawable/circle"
             android:layout_gravity="bottom|end"
-            android:layout_margin="60dp"
+            android:layout_margin="50dp"
             android:elevation="5dp"
             />
 
     </FrameLayout>
-
 
 
 

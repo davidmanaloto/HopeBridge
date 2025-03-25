@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import retrofit2.Call
@@ -122,6 +123,7 @@ class UserPost : AppCompatActivity() {
         val fundGoalTextView = projectView.findViewById<TextView>(R.id.fundgoal)
         val numberFundTextView = projectView.findViewById<TextView>(R.id.numberfund)
         val donateBtn = projectView.findViewById<Button>(R.id.donatebtn)
+        val menuIcon = projectView.findViewById<ImageView>(R.id.dot_icon)
 
         projectNameTextView.text = name
         fundGoalTextView.text = "Goal: $$donationGoal"
@@ -133,6 +135,10 @@ class UserPost : AppCompatActivity() {
         } else {
             projectSummaryTextView.text = summary
             seeMoreButton.visibility = View.GONE
+        }
+
+        menuIcon.setOnClickListener {
+            showPopupMenu(menuIcon, name)
         }
 
         seeMoreButton.setOnClickListener {
@@ -159,6 +165,51 @@ class UserPost : AppCompatActivity() {
 
         projectContainer.addView(projectView)
     }
+
+    private fun showPopupMenu(view: View, projectName: String) {
+        val popupMenu = PopupMenu(this, view)
+        popupMenu.menuInflater.inflate(R.menu.project_menu, popupMenu.menu)
+
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            if (menuItem.itemId == R.id.delete_project) {
+                confirmDeleteProject(projectName)
+                true
+            } else {
+                false
+            }
+        }
+        popupMenu.show()
+    }
+
+    private fun confirmDeleteProject(projectName: String) {
+        AlertDialog.Builder(this)
+            .setTitle("Delete Project")
+            .setMessage("Are you sure you want to delete this project?")
+            .setPositiveButton("Delete") { _, _ -> deleteProjectFromDatabase(projectName) }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun deleteProjectFromDatabase(projectName: String) {
+        val projectService = ApiClient.getRetrofitInstance().create(ProjectService::class.java)
+        val call = projectService.deleteProject(projectName)
+
+        call.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@UserPost, "Project deleted", Toast.LENGTH_SHORT).show()
+                    fetchProjects() // Refresh UI
+                } else {
+                    Toast.makeText(this@UserPost, "Failed to delete project", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Toast.makeText(this@UserPost, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
 
 
     fun fetchFundsRaised(projectName: String, textView: TextView) {
@@ -273,10 +324,14 @@ class UserPost : AppCompatActivity() {
 
 
     private fun logoutUser() {
-        sharedPreferences.edit().clear().apply()
-        val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
+
+        // Redirect to login screen
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
+
 }
