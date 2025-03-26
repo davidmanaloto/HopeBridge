@@ -1,5 +1,6 @@
 <?php
 include 'db_connection.php';
+session_start();  // Start the session to get logged-in user
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_POST['user_id'];

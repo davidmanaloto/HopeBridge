@@ -2,6 +2,11 @@
 require 'db_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!isset($_POST['user_id']) || empty($_POST['user_id'])) {
+        echo json_encode(["status" => "error", "message" => "User ID is required"]);
+        exit;
+    }
+
     if (!isset($_POST['project_name']) || empty($_POST['project_name'])) {
         echo json_encode(["status" => "error", "message" => "Project name is required"]);
         exit;
@@ -12,11 +17,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
+    $user_id = intval($_POST['user_id']);
     $project_name = trim($_POST['project_name']);
     $amount = floatval($_POST['amount']); 
 
-    // Fetch user_id, project_id, and organization_id from projects table
-    $check_query = "SELECT user_id, project_id, organization_id FROM projects WHERE project_name = ?";
+    // Get user name
+    $user_query = "SELECT username FROM user_table WHERE id = ?";
+    $user_stmt = $conn->prepare($user_query);
+    $user_stmt->bind_param("i", $user_id);
+    $user_stmt->execute();
+    $user_stmt->store_result();
+    
+    if ($user_stmt->num_rows == 0) {
+        echo json_encode(["status" => "error", "message" => "User does not exist"]);
+        $user_stmt->close();
+        $conn->close();
+        exit;
+    }
+
+    $user_stmt->bind_result($username);
+    $user_stmt->fetch();
+    $user_stmt->close();
+
+    // Get project details
+    $check_query = "SELECT project_id, organization_id FROM projects WHERE project_name = ?";
     $check_stmt = $conn->prepare($check_query);
     $check_stmt->bind_param("s", $project_name);
     $check_stmt->execute();
@@ -29,29 +53,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $check_stmt->bind_result($user_id, $project_id, $organization_id);
+    $check_stmt->bind_result($project_id, $organization_id);
     $check_stmt->fetch();
     $check_stmt->close();
 
-    // Start transaction
     $conn->begin_transaction();
 
     try {
-        // Update funds_raised in projects table
+        // Update the project's funds_raised
         $update_query = "UPDATE projects SET funds_raised = funds_raised + ? WHERE project_id = ?";
         $update_stmt = $conn->prepare($update_query);
         $update_stmt->bind_param("di", $amount, $project_id);
         $update_stmt->execute();
         $update_stmt->close();
 
-        // Insert into donations table
-        $insert_query = "INSERT INTO donations (user_id, organization_id, amount, status) VALUES (?, ?, ?, 'Pending')";
+        // ✅ Insert project name into donations table
+        $insert_query = "INSERT INTO donations (user_id, username, organization_id, project_id, project_name, amount, status) 
+                 VALUES (?, ?, ?, ?, ?, ?, 'Pending')";
         $insert_stmt = $conn->prepare($insert_query);
-        $insert_stmt->bind_param("iid", $user_id, $organization_id, $amount);
+        $insert_stmt->bind_param("isidss", $user_id, $username, $organization_id, $project_id, $project_name, $amount);
         $insert_stmt->execute();
         $insert_stmt->close();
 
-        // Commit transaction
         $conn->commit();
         
         echo json_encode(["status" => "success", "message" => "Donation added successfully"]);
