@@ -2,14 +2,8 @@
 session_start();
 require 'db_connection.php';
 
-// Ensure the user is logged in
-if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
-    header("Location: admin_login.php");
-    exit();
-}
-
-// Ensure the user is an Admin
-if ($_SESSION['role'] !== 'Admin') {
+// Ensure admin is logged in
+if (!isset($_SESSION['username']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
     header("Location: admin_login.php");
     exit();
 }
@@ -19,19 +13,21 @@ if (isset($_GET['action'])) {
     header('Content-Type: application/json');
 
     switch ($_GET['action']) {
-        case 'get_orgs':
-            fetchPendingOrganizations();
+        case 'get_verified_orgs':
+            fetchVerifiedOrganizations();
             break;
 
-        case 'approve_org':
+        case 'delete_org':
             if (isset($_POST['id'])) {
-                approveOrganization($_POST['id']);
+                deleteOrganization($_POST['id']);
             }
             break;
-
-        case 'reject_org':
-            if (isset($_POST['id'], $_POST['reason'])) {
-                rejectOrganization($_POST['id'], $_POST['reason']);
+        
+        case 'edit_organization':
+            if (isset($_POST['id'], $_POST['name'], $_POST['tags'], $_POST['description'])) {
+                openEditOrganizationModal($_POST['id'], $_POST['name'], $_POST['tags'], $_POST['description']);
+            } else {
+                echo json_encode(['error' => 'Missing parameters']);
             }
             break;
 
@@ -41,46 +37,57 @@ if (isset($_GET['action'])) {
     }
 }
 
-// Fetch pending organizations
-function fetchPendingOrganizations() {
+// Fetch verified organizations
+function fetchVerifiedOrganizations() {
     global $conn;
-    $query = "SELECT id, name, email, verification_status, verification_document, created_at 
-              FROM org_table WHERE verification_status = 'Pending'";
+    $query = "SELECT id, name, email, description, tags, created_at FROM org_table WHERE is_verified = 1";
     $result = $conn->query($query);
     $orgs = $result->fetch_all(MYSQLI_ASSOC);
     echo json_encode($orgs);
     exit;
 }
 
-// Approve organization
-function approveOrganization($id) {
+// Delete organization
+function deleteOrganization($id) {
     global $conn;
-    $query = "UPDATE org_table SET is_verified = 1, verification_status = 'Verified' WHERE id = ?";
+    $query = "DELETE FROM org_table WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id);
     $stmt->execute();
     echo json_encode(['success' => $stmt->affected_rows > 0]);
     exit;
 }
-
-// Reject organization
-function rejectOrganization($id, $reason) {
+// Edit organization
+function openEditOrganizationModal($id, $name, $tags, $description) {
     global $conn;
-    $query = "UPDATE org_table SET verification_status = 'Rejected', verification_document = ? WHERE id = ?";
+    
+    $query = "UPDATE org_table SET name = ?, tags = ?, description = ? WHERE id = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("si", $reason, $id);
-    $stmt->execute();
-    echo json_encode(['success' => $stmt->affected_rows > 0]);
+    
+    if (!$stmt) {
+        echo json_encode(['success' => false, 'error' => 'SQL prepare error: ' . $conn->error]);
+        exit;
+    }
+
+    $stmt->bind_param("sssi", $name, $tags, $description, $id);
+
+    if ($stmt->execute()) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Execution failed: ' . $stmt->error]);
+    }
+
+    $stmt->close();
     exit;
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification Management</title>
+    <title>Organization Management</title>
     <link rel="stylesheet" href="../css/management.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -92,7 +99,7 @@ function rejectOrganization($id, $reason) {
     <nav class="nav-menu">
         <div class="logo-container">
             <a href="admin_dashboard.php">
-            <img src="../image/hopebridge.jpg" alt="Company Logo" class="logo">
+                <img src="../image/hopebridge.jpg" alt="Company Logo" class="logo">
             </a>
             <h1 class="site-title">HopeBridge</h1>
         </div>
@@ -109,26 +116,54 @@ function rejectOrganization($id, $reason) {
     </nav>
     <div class="user-management-container"> 
         <div class="user-management-header">
-    <h2>Organization Verification Requests</h2>
+    <h2>Organization Management</h2>
     </div>
+    
     <table class="user-table">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Org Name</th>
+                <th>Name</th>
                 <th>Email</th>
-                <th>Contact No.</th>
-                <th>Address</th>
-                <th>Status</th>
                 <th>Created At</th>
-                <th>Reason</th>
-                <th>Documentation</th> 
+                <th>Tags</th>
+                <th>Description</th>
                 <th>Actions</th>
             </tr>
+
+            <div id="editOrganizationModal" class="modal">
+            <div class="modal-content">
+            <span class="close" onclick="closeEditOrganizationModal()">&times;</span>
+            <h3>Edit Organization</h3>
+            
+            <input type="hidden" id="editOrgId">
+
+            <label for="editOrgName">Name:</label>
+            <input type="text" id="editOrgName"><br>
+
+            <label for="editOrgTag">Tags:</label>
+            <input type="text" id="editOrgTag"><br>
+
+            <label for="editOrgDescription">Description:</label>
+            <textarea id="editOrgDescription"></textarea><br>
+
+            <button onclick="saveOrganizationChanges()">Save Changes</button>
+            </div>
+            </div>
+
         </thead>
-        <tbody id="verificationTableBody"></tbody>
+        <tbody id="orgTableBody">
+            <tr><td colspan="7" style="text-align: center;">Loading organizations...</td></tr>
+        </tbody>
     </table>
 
-    <script src="../js/verify_management.js"></script>
+    <script src="../js/org_display.js"></script>
 </body>
 </html>
+
+<style>
+    /* Basic modal styling */
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center;}
+    .modal-content { background: white; margin: 15% auto; padding: 20px; width: 30%; border-radius: 8px; }
+    .close { float: right; font-size: 20px; cursor: pointer; }
+</style>

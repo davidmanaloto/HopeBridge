@@ -5,7 +5,7 @@ require 'db_connection.php';
 header('Content-Type: application/json');
 
 // Check if required fields are provided
-if (!isset($_POST['email'], $_POST['organization_name'], $_POST['password'], $_POST['contact_number'], $_POST['address'], $_POST['verification_reason'], $_POST['verification_document'])) {
+if (!isset($_POST['email'], $_POST['name'], $_POST['password'], $_POST['contact_number'],$_POST['address'], $_POST['verification_reason'], $_POST['verification_document'])) {
     http_response_code(400); // Bad Request
     echo json_encode(["error" => "Missing required fields."]);
     exit();
@@ -13,7 +13,7 @@ if (!isset($_POST['email'], $_POST['organization_name'], $_POST['password'], $_P
 
 // Get and sanitize input
 $email = trim($_POST['email']);
-$organization_name = trim($_POST['organization_name']);
+$organization_name = trim($_POST['name']);
 $password = trim($_POST['password']);
 $contact_number = trim($_POST['contact_number']);
 $address = trim($_POST['address']);
@@ -49,7 +49,7 @@ if (!preg_match('/^\d{10,15}$/', $contact_number)) {
 }
 
 // Check if email already exists
-$check_email_qry = $conn->prepare("SELECT email FROM org_user_table WHERE email = ?");
+$check_email_qry = $conn->prepare("SELECT email FROM organizations WHERE email = ?");
 $check_email_qry->bind_param("s", $email);
 $check_email_qry->execute();
 $check_email_qry->store_result();
@@ -61,7 +61,7 @@ if ($check_email_qry->num_rows > 0) {
 }
 
 // Check if organization name already exists
-$check_user_qry = $conn->prepare("SELECT organization_name FROM org_user_table WHERE organization_name = ?");
+$check_user_qry = $conn->prepare("SELECT name FROM organizations WHERE name = ?");
 $check_user_qry->bind_param("s", $organization_name);
 $check_user_qry->execute();
 $check_user_qry->store_result();
@@ -76,7 +76,7 @@ if ($check_user_qry->num_rows > 0) {
 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
 // Insert organization into database with all fields
-$insert_stmt = $conn->prepare("INSERT INTO org_user_table (email, organization_name, password, contact_number, address, verification_reason, verification_document) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$insert_stmt = $conn->prepare("INSERT INTO organizations (email, name, password, contact_number, address, verification_reason, verification_document) VALUES (?, ?, ?, ?, ?, ?, ?)");
 $insert_stmt->bind_param("sssssss", $email, $organization_name, $hashed_password, $contact_number, $address, $verification_reason, $verification_document);
 
 if ($insert_stmt->execute()) {

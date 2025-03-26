@@ -735,3 +735,35 @@ td i {
         gap: 5px;
     }
 }
+.row-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+.box-cont {
+    max-width: 200px;
+    margin: auto 0;
+    background: grey;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.card-box {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+.card-box p{
+    font-size: 20px;
+    color: white;
+}
+.box-cont:nth-of-type(1) { background-color: #3498db; } /* Blue */
+.box-cont:nth-of-type(2) { background-color: #2ecc71; } /* Green */
+.box-cont:nth-of-type(3) { background-color: #f39c12; } /* Orange */
+.box-cont:nth-of-type(4) { background-color: #e74c3c; } /* Red */

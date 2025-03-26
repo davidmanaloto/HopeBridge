@@ -22,6 +22,26 @@ $sql = "SELECT u.id, u.username, u.email, u.status, u.verification_status,
         WHERE u.role != 'Admin'
         GROUP BY u.id, u.verification_status";
 
+// Fetch total users (excluding admins)
+$totalUsersQuery = "SELECT COUNT(*) AS total FROM user_table WHERE role != 'Admin'";
+$totalUsersResult = $conn->query($totalUsersQuery);
+$totalUsers = ($totalUsersResult->fetch_assoc())['total'] ?? 0;
+
+// Fetch total organizations
+$totalOrgsQuery = "SELECT COUNT(*) AS total FROM organizations";
+$totalOrgsResult = $conn->query($totalOrgsQuery);
+$totalOrgs = ($totalOrgsResult->fetch_assoc())['total'] ?? 0;
+
+// Fetch total projects
+$totalProjectsQuery = "SELECT COUNT(*) AS total FROM projects";
+$totalProjectsResult = $conn->query($totalProjectsQuery);
+$totalProjects = ($totalProjectsResult->fetch_assoc())['total'] ?? 0;
+
+// Fetch total donations amount
+$totalDonationsQuery = "SELECT COALESCE(SUM(amount), 0) AS total FROM donations";
+$totalDonationsResult = $conn->query($totalDonationsQuery);
+$totalDonations = ($totalDonationsResult->fetch_assoc())['total'] ?? 0;
+
 $result = $conn->query($sql);
 
 // Check for query errors
@@ -68,6 +88,36 @@ if (!$result) {
         <div class="user-management-header">
             <h2>Admin Dashboard</h2>
     </div>
+
+<div class="admin-dash-container">
+    <div class="row-container">
+        <div class="box-cont">
+            <div class="card-box">
+                <h5>Total Users</h5>
+                <p><?php echo $totalUsers; ?></p>
+            </div>
+        </div>
+        <div class="box-cont">
+            <div class="card-box">
+                <h5>Total Org</h5>
+                <p><?php echo $totalOrgs; ?></p>
+            </div>
+        </div>
+        <div class="box-cont">
+            <div class="card-box">
+                <h5>Total Projects</h5>
+                <p><?php echo $totalProjects; ?></p>
+            </div>
+        </div>
+        <div class="box-cont">
+            <div class="card-box">
+                <h5>Total Donations</h5>
+                <p>$<?php echo number_format($totalDonations, 2); ?></p>
+            </div>
+        </div>
+    </div>
+</div>
+
     <table class="user-table">
         <thead>
             <tr>
