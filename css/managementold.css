@@ -23,7 +23,7 @@ body {
     top: 0;
     width: 250px;
     height: 100%;
-    background-color: #8e75a3;
+    background-color: #264152;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,7 +95,7 @@ main {
 }
 
 .slide-button {
-    color:#8e75a3;
+    color:#2641528f;
     background-color: #ffffff;
     border: none;
     padding: 10px 10px;
@@ -180,7 +180,7 @@ h2 {
 }
 
 .icon-card i {
-    color: #8e75a3; /* Icon color */
+    color: #264152; /* Icon color */
 }
 
 .hidden {
@@ -396,7 +396,7 @@ td i {
 }
 
 .admin-content h2 {
-    color: #8e75a3;
+    color: #264152;
     margin-bottom: 20px;
 }
 
@@ -456,7 +456,7 @@ td i {
 }
 
 .search-filter-container button {
-    background-color: #8e75a3;
+    background-color: #264152;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -487,7 +487,7 @@ td i {
 }
 
 .user-table th, .org-table th {
-    background-color: #8e75a3;
+    background-color: #264152;
     color: white;
 }
 
@@ -585,7 +585,7 @@ td i {
 
 .user-management-header h2 {
     font-size: 26px;
-    color: #8e75a3;
+    color: #264152;
     font-weight: bold;
 }
 
@@ -621,7 +621,7 @@ td i {
 }
 
 .user-table thead {
-    background-color: #8e75a3;
+    background-color: #264152;
     color: white;
 }
 
