@@ -29,7 +29,7 @@ body {
 /* Branding Text */
 .HopeBridge {
     font-size: 24px;
-    color: #d7c3e3;
+    color: #ffffff;
     font-weight: bold;
 }
 
@@ -86,8 +86,8 @@ input:focus {
 button {
     width: 100%;
     padding: 12px;
-    background: #d7c3e3;
-    color: #472A5A;
+    background: #8e75a3;
+    color: #d7c3e3;
     font-weight: bold;
     border: none;
     border-radius: 5px;
@@ -96,7 +96,7 @@ button {
 }
 
 button:hover {
-    background: #d7c3e3;
+    background: #472A5A;
 }
 
 /* Forgot Password */
